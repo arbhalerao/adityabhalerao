@@ -17,7 +17,24 @@ const projects = [
       "CLI client for easy database operations and cluster management",
       "BadgerDB integration for persistent local storage on each node"
     ],
-  }
+  },
+  {
+    title: "(wip) Autorollout",
+    description: "A Kubernetes controller that automatically restarts Deployments when associated ConfigMaps or Secrets change.",
+    technologies: ["Go", "Kubebuilder", "K8s Controller", "Client-Go"],
+    images: {
+      light: "/autorollout-light.png",
+      dark: "/autorollout-dark.png"
+    },
+    github: "https://github.com/arbhalerao/autorollout",
+    demo: "",
+    features: [
+      "Label-based selective watching of ConfigMaps and Secrets (autorollout.io=true)",
+      "Event-driven processing with Kubernetes controller-runtime framework",
+      "Built with Kubebuilder",
+      "Lightweight and stateless design"
+    ]
+  },
 ];
 
 export default projects;
