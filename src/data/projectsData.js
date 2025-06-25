@@ -19,9 +19,9 @@ const projects = [
     ],
   },
   {
-    title: "(wip) Autorollout",
-    description: "A Kubernetes controller that automatically restarts Deployments when associated ConfigMaps or Secrets change.",
-    technologies: ["Go", "Kubebuilder", "K8s Controller", "Client-Go"],
+    title: "Autorollout",
+    description: "A Kubernetes controller that automatically triggers rolling updates for Deployments when their ConfigMaps or Secrets change.",
+    technologies: ["Go", "Kubebuilder", "Kubernetes Controller", "Client-Go", "Docker"],
     images: {
       light: "/autorollout-light.png",
       dark: "/autorollout-dark.png"
@@ -29,10 +29,11 @@ const projects = [
     github: "https://github.com/arbhalerao/autorollout",
     demo: "",
     features: [
-      "Label-based selective watching of ConfigMaps and Secrets (autorollout.io=true)",
-      "Event-driven processing with Kubernetes controller-runtime framework",
-      "Built with Kubebuilder",
-      "Lightweight and stateless design"
+      "Label-based selective watching (autorollout.io=true) - zero config needed",
+      "Supports all ConfigMap/Secret usage patterns (env, envFrom, volumes, imagePullSecrets)",
+      "Event-driven with efficient resource watching using controller-runtime",
+      "Comprehensive RBAC and proper error handling",
+      "Lightweight, stateless design with minimal cluster overhead"
     ]
   },
 ];
