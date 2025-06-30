@@ -6,13 +6,16 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) return savedTheme;
-    
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+    // return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+    // Force light mode as default instead of detecting system preference
+    return "light";
   });
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
-    
+
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {

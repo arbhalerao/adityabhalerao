@@ -3,7 +3,7 @@ const tech = [
         name: "GoLang",
         link: "https://golang.org",
         image: "/golang.svg",
-        stack: ["GORM", "Concurrency Patterns", "Echo", "gRPC"],
+        stack: ["GORM", "Concurrency Patterns", "Echo", "gRPC", "Gorilla Mux"],
         stackType: "Ecosystem"
     },
     {
@@ -46,6 +46,13 @@ const tech = [
         link: "https://www.mongodb.com",
         image: "/mongodb.svg",
         stack: ["Transactions"],
+        stackType: "Database"
+    },
+    {
+        name: "InfluxDB",
+        link: "https://www.influxdata.com",
+        image: "/influxdb.svg",
+        stack: ["Flux Query Language", "Data Retention", "Backups"],
         stackType: "Database"
     },
     {
