@@ -40,10 +40,10 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="flex max-w-[600px] flex-col items-center justify-center gap-3 text-center"
                 >
-                    <h1 className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent text-5xl font-light md:text-7xl">
+                    <h1 className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent text-5xl font-light md:text-7xl leading-tight py-2">
                         Aditya Bhalerao
                     </h1>
-                    <h3 className="bg-gradient-to-r from-purple-500 to-indigo-400 bg-clip-text text-transparent text-2xl md:text-3xl">
+                    <h3 className="bg-gradient-to-r from-purple-500 to-indigo-400 bg-clip-text text-transparent text-2xl md:text-3xl leading-relaxed py-1">
                         Software Engineer
                     </h3>
 

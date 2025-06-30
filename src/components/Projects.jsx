@@ -48,8 +48,12 @@ const Projects = () => {
           variants={variants}
           initial="hidden"
           whileInView="visible"
-          transition={{ duration: 0.5 }}
-          className="section-title">
+          whileHover={{ scale: 1.05 }}
+          transition={{
+            duration: 0.5,
+            scale: { duration: 0.2 }
+          }}
+          className="section-title no-underline">
           Projects
         </motion.h1>
       </div>
@@ -60,7 +64,7 @@ const Projects = () => {
             key={index}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.01, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
+            whileHover={{ scale: 1.04, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
             transition={{ duration: 0.5 }}
             className="flex flex-col md:flex-row h-full bg-gray-100/80 dark:bg-black/80 p-6 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800"
           >
@@ -107,7 +111,7 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-orange-400 hover:text-orange-500 border border-orange-600 rounded-lg px-2 py-1 transition-colors duration-300"
+                    className="flex items-center gap-2 text-sm font-medium text-orange-400 hover:text-orange-500 border border-orange-600 rounded-lg px-2 py-1 transition-all duration-300 hover:scale-105"
                   >
                     <Github size={18} />
                     <span>Code</span>
@@ -118,7 +122,7 @@ const Projects = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400 transition-colors duration-300"
+                    className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400 transition-all duration-300 hover:scale-105"
                   >
                     <ExternalLink size={18} />
                     <span>Live Demo</span>

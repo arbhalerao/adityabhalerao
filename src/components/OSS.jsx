@@ -24,8 +24,12 @@ const OSS = () => {
           variants={variants}
           initial="hidden"
           whileInView="visible"
-          transition={{ duration: 0.5 }}
-          className="section-title">
+          whileHover={{ scale: 1.05 }}
+          transition={{
+            duration: 0.5,
+            scale: { duration: 0.2 }
+          }}
+          className="section-title no-underline">
           OSS Contributions
         </motion.h1>
       </div>
@@ -46,18 +50,30 @@ const OSS = () => {
         transition={{ duration: 0.5 }}
         className="flex flex-wrap justify-center gap-4 mb-12"
       >
-        <div className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28">
+        <motion.div
+          whileHover={{ scale: 1.05, boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.15)" }}
+          transition={{ duration: 0.2 }}
+          className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28"
+        >
           <p className="text-2xl font-bold text-black dark:text-white">{contributions.length}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Projects</p>
-        </div>
-        <div className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28">
+        </motion.div>
+        <motion.div
+          whileHover={{ scale: 1.05, boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.15)" }}
+          transition={{ duration: 0.2 }}
+          className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28"
+        >
           <p className="text-2xl font-bold" style={{ color: "#8957e5" }}>{totalPRs}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">PRs</p>
-        </div>
-        <div className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28">
+        </motion.div>
+        <motion.div
+          whileHover={{ scale: 1.05, boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.15)" }}
+          transition={{ duration: 0.2 }}
+          className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28"
+        >
           <p className="text-2xl font-bold" style={{ color: "#cf222e" }}>{totalIssues}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Issues</p>
-        </div>
+        </motion.div>
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">

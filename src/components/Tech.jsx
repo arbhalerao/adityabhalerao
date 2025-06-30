@@ -30,8 +30,12 @@ const Tech = () => {
                     variants={variants}
                     initial="hidden"
                     whileInView="visible"
-                    transition={{ duration: 0.5 }}
-                    className="section-title">
+                    whileHover={{ scale: 1.05 }}
+                    transition={{
+                        duration: 0.5,
+                        scale: { duration: 0.2 }
+                    }}
+                    className="section-title no-underline">
                     Tech Stack
                 </motion.h1>
             </div>
