@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Tech from "./components/Tech";
 import Experience from "./components/Experience";
 import Papershelf from "./components/Papershelf";
-import Stats from "./components/Stats";
+// import Stats from "./components/Stats";
 import OSS from "./components/OSS";
 import ParticlesBackground from "./components/ParticlesBackground";
 import Projects from "./components/Projects";
@@ -34,7 +34,7 @@ export default function App() {
                 <Projects />
                 <OSS />
                 <Papershelf />
-                <Stats />
+                {/* <Stats /> */}
                 <Contact />
               </main>
             }
