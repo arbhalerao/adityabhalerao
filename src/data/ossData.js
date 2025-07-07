@@ -16,8 +16,13 @@ const contributions = [
             },
             {
                 kind: "Bug",
-                title: "Added SCORER and ADDSCORES Options to FT.AGGREGATE Command in Rueidis",
+                title: "Added SCORER and ADDSCORES Options to FT.AGGREGATE Command",
                 link: "https://github.com/redis/rueidis/pull/815"
+            },
+            {
+                kind: "Perf",
+                title: "Consolidate wire, sc, mu slices into muxwire struct to reduce memory overhead",
+                link: "https://github.com/redis/rueidis/pull/869"
             },
         ],
         issues: []
