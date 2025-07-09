@@ -51,7 +51,7 @@ const contributions = [
         title: "DiceDB/dice",
         link: "https://github.com/DiceDB/dice",
         priority: 3,
-        summary: "DiceDB is an open-source in-memory database with query subscriptions.",
+        summary: "DiceDB is an open-source, fast, reactive, in-memory database optimized for modern hardware.",
         prs: [
             {
                 kind: "Feature",
