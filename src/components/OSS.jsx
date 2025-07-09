@@ -10,12 +10,152 @@ const OSS = () => {
     visible: { opacity: 1, y: 0 }
   };
 
-  const totalPRs = contributions.reduce((acc, curr) => acc + curr.prs.length, 0);
-  const totalIssues = contributions.reduce((acc, curr) => acc + curr.issues.length, 0);
+  const sortedContributions = [...contributions].sort((a, b) => a.priority - b.priority);
+
+  const totalPRs = sortedContributions.reduce((acc, curr) => acc + curr.prs.length, 0);
+  const totalIssues = sortedContributions.reduce((acc, curr) => acc + curr.issues.length, 0);
 
   const [tabs, setTabs] = useState(
-    Object.fromEntries(contributions.map((_, i) => [i, 'prs']))
+    Object.fromEntries(sortedContributions.map((_, i) => [i, 'prs']))
   );
+
+  const getStatusIndicator = (status) => {
+    switch (status) {
+      case 'merged':
+        return {
+          icon: '/gh-pr-merged.svg',
+          title: 'Merged',
+          altText: 'Merged PR'
+        };
+      case 'open':
+        return {
+          icon: '/gh-pr-open.svg',
+          title: 'Open',
+          altText: 'Open PR'
+        };
+      case 'closed':
+        return {
+          icon: '/gh-pr-closed.svg',
+          title: 'Closed',
+          altText: 'Closed PR'
+        };
+      default:
+        return {
+          icon: null,
+          title: 'Unknown',
+          altText: 'Unknown status'
+        };
+    }
+  };
+
+  const renderContributionCard = (contribution, originalIndex) => {
+    const tab = tabs[originalIndex];
+    const filtered = tab === 'prs' ? contribution.prs : contribution.issues;
+
+    return (
+      <motion.div
+        key={originalIndex}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.02, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col bg-gray-100/80 dark:bg-black/80 p-4 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800 w-full"
+      >
+        <div className="space-y-3">
+          <h2 className="text-lg font-semibold">
+            <a
+              href={contribution.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline"
+            >
+              {contribution.title}
+            </a>
+          </h2>
+
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
+            {contribution.summary}
+          </p>
+
+          <div className="flex gap-3">
+            {contribution.prs.length > 0 && (
+              <button
+                onClick={() => setTabs(prev => ({ ...prev, [originalIndex]: 'prs' }))}
+                className={`px-3 py-1 rounded text-xs font-medium ${tab === 'prs'
+                  ? "bg-sky-400 dark:bg-blue-600 text-white"
+                  : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                  }`}
+              >
+                PRs
+              </button>
+            )}
+
+            {contribution.issues.length > 0 && (
+              <button
+                onClick={() => setTabs(prev => ({ ...prev, [originalIndex]: 'issues' }))}
+                className={`px-3 py-1 rounded text-xs font-medium ${tab === 'issues'
+                  ? "bg-sky-400 dark:bg-blue-600 text-white"
+                  : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                  }`}
+              >
+                Issues
+              </button>
+            )}
+          </div>
+
+          <div className="pt-2">
+            <ul className="space-y-2 text-sm">
+              {filtered.length === 0 ? (
+                <li className="text-gray-500 dark:text-gray-400 italic">
+                  No {tab.toUpperCase()}s
+                </li>
+              ) : (
+                filtered.map((item, i) => {
+                  const statusInfo = item.status ? getStatusIndicator(item.status) : null;
+
+                  return (
+                    <li key={i} className="flex items-start gap-2">
+                      {tab === "prs" && statusInfo && statusInfo.icon ? (
+                        <img
+                          src={statusInfo.icon}
+                          alt={statusInfo.altText}
+                          title={statusInfo.title}
+                          className="w-4 h-4 flex-shrink-0 mt-0.5"
+                        />
+                      ) : tab === "issues" ? (
+                        <img
+                          src="/gh-issue.svg"
+                          alt="GitHub Issue"
+                          title="Issue"
+                          className="w-4 h-4 flex-shrink-0 mt-0.5"
+                        />
+                      ) : (
+                        <span className="text-blue-400 flex-shrink-0 mt-0.5">➜</span>
+                      )}
+
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:underline leading-relaxed"
+                      >
+                        {tab === "prs" && (
+                          <span className="text-gray-600 dark:text-gray-400">
+                            [{item.kind}]
+                          </span>
+                        )}{" "}
+                        {item.title}
+                      </a>
+                    </li>
+                  );
+                })
+              )}
+            </ul>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
     <div id="oss" className="flex flex-col items-center w-full px-8 py-16 pt-36">
@@ -55,7 +195,7 @@ const OSS = () => {
           transition={{ duration: 0.2 }}
           className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28"
         >
-          <p className="text-2xl font-bold text-black dark:text-white">{contributions.length}</p>
+          <p className="text-2xl font-bold text-black dark:text-white">{sortedContributions.length}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Projects</p>
         </motion.div>
         <motion.div
@@ -76,97 +216,24 @@ const OSS = () => {
         </motion.div>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-        {contributions.map((contribution, index) => {
-          const tab = tabs[index];
-          const filtered = tab === 'prs' ? contribution.prs : contribution.issues;
+      <div className="flex flex-col sm:flex-row sm:gap-6 w-full">
+        <div className="flex flex-col gap-6 w-full sm:w-1/2">
+          {sortedContributions
+            .filter((_, index) => index % 2 === 0)
+            .map((contribution, filteredIndex) => {
+              const originalIndex = filteredIndex * 2;
+              return renderContributionCard(contribution, originalIndex);
+            })}
+        </div>
 
-          return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.04, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col h-[16rem] bg-gray-100/80 dark:bg-black/80 p-4 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800 w-full"
-            >
-              {/* ─────── Row 1: Title, Description, Toggle ─────── */}
-              <div className="space-y-2">
-                <h2 className="text-lg font-semibold">
-                  <a
-                    href={contribution.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 hover:underline"
-                  >
-                    {contribution.title}
-                  </a>
-                </h2>
-
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  {contribution.summary}
-                </p>
-
-                <div className="flex gap-3">
-                  {contribution.prs.length > 0 && (
-                    <button
-                      onClick={() => setTabs(prev => ({ ...prev, [index]: 'prs' }))}
-                      className={`px-3 py-1 rounded text-xs font-medium ${tab === 'prs'
-                        ? "bg-sky-400 dark:bg-blue-600 text-white"
-                        : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-                        }`}
-                    >
-                      PRs
-                    </button>
-                  )}
-
-                  {contribution.issues.length > 0 && (
-                    <button
-                      onClick={() => setTabs(prev => ({ ...prev, [index]: 'issues' }))}
-                      className={`px-3 py-1 rounded text-xs font-medium ${tab === 'issues'
-                        ? "bg-sky-400 dark:bg-blue-600 text-white"
-                        : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-                        }`}
-                    >
-                      Issues
-                    </button>
-                  )}
-                </div>
-
-              </div>
-
-              {/* ─────── Row 2: Scrollable List ─────── */}
-              <div className="overflow-y-auto flex-1 mt-4 pr-1">
-                <ul className="space-y-2 text-sm">
-                  {filtered.length === 0 ? (
-                    <li className="text-gray-500 dark:text-gray-400 italic">
-                      No {tab.toUpperCase()}s
-                    </li>
-                  ) : (
-                    filtered.map((item, i) => (
-                      <li key={i}>
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-400 hover:underline"
-                        >
-                          ➜{" "}
-                          {tab === "prs" && (
-                            <span className="text-gray-600 dark:text-gray-400">
-                              [{item.kind}]
-                            </span>
-                          )}{" "}
-                          {item.title}
-                        </a>
-                      </li>
-                    ))
-                  )}
-                </ul>
-              </div>
-            </motion.div>
-          );
-        })}
+        <div className="flex flex-col gap-6 w-full sm:w-1/2">
+          {sortedContributions
+            .filter((_, index) => index % 2 === 1)
+            .map((contribution, filteredIndex) => {
+              const originalIndex = filteredIndex * 2 + 1;
+              return renderContributionCard(contribution, originalIndex);
+            })}
+        </div>
       </div>
     </div>
   );
