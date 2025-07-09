@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from "./context/ThemeContext";
 
@@ -15,6 +16,27 @@ import ParticlesBackground from "./components/ParticlesBackground";
 import Projects from "./components/Projects";
 
 function MainContent() {
+  useEffect(() => {
+    const handleHashNavigation = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
+    };
+
+    handleHashNavigation();
+
+    window.addEventListener('hashchange', handleHashNavigation);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashNavigation);
+    };
+  }, []);
 
   return (
     <main className="flex flex-col items-center">
