@@ -37,7 +37,7 @@ const Papershelf = () => {
         A collection of research papers I've found insightful. These papers span various fields and have broadened my understanding of different concepts.
       </motion.p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+      <div className="flex flex-wrap justify-center gap-6 w-full">
         {papers.map((paper, index) => (
           <motion.div
             key={index}
@@ -45,7 +45,7 @@ const Papershelf = () => {
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.04, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
             transition={{ duration: 0.5 }}
-            className="bg-gray-100/80 dark:bg-black/80 p-6 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800 w-full"
+            className="bg-gray-100/80 dark:bg-black/80 p-6 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800 w-full max-w-md flex-shrink-0"
           >
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{paper.title}</h2>
             <p className="text-gray-600 dark:text-gray-400 mt-2">{paper.summary}</p>
@@ -65,3 +65,4 @@ const Papershelf = () => {
 };
 
 export default Papershelf;
+

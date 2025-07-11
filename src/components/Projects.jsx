@@ -58,7 +58,7 @@ const Projects = () => {
         </motion.h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+      <div className="flex flex-wrap justify-center gap-8 w-full">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -66,7 +66,7 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.04, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col md:flex-row h-full bg-gray-100/80 dark:bg-black/80 p-6 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800"
+            className="flex flex-col md:flex-row h-full bg-gray-100/80 dark:bg-black/80 p-6 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800 w-full max-w-2xl flex-shrink-0"
           >
             <div className="w-full md:w-1/3 h-48 md:h-auto md:min-h-[12rem] mb-4 md:mb-0 md:mr-6 overflow-hidden rounded-lg flex items-center justify-center shrink-0">
               <img

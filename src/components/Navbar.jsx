@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { BsGithub, BsLinkedin, BsMedium } from "react-icons/bs";
 import { useNavigateAndScroll } from "../hooks/useNavigateAndScroll";
 import ThemeToggle from "./ThemeToggle";
 
@@ -112,6 +112,11 @@ const Navbar = () => {
                             <BsGithub className="text-xl text-gray-800 dark:text-white" />
                         </a>
                     </li>
+                    <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-green-500 hover:opacity-100">
+                        <a href="https://arbhalerao.medium.com/" target="_blank" rel="noopener noreferrer">
+                            <BsMedium className="text-xl text-gray-800 dark:text-white" />
+                        </a>
+                    </li>
                     <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-blue-500 hover:opacity-100">
                         <a href="https://www.linkedin.com/in/bhalerao-aditya/" target="_blank" rel="noopener noreferrer">
                             <BsLinkedin className="text-xl text-gray-800 dark:text-white" />
@@ -177,6 +182,9 @@ const Navbar = () => {
                             <div className="flex justify-center mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
                                 <a href="https://github.com/arbhalerao" target="_blank" rel="noopener noreferrer" className="mx-3">
                                     <BsGithub className="text-2xl text-orange-400" />
+                                </a>
+                                <a href="https://arbhalerao.medium.com/" target="_blank" rel="noopener noreferrer" className="mx-3">
+                                    <BsMedium className="text-2xl text-green-400" />
                                 </a>
                                 <a href="https://www.linkedin.com/in/bhalerao-aditya/" target="_blank" rel="noopener noreferrer" className="mx-3">
                                     <BsLinkedin className="text-2xl text-blue-400" />

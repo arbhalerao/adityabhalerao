@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaMedium } from "react-icons/fa";
 import { ChevronUp } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
@@ -167,26 +167,36 @@ export default function ContactSection() {
                     initial="hidden"
                     whileInView="visible"
                     transition={{ duration: 0.5 }}
-                    className="flex flex-col md:flex-row items-center gap-4 md:gap-6"
+                    className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6"
                 >
-                    <a
-                        href="https://www.linkedin.com/in/bhalerao-aditya/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 rounded-lg border border-blue-600 bg-gray-100 dark:bg-[#111132] px-6 py-3 text-lg font-semibold text-blue-400 shadow-lg shadow-blue-300 dark:shadow-blue-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-300 dark:hover:shadow-blue-700 w-full max-w-[300px] md:w-[300px] justify-center"
-                    >
-                        <FaLinkedin size={24} />
-                        <span>Connect on LinkedIn</span>
-                    </a>
-
                     <a
                         href="https://github.com/arbhalerao"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 rounded-lg border border-orange-600 bg-gray-100 dark:bg-[#111132] px-6 py-3 text-lg font-semibold text-orange-400 shadow-lg shadow-orange-300 dark:shadow-orange-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-orange-300 dark:hover:shadow-orange-700 w-full max-w-[300px] md:w-[300px] justify-center"
+                        className="flex items-center gap-3 rounded-lg border border-orange-600 bg-gray-100 dark:bg-[#111132] px-6 py-3 text-lg font-semibold text-orange-400 shadow-lg shadow-orange-300 dark:shadow-orange-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-orange-300 dark:hover:shadow-orange-700 w-full max-w-[300px] lg:w-[280px] justify-center"
                     >
                         <FaGithub size={24} />
                         <span>Follow on GitHub</span>
+                    </a>
+
+                    <a
+                        href="https://arbhalerao.medium.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 rounded-lg border border-green-700 bg-gray-100 dark:bg-[#111132] px-6 py-3 text-lg font-semibold text-green-500 shadow-lg shadow-green-400 dark:shadow-green-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-400 dark:hover:shadow-green-700 w-full max-w-[300px] lg:w-[280px] justify-center"
+                    >
+                        <FaMedium size={24} />
+                        <span>Follow on Medium</span>
+                    </a>
+
+                    <a
+                        href="https://www.linkedin.com/in/bhalerao-aditya/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 rounded-lg border border-blue-600 bg-gray-100 dark:bg-[#111132] px-6 py-3 text-lg font-semibold text-blue-400 shadow-lg shadow-blue-300 dark:shadow-blue-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-300 dark:hover:shadow-blue-700 w-full max-w-[300px] lg:w-[280px] justify-center"
+                    >
+                        <FaLinkedin size={24} />
+                        <span>Connect on LinkedIn</span>
                     </a>
                 </motion.div>
                 <div className="h-32"></div>

@@ -75,7 +75,7 @@ const Tech = () => {
                 {selectedTech ? (
                     <div className="p-6 bg-gray-100/50 dark:bg-black/50 backdrop-blur-md rounded-2xl border-gray-300 dark:border-white/10 border shadow-xl text-center transition-all duration-300">
                         <p className="font-semibold text-2xl text-gray-900 dark:text-white mb-4 tracking-wide">
-                            {selectedTech.name} <span className="text-gray-600 dark:text-gray-400">{selectedTech.stackType}</span>
+                            {selectedTech.name}
                         </p>
                         <ul className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-700 dark:text-gray-300">
                             {selectedTech.stack.map((item, i) => (
