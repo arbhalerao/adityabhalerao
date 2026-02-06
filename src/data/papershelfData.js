@@ -14,6 +14,11 @@ const papers = [
         summary: "This paper introduces consistent hashing, a distributed systems technique that enables efficient data distribution and load balancing in scalable hash table implementations.",
         link: "https://www.cs.princeton.edu/courses/archive/fall09/cos518/papers/chash.pdf",
     },
+    {
+        title: "Scaling Memcache at Facebook",
+        summary: "This paper describes Facebook's approach to scaling memcached to handle billions of requests per second, detailing their distributed caching architecture and optimization strategies.",
+        link: "https://research.facebook.com/file/839620310074473/scaling-memcache-at-facebook.pdf",
+    },
 ];
 
 export default papers;
