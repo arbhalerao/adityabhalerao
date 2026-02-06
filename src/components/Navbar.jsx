@@ -98,8 +98,8 @@ const Navbar = () => {
                     <li onClick={() => handleNavigation("/", "hero")} className={getNavItemClass("hero")}>Home</li>
                     <li onClick={() => handleNavigation("/", "tech")} className={getNavItemClass("tech")}>Tech</li>
                     <li onClick={() => handleNavigation("/", "experience")} className={getNavItemClass("experience")}>Experience</li>
-                    <li onClick={() => handleNavigation("/", "projects")} className={getNavItemClass("projects")}>Projects</li>
                     <li onClick={() => handleNavigation("/", "oss")} className={getNavItemClass("oss")}>OSS</li>
+                    <li onClick={() => handleNavigation("/", "projects")} className={getNavItemClass("projects")}>Projects</li>
                     <li onClick={() => handleNavigation("/", "papershelf")} className={getNavItemClass("papershelf")}>Papershelf</li>
                     {/* <li onClick={() => handleNavigation("/", "stats")} className={getNavItemClass("stats")}>Stats</li> */}
                     <li onClick={() => handleNavigation("/", "contact")} className={getNavItemClass("contact")}>Contact</li>
@@ -157,13 +157,13 @@ const Navbar = () => {
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "experience" ? "font-bold" : ""}`}>
                                     Experiences
                                 </div>
-                                <div onClick={() => { menuOpen(); handleNavigation("/", "projects"); }}
-                                    className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "projects" ? "font-bold" : ""}`}>
-                                    Projects
-                                </div>
                                 <div onClick={() => { menuOpen(); handleNavigation("/", "oss"); }}
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "oss" ? "font-bold" : ""}`}>
                                     OSS
+                                </div>
+                                <div onClick={() => { menuOpen(); handleNavigation("/", "projects"); }}
+                                    className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "projects" ? "font-bold" : ""}`}>
+                                    Projects
                                 </div>
                                 <div onClick={() => { menuOpen(); handleNavigation("/", "papershelf"); }}
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "papershelf" ? "font-bold" : ""}`}>

@@ -62,16 +62,15 @@ function MainContent() {
 
       <WaveSeparator />
 
-      {/* Projects Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16">
-        <Projects />
-      </div>
-
-      <WaveSeparator />
-
       {/* OSS Section */}
       <div className="w-full px-4 md:px-8 lg:px-16">
         <OSS />
+      </div>
+
+      <WaveSeparator />
+      {/* Projects Section */}
+      <div className="w-full px-4 md:px-8 lg:px-16">
+        <Projects />
       </div>
 
       <WaveSeparator />
