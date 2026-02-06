@@ -14,6 +14,10 @@ const Projects = () => {
     visible: { opacity: 1, y: 0 }
   };
 
+  const boldText = (text) => {
+    return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+  };
+
   const openProjectDetails = (project) => {
     setSelectedProject(project);
     setShowModal(true);
@@ -93,9 +97,10 @@ const Projects = () => {
                 </div>
               </div>
 
-              <p className="text-gray-600 dark:text-gray-400 text-sm flex-grow mb-4">
-                {project.description}
-              </p>
+              <p
+                className="text-gray-600 dark:text-gray-400 text-sm flex-grow mb-4"
+                dangerouslySetInnerHTML={{ __html: boldText(project.description) }}
+              />
 
               <div className="flex flex-wrap gap-4 mt-auto">
                 <button
@@ -224,16 +229,20 @@ const Projects = () => {
                       <div className="space-y-6">
                         <div>
                           <h3 className="font-medium text-gray-900 dark:text-white mb-2">Description:</h3>
-                          <p className="text-gray-600 dark:text-gray-400">
-                            {selectedProject.description}
-                          </p>
+                          <p
+                            className="text-gray-600 dark:text-gray-400"
+                            dangerouslySetInnerHTML={{ __html: boldText(selectedProject.description) }}
+                          />
                         </div>
 
                         <div>
                           <h3 className="font-medium text-gray-900 dark:text-white mb-2">Features:</h3>
                           <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 ml-2">
                             {selectedProject.features?.map((feature, i) => (
-                              <li key={i}>{feature}</li>
+                              <li
+                                key={i}
+                                dangerouslySetInnerHTML={{ __html: boldText(feature) }}
+                              />
                             ))}
                           </ul>
                         </div>
@@ -241,9 +250,10 @@ const Projects = () => {
                         {selectedProject.challenges && (
                           <div>
                             <h3 className="font-medium text-gray-900 dark:text-white mb-2">Challenges:</h3>
-                            <p className="text-gray-600 dark:text-gray-400">
-                              {selectedProject.challenges}
-                            </p>
+                            <p
+                              className="text-gray-600 dark:text-gray-400"
+                              dangerouslySetInnerHTML={{ __html: boldText(selectedProject.challenges) }}
+                            />
                           </div>
                         )}
                       </div>
