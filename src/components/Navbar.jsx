@@ -118,7 +118,7 @@ const Navbar = () => {
                         </a>
                     </li>
                     <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-blue-500 hover:opacity-100">
-                        <a href="https://www.linkedin.com/in/bhalerao-aditya/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/arbhalerao/" target="_blank" rel="noopener noreferrer">
                             <BsLinkedin className="text-xl text-gray-800 dark:text-white" />
                         </a>
                     </li>
@@ -186,7 +186,7 @@ const Navbar = () => {
                                 <a href="https://arbhalerao.medium.com/" target="_blank" rel="noopener noreferrer" className="mx-3">
                                     <BsMedium className="text-2xl text-green-400" />
                                 </a>
-                                <a href="https://www.linkedin.com/in/bhalerao-aditya/" target="_blank" rel="noopener noreferrer" className="mx-3">
+                                <a href="https://www.linkedin.com/in/arbhalerao/" target="_blank" rel="noopener noreferrer" className="mx-3">
                                     <BsLinkedin className="text-2xl text-blue-400" />
                                 </a>
                             </div>
