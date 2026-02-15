@@ -35,12 +35,16 @@ const ParticlesBackground = () => {
         return Math.min(Math.max(count, 100), 500);
     };
 
+    const handleEasterEgg = () => {
+        window.open("https://youtu.be/rEq1Z0bjdwc?si=FmUBM5WYfjhE8PFX", "_blank");
+    };
+
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         let animationFrameId;
         const SETTINGS = getSettings(theme);
-        
+
         class Particle {
             constructor(canvasW, canvasH, currentSettings) {
                 this.x = Math.random() * canvasW;
@@ -134,12 +138,28 @@ const ParticlesBackground = () => {
     }, [theme]);
 
     return (
-        <canvas
-            ref={canvasRef}
-            className="fixed top-0 left-0 w-full h-screen"
-            style={{ pointerEvents: 'none', zIndex: -10 }}
-            aria-hidden="true"
-        />
+        <>
+            <canvas
+                ref={canvasRef}
+                className="fixed top-0 left-0 w-full h-screen"
+                style={{ pointerEvents: 'none', zIndex: -10 }}
+                aria-hidden="true"
+            />
+
+            {/* Easter Egg - Bottom Right - Desktop Only */}
+            <div className="fixed bottom-8 right-8 z-50 hidden lg:block">
+                <span
+                    onClick={handleEasterEgg}
+                    className="text-gray-500 dark:text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors select-none italic cursor-pointer"
+                    style={{
+                        fontSize: '10px',
+                        cursor: `url('/egg/light-saber.cur'), pointer`
+                    }}
+                >
+                    Hello there
+                </span>
+            </div>
+        </>
     );
 };
 
