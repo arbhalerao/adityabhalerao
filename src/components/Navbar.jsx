@@ -11,6 +11,8 @@ const Navbar = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [mounted, setMounted] = useState(false);
 
+    const RESUME_URL = "https://drive.google.com/file/d/12k8htg9CS3fOwn5GKpeUynS15ZxbMGE2/view";
+
     useEffect(() => {
         const checkDarkMode = () => {
             const isDark = document.documentElement.classList.contains('dark') ||
@@ -101,7 +103,12 @@ const Navbar = () => {
                     <li onClick={() => handleNavigation("/", "oss")} className={getNavItemClass("oss")}>OSS</li>
                     <li onClick={() => handleNavigation("/", "projects")} className={getNavItemClass("projects")}>Projects</li>
                     <li onClick={() => handleNavigation("/", "papershelf")} className={getNavItemClass("papershelf")}>Papershelf</li>
-                    {/* <li onClick={() => handleNavigation("/", "stats")} className={getNavItemClass("stats")}>Stats</li> */}
+                    <li>
+                        <a href={RESUME_URL} target="_blank" rel="noopener noreferrer"
+                            className="cursor-pointer transition-all duration-300 text-gray-700 dark:text-white opacity-70 hover:opacity-100">
+                            Resume
+                        </a>
+                    </li>
                     <li onClick={() => handleNavigation("/", "contact")} className={getNavItemClass("contact")}>Contact</li>
                 </ul>
 
@@ -169,10 +176,10 @@ const Navbar = () => {
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "papershelf" ? "font-bold" : ""}`}>
                                     Papershelf
                                 </div>
-                                {/* <div onClick={() => { menuOpen(); handleNavigation("/", "stats"); }}
-                                    className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "stats" ? "font-bold" : ""}`}>
-                                    Stats
-                                </div> */}
+                                <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" onClick={menuOpen}
+                                    className="px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white">
+                                    Resume
+                                </a>
                                 <div onClick={() => { menuOpen(); handleNavigation("/", "contact"); }}
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "contact" ? "font-bold" : ""}`}>
                                     Contact
