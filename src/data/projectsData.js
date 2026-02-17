@@ -1,12 +1,9 @@
-const projects = [
+export const projects = [
   {
     title: "CohereDB",
     description: "A **distributed key-value database** implementing **consistent hashing** and **dynamic data server management** across multiple nodes.",
     technologies: ["Go", "gRPC", "BadgerDB", "Protocol Buffers", "Consistent Hashing"],
-    images: {
-      light: "/coheredb-light.png",
-      dark: "/coheredb-dark.png"
-    },
+    images: { light: "/coheredb-light.png", dark: "/coheredb-dark.png" },
     github: "https://github.com/arbhalerao/cohereDB",
     demo: "",
     features: [
@@ -22,10 +19,7 @@ const projects = [
     title: "Autorollout",
     description: "A **Kubernetes controller** that automatically triggers **rolling updates** for Deployments when their **ConfigMaps or Secrets change**.",
     technologies: ["Go", "Kubebuilder", "Kubernetes Controller", "Client-Go", "Docker"],
-    images: {
-      light: "/autorollout-light.png",
-      dark: "/autorollout-dark.png"
-    },
+    images: { light: "/autorollout-light.png", dark: "/autorollout-dark.png" },
     github: "https://github.com/arbhalerao/autorollout",
     demo: "",
     features: [
@@ -38,4 +32,10 @@ const projects = [
   },
 ];
 
-export default projects;
+export const sideProjects = [
+  {
+    title: "Go Software RAID",
+    description: "RAID 0, 1, and 5 in Go — disks backed by flat files, blocks read/written through the RAID abstraction layer.",
+    github: "https://github.com/arbhalerao/go-software-raid",
+  },
+];

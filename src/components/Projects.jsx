@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, ChevronRight, X } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
-import projects from "../data/projectsData.js";
+import { projects, sideProjects } from "../data/projectsData.js";
 
 const Projects = () => {
   const { theme } = useTheme();
@@ -62,6 +62,8 @@ const Projects = () => {
         </motion.h1>
       </div>
 
+
+      {/* ── Main Projects ── */}
       <div className="flex flex-wrap justify-center gap-8 w-full">
         {projects.map((project, index) => (
           <motion.div
@@ -139,6 +141,63 @@ const Projects = () => {
         ))}
       </div>
 
+      {/* ── Side Projects ── */}
+      {sideProjects.length > 0 && (
+        <div className="w-full max-w-[1400px] mt-16 mx-auto px-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-xl font-medium text-gray-500 dark:text-gray-400 text-center mb-8 tracking-wide uppercase"
+          >
+            For the Curiosity
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="text-base text-gray-400 dark:text-gray-500 text-center -mt-4 mb-4"
+          >
+            Smaller builds, weekend hacks, and rabbit holes explored along the way.
+          </motion.p>
+
+          <div className="flex flex-wrap justify-center gap-4 w-full">
+            {sideProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.04, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="flex flex-col justify-between bg-gray-100/80 dark:bg-black/80 border border-gray-300 dark:border-gray-800 rounded-lg p-6 gap-4 w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] min-w-[320px]"
+              >
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm font-medium text-orange-400 hover:text-orange-500 border border-orange-600 rounded-lg px-2 py-1 transition-all duration-300 hover:scale-105 w-fit"
+                  >
+                    <Github size={18} />
+                    <span>Code</span>
+                  </a>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Modal ── */}
       <AnimatePresence>
         {showModal && selectedProject && (
           <>
