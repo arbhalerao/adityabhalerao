@@ -150,7 +150,7 @@ const ParticlesBackground = () => {
             <div className="fixed bottom-8 right-8 z-50 hidden lg:block">
                 <span
                     onClick={handleEasterEgg}
-                    className="text-gray-500 dark:text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors select-none italic cursor-pointer"
+                    className="text-gray-500 dark:text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors select-none italic cursor-pointer p-4"
                     style={{
                         fontSize: '10px',
                         cursor: `url('/egg/light-saber.cur'), pointer`

@@ -81,9 +81,9 @@ const OSS = () => {
             {contribution.prs.length > 0 && (
               <button
                 onClick={() => setTabs(prev => ({ ...prev, [originalIndex]: 'prs' }))}
-                className={`px-3 py-1 rounded text-xs font-medium ${tab === 'prs'
+                className={`px-3 py-1 rounded text-xs font-medium transition-colors duration-200 ${tab === 'prs'
                   ? "bg-sky-400 dark:bg-blue-600 text-white"
-                  : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                  : "border border-sky-400 dark:border-blue-600 text-sky-400 dark:text-blue-500"
                   }`}
               >
                 PRs
@@ -93,9 +93,9 @@ const OSS = () => {
             {contribution.issues.length > 0 && (
               <button
                 onClick={() => setTabs(prev => ({ ...prev, [originalIndex]: 'issues' }))}
-                className={`px-3 py-1 rounded text-xs font-medium ${tab === 'issues'
+                className={`px-3 py-1 rounded text-xs font-medium transition-colors duration-200 ${tab === 'issues'
                   ? "bg-sky-400 dark:bg-blue-600 text-white"
-                  : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                  : "border border-sky-400 dark:border-blue-600 text-sky-400 dark:text-blue-500"
                   }`}
               >
                 Issues

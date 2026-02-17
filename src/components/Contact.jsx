@@ -209,8 +209,7 @@ export default function ContactSection() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ repeat: Infinity, repeatType: "reverse", duration: 1 }}
             >
-                <ChevronUp className="h-10 w-10 text-gray-700 dark:text-gray-300 animate-bounce stroke-[2.5]" />
-                <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Go back to top</span>
+                <ChevronUp className="h-10 w-10 text-purple-500 animate-bounce stroke-[2.5]" />
             </motion.div>
         </div >
     );
