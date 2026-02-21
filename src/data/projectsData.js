@@ -30,6 +30,22 @@ export const projects = [
       "**Lightweight, stateless design** with minimal cluster overhead"
     ]
   },
+  {
+    title: "GraphAuth",
+    description: "A **graph-based relationship authorization engine**, modeling entities and permissions as a **directed graph** with **BFS-based permission traversal**.",
+    technologies: ["Go", "Neo4j", "REST API", "Docker", "Graph Theory"],
+    images: { light: "/graphauth-light.png", dark: "/graphauth-dark.png" },
+    github: "https://github.com/arbhalerao/graphauth",
+    demo: "",
+    features: [
+      "**Graph-based authorization model** with Users, Groups, and Documents as typed nodes",
+      "**BFS permission traversal** resolving inherited access through group membership chains",
+      "**Pluggable storage backends**, in-memory store and Neo4j",
+      "**REST HTTP API** for managing nodes, relationships, and permission checks",
+      "**Relation types** — VIEWER, EDITOR, OWNER, MEMBER_OF with strict validation",
+      "**Docker and docker-compose** support for containerized deployment"
+    ],
+  },
 ];
 
 export const sideProjects = [
