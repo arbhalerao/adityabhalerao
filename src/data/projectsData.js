@@ -50,6 +50,11 @@ export const projects = [
 
 export const sideProjects = [
   {
+    title: "Raft Consensus",
+    description: "Implementation of the Raft consensus algorithm in Go + gRPC with leader election, log replication, and persistent state.",
+    github: "https://github.com/arbhalerao/raft",
+  },
+  {
     title: "Go Software RAID",
     description: "RAID 0, 1, and 5 in Go — disks backed by flat files, blocks read/written through the RAID abstraction layer.",
     github: "https://github.com/arbhalerao/go-software-raid",
