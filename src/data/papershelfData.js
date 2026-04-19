@@ -19,6 +19,11 @@ const papers = [
         summary: "This paper describes Facebook's approach to scaling memcached to handle billions of requests per second, detailing their distributed caching architecture and optimization strategies.",
         link: "https://research.facebook.com/file/839620310074473/scaling-memcache-at-facebook.pdf",
     },
+    {
+        title: "Monolith: Real Time Recommendation System With Collisionless Embedding Table",
+        summary: "This paper presents ByteDance's Monolith, a production recommendation system featuring a collisionless Cuckoo hash-based embedding table and online training architecture that syncs parameters to serving PS at minute-level intervals for real-time personalization.",
+        link: "https://arxiv.org/pdf/2209.07663",
+    },
 ];
 
 export default papers;
