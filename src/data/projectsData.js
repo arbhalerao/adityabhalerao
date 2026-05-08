@@ -56,7 +56,7 @@ export const sideProjects = [
   },
   {
     title: "Go Software RAID",
-    description: "RAID 0, 1, and 5 in Go — disks backed by flat files, blocks read/written through the RAID abstraction layer.",
+    description: "RAID 0, 1, 5 and 6 in Go — disks backed by flat files, blocks read/written through the RAID abstraction layer.",
     github: "https://github.com/arbhalerao/go-software-raid",
   },
 ];
