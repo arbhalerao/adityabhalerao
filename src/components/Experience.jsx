@@ -1,20 +1,46 @@
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 import experiences from "../data/experienceData";
 import { useTheme } from "../context/ThemeContext";
 
 const Experience = () => {
     const { theme } = useTheme();
+    const [expandedIndex, setExpandedIndex] = useState(null);
+    const sectionRef = useRef(null);
     const variants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0 }
     };
+
+    const toggleDetails = (index) => {
+        setExpandedIndex((prev) => (prev === index ? null : index));
+    };
+
+    // Collapse any open details once the Experience section is fully out of view.
+    useEffect(() => {
+        const el = sectionRef.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) {
+                    setExpandedIndex(null);
+                }
+            },
+            { threshold: 0 }
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
 
     const boldText = (text) => {
         return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
     };
 
     return (
-        <div id="experience" className="flex flex-col items-center w-full px-8 py-16 pt-36">
+        <div ref={sectionRef} id="experience" className="flex flex-col items-center w-full px-8 py-16 pt-36">
             <div className="title-container">
                 <motion.h1
                     variants={variants}
@@ -25,20 +51,19 @@ const Experience = () => {
                         duration: 0.5,
                         scale: { duration: 0.2 }
                     }}
-                    className="section-title no-underline">
+                    onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
                     Experience
                 </motion.h1>
             </div>
 
-            <div className="flex flex-col gap-16 w-full max-w-7xl">
+            <div className="flex flex-col gap-16 w-full max-w-5xl mx-auto">
                 {experiences.map((exp, index) => (
                     <motion.div
                         key={exp.company}
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        whileHover={{ scale: 1.04, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
                         transition={{ duration: 0.5 }}
-                        className="bg-gray-100/80 dark:bg-black/80 p-6 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800 flex items-start gap-6"
+                        className="group bg-[#f3f3f3] p-6 rounded-lg border border-black hover:border-brand transition-colors flex items-start gap-6"
                     >
                         <a
                             href={exp.link}
@@ -62,36 +87,66 @@ const Experience = () => {
                                 href={exp.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-xl font-semibold text-gray-900 dark:text-white md:text-2xl block sm:hidden hover:underline"
+                                className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors md:text-2xl block sm:hidden"
                             >
                                 {exp.company}
                             </a>
-                            <h2 className="text-xl font-semibold text-gray-900 dark:text-white md:text-2xl hidden sm:block">
+                            <a
+                                href={exp.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors md:text-2xl hidden sm:block"
+                            >
                                 {exp.company}
-                            </h2>
+                            </a>
                             <h3 className="text-lg text-gray-600 dark:text-gray-400">{exp.role}</h3>
                             <p className="text-sm text-gray-500 dark:text-gray-500">{exp.duration}</p>
 
-                            <div className="mt-4">
-                                {exp.projects.map((project, projectIndex) => (
-                                    <div key={projectIndex} className={projectIndex > 0 ? "mt-4" : ""}>
-                                        {project.name && (
-                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                                                {project.name}
-                                            </h4>
-                                        )}
-                                        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300">
-                                            {project.achievements.map((achievement, achievementIndex) => (
-                                                <li
-                                                    key={achievementIndex}
-                                                    className="mb-1"
-                                                    dangerouslySetInnerHTML={{ __html: boldText(achievement) }}
-                                                />
+                            <button
+                                onClick={() => toggleDetails(index)}
+                                aria-expanded={expandedIndex === index}
+                                className="mt-3 flex items-center gap-2 text-sm font-medium text-brand transition-all duration-300 hover:scale-105"
+                            >
+                                <ChevronRight
+                                    size={18}
+                                    className={`transition-transform duration-300 ${expandedIndex === index ? "rotate-90" : ""}`}
+                                />
+                                <span>{expandedIndex === index ? "Less" : "Details"}</span>
+                            </button>
+
+                            <AnimatePresence initial={false}>
+                                {expandedIndex === index && (
+                                    <motion.div
+                                        key="details"
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="mt-4">
+                                            {exp.projects.map((project, projectIndex) => (
+                                                <div key={projectIndex} className={projectIndex > 0 ? "mt-4" : ""}>
+                                                    {project.name && (
+                                                        <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                                                            {project.name}
+                                                        </h4>
+                                                    )}
+                                                    <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300">
+                                                        {project.achievements.map((achievement, achievementIndex) => (
+                                                            <li
+                                                                key={achievementIndex}
+                                                                className="mb-1"
+                                                                dangerouslySetInnerHTML={{ __html: boldText(achievement) }}
+                                                            />
+                                                        ))}
+                                                    </ul>
+                                                </div>
                                             ))}
-                                        </ul>
-                                    </div>
-                                ))}
-                            </div>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                     </motion.div>
                 ))}

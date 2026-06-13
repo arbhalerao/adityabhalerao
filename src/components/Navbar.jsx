@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
-import { BsGithub, BsLinkedin, BsMedium } from "react-icons/bs";
+import { TbBrandGithub, TbBrandLinkedin, TbBrandMedium } from "react-icons/tb";
 import { useNavigateAndScroll } from "../hooks/useNavigateAndScroll";
-import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +46,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['hero', 'tech', 'experience', 'projects', 'oss', 'papershelf', 'contact'];
+            const sections = ['hero', 'tech', 'experience', 'projects', 'oss', 'blogs', 'papershelf', 'contact'];
             let largestVisibleSection = null;
             let maxVisibleHeight = 0;
 
@@ -87,8 +86,13 @@ const Navbar = () => {
     const logoSrc = isDarkMode ? "/aditya-logo-light.svg" : "/aditya-logo-dark.svg";
 
     return (
-        <div className="fixed top-0 w-full flex justify-center z-10 px-4">
-            <div className="w-full max-w-6xl mx-auto rounded-b-xl border-b border-x border-gray-300 dark:border-gray-700 bg-gray-100/80 dark:bg-black/80 px-8 py-4 backdrop-blur-md flex items-center justify-between">
+        <div className="fixed top-0 w-full flex justify-center z-10">
+            <div className="w-full border-b border-black hover:border-brand transition-colors bg-[#f3f3f3]">
+              <div className="w-full px-8 py-4 flex items-center">
+                <div className="flex-1 flex justify-center">
+                  <span className="text-brand text-3xl select-none">&lt;</span>
+                </div>
+                <div className="flex items-center gap-10">
                 <div onClick={() => handleNavigation("/", "hero")} className="cursor-pointer">
                     {mounted && (
                         <img src={logoSrc} alt="Aditya Logo" className="h-10 w-10" />
@@ -97,11 +101,12 @@ const Navbar = () => {
 
                 {/* Desktop Nav */}
                 <ul className="hidden md:flex gap-8 items-center">
-                    <li onClick={() => handleNavigation("/", "hero")} className={getNavItemClass("hero")}>Home</li>
+                    <li onClick={() => handleNavigation("/", "hero")} className={getNavItemClass("hero")}>Intro</li>
                     <li onClick={() => handleNavigation("/", "tech")} className={getNavItemClass("tech")}>Tech</li>
                     <li onClick={() => handleNavigation("/", "experience")} className={getNavItemClass("experience")}>Experience</li>
                     <li onClick={() => handleNavigation("/", "oss")} className={getNavItemClass("oss")}>OSS</li>
                     <li onClick={() => handleNavigation("/", "projects")} className={getNavItemClass("projects")}>Projects</li>
+                    <li onClick={() => handleNavigation("/", "blogs")} className={getNavItemClass("blogs")}>Blogs</li>
                     <li onClick={() => handleNavigation("/", "papershelf")} className={getNavItemClass("papershelf")}>Papershelf</li>
                     <li>
                         <a href={RESUME_URL} target="_blank" rel="noopener noreferrer"
@@ -112,49 +117,48 @@ const Navbar = () => {
                     <li onClick={() => handleNavigation("/", "contact")} className={getNavItemClass("contact")}>Contact</li>
                 </ul>
 
-                {/* Social Links and Theme Toggle */}
+                {/* Social Links */}
                 <ul className="hidden md:flex gap-5 items-center">
-                    <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-orange-500 hover:opacity-100">
-                        <a href="https://github.com/arbhalerao" target="_blank" rel="noopener noreferrer">
-                            <BsGithub className="text-xl text-gray-800 dark:text-white" />
-                        </a>
-                    </li>
-                    <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-green-500 hover:opacity-100">
-                        <a href="https://arbhalerao.medium.com/" target="_blank" rel="noopener noreferrer">
-                            <BsMedium className="text-xl text-gray-800 dark:text-white" />
-                        </a>
-                    </li>
-                    <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-blue-500 hover:opacity-100">
+                    <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-brand hover:opacity-100">
                         <a href="https://www.linkedin.com/in/arbhalerao/" target="_blank" rel="noopener noreferrer">
-                            <BsLinkedin className="text-xl text-gray-800 dark:text-white" />
+                            <TbBrandLinkedin className="text-2xl text-brand" strokeWidth={2.2} />
                         </a>
                     </li>
-                    <li>
-                        <ThemeToggle />
+                    <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-brand hover:opacity-100">
+                        <a href="https://github.com/arbhalerao" target="_blank" rel="noopener noreferrer">
+                            <TbBrandGithub className="text-2xl text-brand" strokeWidth={2.2} />
+                        </a>
+                    </li>
+                    <li className="cursor-pointer opacity-70 transition-all duration-300 hover:text-brand hover:opacity-100">
+                        <a href="https://arbhalerao.medium.com/" target="_blank" rel="noopener noreferrer">
+                            <TbBrandMedium className="text-2xl text-brand" strokeWidth={2.2} />
+                        </a>
                     </li>
                 </ul>
 
                 {/* Mobile Menu Icon */}
                 {isOpen ? (
                     <div className="flex items-center md:hidden">
-                        <ThemeToggle />
-                        <BiX className="block md:hidden text-4xl text-gray-800 dark:text-white ml-3" onClick={menuOpen} />
+                        <BiX className="block md:hidden text-4xl text-gray-800 dark:text-white" onClick={menuOpen} />
                     </div>
                 ) : (
                     <div className="flex items-center md:hidden">
-                        <ThemeToggle />
-                        <BiMenu className="block md:hidden text-4xl text-gray-800 dark:text-white ml-3" onClick={menuOpen} />
+                        <BiMenu className="block md:hidden text-4xl text-gray-800 dark:text-white" onClick={menuOpen} />
                     </div>
                 )}
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <span className="text-brand text-3xl select-none">&gt;</span>
+                </div>
 
                 {/* Mobile Nav */}
                 {isOpen && (
-                    <div className="fixed top-20 left-0 right-0 mx-4 bg-gray-100 dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 shadow-md z-50">
+                    <div className="fixed top-20 left-0 right-0 mx-4 bg-[#f3f3f3] dark:bg-black rounded-lg border border-black shadow-md z-50">
                         <div className="p-4">
                             <nav className="flex flex-col space-y-3 text-center">
                                 <div onClick={() => { menuOpen(); handleNavigation("/", "hero"); }}
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "hero" ? "font-bold" : ""}`}>
-                                    Home
+                                    Intro
                                 </div>
                                 <div onClick={() => { menuOpen(); handleNavigation("/", "tech"); }}
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "tech" ? "font-bold" : ""}`}>
@@ -172,6 +176,10 @@ const Navbar = () => {
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "projects" ? "font-bold" : ""}`}>
                                     Projects
                                 </div>
+                                <div onClick={() => { menuOpen(); handleNavigation("/", "blogs"); }}
+                                    className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "blogs" ? "font-bold" : ""}`}>
+                                    Blogs
+                                </div>
                                 <div onClick={() => { menuOpen(); handleNavigation("/", "papershelf"); }}
                                     className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-lg text-gray-900 dark:text-white ${activeSection === "papershelf" ? "font-bold" : ""}`}>
                                     Papershelf
@@ -186,20 +194,21 @@ const Navbar = () => {
                                 </div>
                             </nav>
 
-                            <div className="flex justify-center mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+                            <div className="flex justify-center mt-4 pt-4 border-t border-black dark:border-gray-800">
+                                <a href="https://www.linkedin.com/in/arbhalerao/" target="_blank" rel="noopener noreferrer" className="mx-3">
+                                    <TbBrandLinkedin className="text-2xl text-brand" strokeWidth={2.2} />
+                                </a>
                                 <a href="https://github.com/arbhalerao" target="_blank" rel="noopener noreferrer" className="mx-3">
-                                    <BsGithub className="text-2xl text-orange-400" />
+                                    <TbBrandGithub className="text-2xl text-brand" strokeWidth={2.2} />
                                 </a>
                                 <a href="https://arbhalerao.medium.com/" target="_blank" rel="noopener noreferrer" className="mx-3">
-                                    <BsMedium className="text-2xl text-green-400" />
-                                </a>
-                                <a href="https://www.linkedin.com/in/arbhalerao/" target="_blank" rel="noopener noreferrer" className="mx-3">
-                                    <BsLinkedin className="text-2xl text-blue-400" />
+                                    <TbBrandMedium className="text-2xl text-brand" strokeWidth={2.2} />
                                 </a>
                             </div>
                         </div>
                     </div>
                 )}
+              </div>
             </div>
         </div>
     );

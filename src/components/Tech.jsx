@@ -35,7 +35,7 @@ const Tech = () => {
                         duration: 0.5,
                         scale: { duration: 0.2 }
                     }}
-                    className="section-title no-underline">
+                    onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
                     Tech Stack
                 </motion.h1>
             </div>
@@ -65,7 +65,7 @@ const Tech = () => {
                         <img
                             src={item.image}
                             alt={item.name}
-                            className="transition-all duration-300 hover:-translate-y-2 hover:scale-110 w-[80px] sm:w-[100px] md:w-[120px]"
+                            className="transition-all duration-300 hover:-translate-y-2 hover:scale-110 w-[60px] sm:w-[80px] md:w-[100px]"
                         />
                     </motion.div>
                 ))}
@@ -73,15 +73,15 @@ const Tech = () => {
 
             <div className="mt-12 w-full max-w-3xl min-h-[150px]">
                 {selectedTech ? (
-                    <div className="p-6 bg-gray-100/50 dark:bg-black/50 backdrop-blur-md rounded-2xl border-gray-300 dark:border-white/10 border shadow-xl text-center transition-all duration-300">
-                        <p className="font-semibold text-2xl text-gray-900 dark:text-white mb-4 tracking-wide">
+                    <div className="p-6 bg-[#f3f3f3] rounded-2xl border border-brand text-center">
+                        <p className="font-semibold text-2xl text-brand mb-4 tracking-wide">
                             {selectedTech.name}
                         </p>
                         <ul className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-700 dark:text-gray-300">
                             {selectedTech.stack.map((item, i) => (
                                 <li
                                     key={i}
-                                    className="px-4 py-2 bg-gray-200/50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300/80 dark:hover:bg-gray-700/80 transition-all duration-300"
+                                    className="px-4 py-2 text-gray-900 dark:text-white rounded-lg border border-black"
                                 >
                                     {item}
                                 </li>
@@ -89,7 +89,7 @@ const Tech = () => {
                         </ul>
                     </div>
                 ) : (
-                    <div className="p-5 bg-gray-200/30 dark:bg-black/30 backdrop-blur-md rounded-2xl border-gray-300 dark:border-white/10 border shadow-lg text-center text-gray-600 dark:text-gray-400">
+                    <div className="p-5 bg-[#f3f3f3] rounded-2xl border border-black text-center text-gray-600 dark:text-gray-400">
                         {isMobile ? "* Tap on any tech to explore more *" : "* Hover over any tech to explore more *"}
                     </div>
                 )}

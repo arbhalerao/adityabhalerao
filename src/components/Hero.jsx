@@ -19,7 +19,7 @@ const Hero = () => {
 
     return (
         <div id="hero" className="px-16 flex min-h-screen w-full items-center justify-center py-28 md:px-32 relative">
-            <div className="flex flex-col items-center justify-center gap-10 text-gray-900 dark:text-white">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 text-gray-900 dark:text-white bg-[#f3f3f3] border border-black hover:border-brand transition-colors rounded-2xl px-10 py-8 md:px-16 md:py-12 lg:px-28 lg:py-16">
                 {/* Profile Image */}
                 <motion.div
                     initial={{ y: -50, opacity: 0 }}
@@ -29,7 +29,7 @@ const Hero = () => {
                     <img
                         src="/aditya.png"
                         alt="Aditya"
-                        className="w-[300px] cursor-pointer rounded-full shadow-xl shadow-indigo-300 dark:shadow-indigo-900 transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:shadow-purple-300 dark:hover:shadow-purple-700 md:w-[350px]"
+                        className="w-[300px] cursor-pointer rounded-2xl shadow-xl shadow-gray-400/50 dark:shadow-black/50 transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/50 dark:hover:shadow-black/70 md:w-[350px]"
                     />
                 </motion.div>
 
@@ -38,23 +38,23 @@ const Hero = () => {
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="flex max-w-[600px] flex-col items-center justify-center gap-3 text-center"
+                    className="flex max-w-[600px] flex-col items-center lg:items-start justify-center gap-3 text-center lg:text-left"
                 >
-                    <h1 className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent text-5xl font-light md:text-7xl leading-tight py-2">
+                    <h1 className="bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent text-5xl font-medium md:text-7xl leading-tight py-2">
                         Aditya Bhalerao
                     </h1>
-                    <h3 className="bg-gradient-to-r from-purple-500 to-indigo-400 bg-clip-text text-transparent text-2xl md:text-3xl leading-relaxed py-1">
+                    <h3 className="bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-300 dark:to-gray-500 bg-clip-text text-transparent text-2xl md:text-3xl leading-relaxed py-1">
                         Software Engineer
                     </h3>
 
                     {/* Location & Time */}
-                    <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-lg text-gray-700 dark:text-gray-300">
+                    <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-lg text-gray-700 dark:text-gray-300">
                         <span className="flex items-center gap-2">
-                            <MapPin className="h-5 w-5 text-indigo-400" />
+                            <MapPin className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                             Pune, MH, India
                         </span>
                         <span className="flex items-center gap-2">
-                            <Clock className="h-5 w-5 text-purple-400" />
+                            <Clock className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                             {currentTime} IST
                         </span>
                     </div>
@@ -76,7 +76,7 @@ const Hero = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ repeat: Infinity, repeatType: "reverse", duration: 1 }}
             >
-                <ChevronDown className="h-10 w-10 text-purple-500 animate-bounce stroke-[2.5]" />
+                <ChevronDown className="h-10 w-10 text-brand animate-bounce stroke-[2.5]" />
             </motion.div>
         </div>
     );

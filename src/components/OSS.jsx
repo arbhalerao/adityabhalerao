@@ -57,17 +57,15 @@ const OSS = () => {
         key={originalIndex}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        whileHover={{ scale: 1.02, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col bg-gray-100/80 dark:bg-black/80 p-4 rounded-lg shadow-lg border border-gray-300 dark:border-gray-800 w-full"
+        className="group flex flex-col bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors w-full"
       >
         <div className="space-y-3">
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors">
             <a
               href={contribution.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline"
             >
               {contribution.title}
             </a>
@@ -82,8 +80,8 @@ const OSS = () => {
               <button
                 onClick={() => setTabs(prev => ({ ...prev, [originalIndex]: 'prs' }))}
                 className={`px-3 py-1 rounded text-xs font-medium transition-colors duration-200 ${tab === 'prs'
-                  ? "bg-sky-400 dark:bg-blue-600 text-white"
-                  : "border border-sky-400 dark:border-blue-600 text-sky-400 dark:text-blue-500"
+                  ? "bg-brand/80 dark:bg-brand/80 text-white"
+                  : "border border-brand dark:border-brand text-brand dark:text-brand"
                   }`}
               >
                 PRs
@@ -94,8 +92,8 @@ const OSS = () => {
               <button
                 onClick={() => setTabs(prev => ({ ...prev, [originalIndex]: 'issues' }))}
                 className={`px-3 py-1 rounded text-xs font-medium transition-colors duration-200 ${tab === 'issues'
-                  ? "bg-sky-400 dark:bg-blue-600 text-white"
-                  : "border border-sky-400 dark:border-blue-600 text-sky-400 dark:text-blue-500"
+                  ? "bg-brand/80 dark:bg-brand/80 text-white"
+                  : "border border-brand dark:border-brand text-brand dark:text-brand"
                   }`}
               >
                 Issues
@@ -130,17 +128,17 @@ const OSS = () => {
                           className="w-4 h-4 flex-shrink-0 mt-0.5"
                         />
                       ) : (
-                        <span className="text-blue-400 flex-shrink-0 mt-0.5">➜</span>
+                        <span className="text-brand flex-shrink-0 mt-0.5">➜</span>
                       )}
 
                       <a
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-400 hover:underline leading-relaxed"
+                        className="text-gray-600 dark:text-gray-400 hover:text-brand transition-colors leading-relaxed"
                       >
                         {tab === "prs" && (
-                          <span className="text-gray-600 dark:text-gray-400">
+                          <span>
                             [{item.kind}]
                           </span>
                         )}{" "}
@@ -169,7 +167,7 @@ const OSS = () => {
             duration: 0.5,
             scale: { duration: 0.2 }
           }}
-          className="section-title no-underline">
+          onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
           OSS Contributions
         </motion.h1>
       </div>
@@ -180,7 +178,7 @@ const OSS = () => {
         whileInView="visible"
         transition={{ duration: 0.5 }}
         className="text-lg text-gray-700 dark:text-gray-300 text-center mb-6">
-        Browse the <b>PRs</b> and <b>Issues</b> I've created in various open-source projects.
+        Browse the PRs and Issues I've created in various open-source projects.
       </motion.p>
 
       <motion.div
@@ -191,27 +189,24 @@ const OSS = () => {
         className="flex flex-wrap justify-center gap-4 mb-12"
       >
         <motion.div
-          whileHover={{ scale: 1.05, boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.15)" }}
           transition={{ duration: 0.2 }}
-          className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28"
+          className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28"
         >
-          <p className="text-2xl font-bold text-black dark:text-white">{sortedContributions.length}</p>
+          <p className="text-2xl font-bold text-black dark:text-white group-hover:text-brand transition-colors">{sortedContributions.length}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Projects</p>
         </motion.div>
         <motion.div
-          whileHover={{ scale: 1.05, boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.15)" }}
           transition={{ duration: 0.2 }}
-          className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28"
+          className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28"
         >
-          <p className="text-2xl font-bold" style={{ color: "#8957e5" }}>{totalPRs}</p>
+          <p className="text-2xl font-bold text-black dark:text-white group-hover:text-brand transition-colors">{totalPRs}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">PRs</p>
         </motion.div>
         <motion.div
-          whileHover={{ scale: 1.05, boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.15)" }}
           transition={{ duration: 0.2 }}
-          className="bg-white dark:bg-black/80 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center w-28"
+          className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28"
         >
-          <p className="text-2xl font-bold" style={{ color: "#cf222e" }}>{totalIssues}</p>
+          <p className="text-2xl font-bold text-black dark:text-white group-hover:text-brand transition-colors">{totalIssues}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Issues</p>
         </motion.div>
       </motion.div>

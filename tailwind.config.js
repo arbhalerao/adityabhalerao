@@ -8,10 +8,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: '#e08a3c',
         dark: {
           primary: '#0f172a',
           secondary: '#1e293b',
-          accent: '#8b5cf6',
+          accent: '#6b7280',
           text: '#f8fafc',
           muted: '#94a3b8',
           border: '#334155',

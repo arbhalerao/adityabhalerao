@@ -2,7 +2,7 @@ const experiences = [
     {
         company: "Geminus Space",
         logo: "/geminus_space.jpeg",
-        role: "Software Engineer (backend)",
+        role: "Software Engineer (Backend)",
         duration: "October 2024 - Present",
         projects: [
             {
@@ -27,7 +27,7 @@ const experiences = [
     {
         company: "Geminus Tech",
         logo: "/geminus_tech.jpeg",
-        role: "Software Engineer (backend)",
+        role: "Software Engineer (Backend)",
         duration: "July 2024 - September 2024",
         projects: [
             {
@@ -50,7 +50,7 @@ const experiences = [
     {
         company: "Diamanti",
         logo: "/diamanti.jpeg",
-        role: "SDE Intern (backend)",
+        role: "SDE Intern (Backend)",
         duration: "October 2023 - July 2024",
         projects: [
             {

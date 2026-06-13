@@ -7,24 +7,21 @@
   scroll-behavior: smooth;
 }
 
+/* Dashed borders everywhere (dash length/gap is browser-controlled) */
+*, ::before, ::after {
+  border-style: dashed;
+}
+
 body {
-  @apply bg-gray-200 dark:bg-gray-900 transition-colors duration-300;
+  @apply bg-[#f3f3f3] dark:bg-[#2e3033] transition-colors duration-300;
+  /* Hide scrollbar (Firefox / IE-Edge) while keeping scroll functionality */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-200 dark:bg-black;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-400/70 dark:bg-gray-500/50 rounded-md;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-500/70 dark:bg-gray-400/70;
+/* Hide scrollbar (Chrome / Safari / Edge) */
+*::-webkit-scrollbar {
+  display: none;
 }
 
 /* Apply theme-specific backgrounds */
@@ -34,7 +31,7 @@ body {
 
 /* Set different background gradients based on theme */
 .bg-gradient {
-  @apply bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 dark:from-black dark:via-[#0a0a23] dark:to-[#111132];
+  @apply bg-[#f3f3f3] dark:bg-[#2e3033];
 }
 
 /* Theme transition effects */
@@ -42,10 +39,37 @@ body {
   @apply transition-colors duration-300;
 }
 
+/* Lighten section title gradients in dark mode so they read on the charcoal bg */
+.dark .section-title {
+  background: linear-gradient(to right, #e5e7eb, #9ca3af, #e5e7eb);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .section-title::after {
+  background: linear-gradient(to right, #d1d5db, #9ca3af, #d1d5db) !important;
+}
+
+/* Turn section titles orange on hover (overrides light + dark gradients) */
+.section-title:hover,
+.dark .section-title:hover {
+  background: #e08a3c;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title:hover::after,
+.dark .section-title:hover::after {
+  background: #e08a3c !important;
+}
+
 /* Enhanced Section Titles */
 .section-title {
   @apply relative inline-block text-5xl md:text-7xl font-light mb-16;
-  background: linear-gradient(to right, #6366f1, #a855f7, #6366f1);
+  background: linear-gradient(to right, #374151, #111827, #374151);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -64,7 +88,7 @@ body {
     @apply absolute bottom-0 left-0 right-0 h-1 rounded-full;
     width: 100%;
     /* Changed to 100% for full width */
-    background: linear-gradient(to right, #6366f1, #a855f7, #6366f1);
+    background: linear-gradient(to right, #4b5563, #1f2937, #4b5563);
     background-size: 200% auto;
     animation: gradientFlow 4s ease infinite;
     transform: scaleX(0.8);

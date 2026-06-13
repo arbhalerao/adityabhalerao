@@ -21,7 +21,7 @@ const ParticlesBackground = () => {
             CONNECTION_RADIUS: 100,
             PARTICLE_OPACITY: 1,
             LINE_OPACITY: currentTheme === 'dark' ? 0.5 : 0.2,
-            PARTICLE_COLOR: currentTheme === 'dark' ? '255, 255, 255' : '0, 0, 100',
+            PARTICLE_COLOR: currentTheme === 'dark' ? '255, 255, 255' : '0, 0, 0',
             DIRECTION_CHANGE_FREQUENCY: 0.02
         };
     };
@@ -150,7 +150,7 @@ const ParticlesBackground = () => {
             <div className="fixed bottom-8 right-8 z-50 hidden lg:block">
                 <span
                     onClick={handleEasterEgg}
-                    className="text-gray-500 dark:text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors select-none italic cursor-pointer p-4"
+                    className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors select-none italic cursor-pointer p-4"
                     style={{
                         fontSize: '10px',
                         cursor: `url('/egg/light-saber.cur'), pointer`

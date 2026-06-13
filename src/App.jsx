@@ -11,8 +11,9 @@ import Navbar from "./components/Navbar";
 import Tech from "./components/Tech";
 import Experience from "./components/Experience";
 import Papershelf from "./components/Papershelf";
+import Blogs from "./components/Blogs";
 import OSS from "./components/OSS";
-import ParticlesBackground from "./components/ParticlesBackground";
+// import ParticlesBackground from "./components/ParticlesBackground";
 import Projects from "./components/Projects";
 
 function MainContent() {
@@ -49,7 +50,7 @@ function MainContent() {
       <WaveSeparator />
 
       {/* Tech Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16">
+      <div className="w-full px-4 md:px-8 lg:px-16 bg-brand/[0.035]">
         <Tech />
       </div>
 
@@ -63,7 +64,7 @@ function MainContent() {
       <WaveSeparator />
 
       {/* OSS Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16">
+      <div className="w-full px-4 md:px-8 lg:px-16 bg-brand/[0.035]">
         <OSS />
       </div>
 
@@ -71,6 +72,13 @@ function MainContent() {
       {/* Projects Section */}
       <div className="w-full px-4 md:px-8 lg:px-16">
         <Projects />
+      </div>
+
+      <WaveSeparator />
+
+      {/* Blogs Section */}
+      <div className="w-full px-4 md:px-8 lg:px-16 bg-brand/[0.035]">
+        <Blogs />
       </div>
 
       <WaveSeparator />
@@ -83,7 +91,7 @@ function MainContent() {
       <WaveSeparator />
 
       {/* Contact Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16">
+      <div className="w-full px-4 md:px-8 lg:px-16 bg-brand/[0.035]">
         <Contact />
       </div>
 
@@ -95,8 +103,8 @@ export default function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="fixed -z-20 min-h-screen w-full bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 dark:from-black dark:via-[#0a0a23] dark:to-[#111132]"></div>
-        <ParticlesBackground />
+        <div className="fixed -z-20 min-h-screen w-full bg-[#f3f3f3] dark:bg-[#2e3033]"></div>
+        {/* <ParticlesBackground /> */}
 
         <Navbar />
         <Analytics />

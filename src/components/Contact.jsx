@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaMedium } from "react-icons/fa";
+import { TbBrandLinkedin, TbBrandGithub, TbBrandMedium } from "react-icons/tb";
 import { ChevronUp } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
@@ -91,8 +91,8 @@ export default function ContactSection() {
                             duration: 0.5,
                             scale: { duration: 0.2 }
                         }}
-                        className="section-title no-underline">
-                        Lets Connect!
+                        onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
+                        Let's Connect!
                     </motion.h1>
                 </div>
 
@@ -112,14 +112,14 @@ export default function ContactSection() {
                             name="sender_name"
                             placeholder="Name *"
                             required
-                            className="w-full md:w-1/2 p-3 text-lg border border-gray-400 dark:border-gray-600 bg-gray-100 dark:bg-[#111132] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full md:w-1/2 p-3 text-lg border border-black dark:border-gray-600 bg-gray-100 dark:bg-[#3a3d40] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:border-brand transition-colors"
                         />
                         <input
                             type="email"
                             name="sender_email"
                             placeholder="Email *"
                             required
-                            className="w-full md:w-1/2 p-3 text-lg border border-gray-400 dark:border-gray-600 bg-gray-100 dark:bg-[#111132] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full md:w-1/2 p-3 text-lg border border-black dark:border-gray-600 bg-gray-100 dark:bg-[#3a3d40] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:border-brand transition-colors"
                         />
                     </div>
 
@@ -128,7 +128,7 @@ export default function ContactSection() {
                         name="subject"
                         placeholder="Subject *"
                         required
-                        className="w-full p-3 text-lg border border-gray-400 dark:border-gray-600 bg-gray-100 dark:bg-[#111132] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="w-full p-3 text-lg border border-black dark:border-gray-600 bg-gray-100 dark:bg-[#3a3d40] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:border-brand transition-colors"
                     />
 
                     <textarea
@@ -136,12 +136,12 @@ export default function ContactSection() {
                         placeholder="Message *"
                         rows="4"
                         required
-                        className="w-full p-3 text-lg border border-gray-400 dark:border-gray-600 bg-gray-100 dark:bg-[#111132] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                        className="w-full p-3 text-lg border border-black dark:border-gray-600 bg-gray-100 dark:bg-[#3a3d40] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:border-brand transition-colors resize-none"
                     ></textarea>
 
                     <div className="h-10 flex items-center justify-center">
                         {message && (
-                            <p className={`text-lg font-semibold ${message === "Email sent successfully!" ? "text-green-400" : "text-red-400"}`}>
+                            <p className="text-lg font-normal text-brand">
                                 {message}
                             </p>
                         )}
@@ -149,17 +149,17 @@ export default function ContactSection() {
 
                     <button
                         type="submit"
-                        className="w-[200px] md:w-[300px] mx-auto rounded-lg border border-indigo-600 bg-gray-100 dark:bg-[#111132] px-5 py-3 text-lg font-bold text-gray-900 dark:text-white shadow-lg shadow-indigo-300 dark:shadow-indigo-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-300 dark:hover:shadow-purple-700"
+                        className="w-[200px] md:w-[300px] mx-auto rounded-lg border border-brand bg-gray-100 dark:bg-[#3a3d40] px-5 py-3 text-lg font-normal text-brand transition-all duration-300 hover:scale-105"
                         disabled={loading}
                     >
                         {loading ? "Sending..." : "Send Message"}
                     </button>
                 </motion.form>
 
-                <div className="flex items-center w-full max-w-3xl space-x-4 text-gray-500">
-                    <hr className="flex-grow border-t border-gray-400 dark:border-gray-600" />
-                    <span className="text-lg text-gray-600 dark:text-gray-400">Or</span>
-                    <hr className="flex-grow border-t border-gray-400 dark:border-gray-600" />
+                <div className="flex items-center w-full space-x-4 text-gray-500">
+                    <hr className="flex-grow border-t border-black dark:border-gray-600" />
+                    <span className="text-lg text-gray-600 dark:text-gray-400">or find me on</span>
+                    <hr className="flex-grow border-t border-black dark:border-gray-600" />
                 </div>
 
                 <motion.div
@@ -167,36 +167,36 @@ export default function ContactSection() {
                     initial="hidden"
                     whileInView="visible"
                     transition={{ duration: 0.5 }}
-                    className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6"
+                    className="flex flex-row items-center justify-center gap-8"
                 >
+                    <a
+                        href="https://www.linkedin.com/in/arbhalerao/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                        className="text-brand transition-transform duration-300 hover:scale-110"
+                    >
+                        <TbBrandLinkedin size={36} strokeWidth={1.5} />
+                    </a>
+
                     <a
                         href="https://github.com/arbhalerao"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 rounded-lg border border-orange-600 bg-gray-100 dark:bg-[#111132] px-6 py-3 text-lg font-semibold text-orange-400 shadow-lg shadow-orange-300 dark:shadow-orange-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-orange-300 dark:hover:shadow-orange-700 w-full max-w-[300px] lg:w-[280px] justify-center"
+                        aria-label="GitHub"
+                        className="text-brand transition-transform duration-300 hover:scale-110"
                     >
-                        <FaGithub size={24} />
-                        <span>Follow on GitHub</span>
+                        <TbBrandGithub size={36} strokeWidth={1.5} />
                     </a>
 
                     <a
                         href="https://arbhalerao.medium.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 rounded-lg border border-green-700 bg-gray-100 dark:bg-[#111132] px-6 py-3 text-lg font-semibold text-green-500 shadow-lg shadow-green-400 dark:shadow-green-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-400 dark:hover:shadow-green-700 w-full max-w-[300px] lg:w-[280px] justify-center"
+                        aria-label="Medium"
+                        className="text-brand transition-transform duration-300 hover:scale-110"
                     >
-                        <FaMedium size={24} />
-                        <span>Follow on Medium</span>
-                    </a>
-
-                    <a
-                        href="https://www.linkedin.com/in/arbhalerao/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 rounded-lg border border-blue-600 bg-gray-100 dark:bg-[#111132] px-6 py-3 text-lg font-semibold text-blue-400 shadow-lg shadow-blue-300 dark:shadow-blue-900 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-300 dark:hover:shadow-blue-700 w-full max-w-[300px] lg:w-[280px] justify-center"
-                    >
-                        <FaLinkedin size={24} />
-                        <span>Connect on LinkedIn</span>
+                        <TbBrandMedium size={36} strokeWidth={1.5} />
                     </a>
                 </motion.div>
                 <div className="h-32"></div>
@@ -209,7 +209,7 @@ export default function ContactSection() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ repeat: Infinity, repeatType: "reverse", duration: 1 }}
             >
-                <ChevronUp className="h-10 w-10 text-purple-500 animate-bounce stroke-[2.5]" />
+                <ChevronUp className="h-10 w-10 text-brand animate-bounce stroke-[2.5]" />
             </motion.div>
         </div >
     );

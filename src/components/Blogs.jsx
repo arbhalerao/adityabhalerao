@@ -1,18 +1,14 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import papers from '../data/papershelfData';
-import { useTheme } from '../context/ThemeContext';
+import blogs from '../data/blogsData';
 
-const Papershelf = () => {
-  const { theme } = useTheme();
-
+const Blogs = () => {
   const variants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 }
   }
 
   return (
-    <div id="papershelf" className="flex flex-col items-center w-full px-8 py-16 pt-36">
+    <div id="blogs" className="flex flex-col items-center w-full px-8 py-16 pt-36">
       <div className="title-container">
         <motion.h1
           variants={variants}
@@ -24,7 +20,7 @@ const Papershelf = () => {
             scale: { duration: 0.2 }
           }}
           onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
-          Papershelf
+          Blogs
         </motion.h1>
       </div>
 
@@ -34,11 +30,11 @@ const Papershelf = () => {
         whileInView="visible"
         transition={{ duration: 0.5 }}
         className="text-lg text-gray-700 dark:text-gray-300 text-center mb-12">
-        A collection of research papers I've found insightful. These papers span various fields and have broadened my understanding of different concepts.
+        Things I write about — engineering, systems, and lessons learned along the way.
       </motion.p>
 
       <div className="flex flex-wrap justify-center gap-6 w-full">
-        {papers.map((paper, index) => (
+        {blogs.map((blog, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 50 }}
@@ -46,12 +42,11 @@ const Papershelf = () => {
             transition={{ duration: 0.5 }}
             className="group flex flex-col bg-[#f3f3f3] p-6 rounded-lg border border-black hover:border-brand transition-colors w-full max-w-md flex-shrink-0"
           >
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors mb-3">
-              <a href={paper.link} target="_blank" rel="noopener noreferrer">
-                {paper.title}
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors">
+              <a href={blog.link} target="_blank" rel="noopener noreferrer">
+                {blog.title}
               </a>
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-0 flex-grow">{paper.summary}</p>
           </motion.div>
         ))}
       </div>
@@ -59,4 +54,4 @@ const Papershelf = () => {
   );
 };
 
-export default Papershelf;
+export default Blogs;

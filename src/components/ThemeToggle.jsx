@@ -2,8 +2,12 @@ import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { BiSun, BiMoon } from 'react-icons/bi';
 
+const SHOW_THEME_TOGGLE = false;
+
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
+
+  if (!SHOW_THEME_TOGGLE) return null;
 
   return (
     <button
@@ -12,9 +16,9 @@ const ThemeToggle = () => {
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
       {theme === 'dark' ? (
-        <BiSun className="text-yellow-400 hover:text-yellow-300" />
+        <BiSun className="text-brand hover:text-brand" />
       ) : (
-        <BiMoon className="text-indigo-600 hover:text-indigo-500" />
+        <BiMoon className="text-gray-600 hover:text-gray-800" />
       )}
     </button>
   );
