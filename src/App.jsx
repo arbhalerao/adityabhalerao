@@ -95,6 +95,11 @@ function MainContent() {
         <Contact />
       </div>
 
+      {/* Footer */}
+      <footer className="w-full py-6 text-center text-sm text-gray-900 dark:text-white bg-brand/[0.035]">
+        © {new Date().getFullYear()} Aditya Bhalerao
+      </footer>
+
     </main>
   );
 }
