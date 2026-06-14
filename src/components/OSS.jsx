@@ -5,10 +5,6 @@ import { useTheme } from '../context/ThemeContext';
 
 const OSS = () => {
   const { theme } = useTheme();
-  const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
-  };
 
   const sortedContributions = [...contributions].sort((a, b) => a.priority - b.priority);
 
@@ -53,11 +49,8 @@ const OSS = () => {
     const filtered = tab === 'prs' ? contribution.prs : contribution.issues;
 
     return (
-      <motion.div
+      <div
         key={originalIndex}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
         className="group flex flex-col bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors w-full"
       >
         <div className="space-y-3">
@@ -151,7 +144,7 @@ const OSS = () => {
             </ul>
           </div>
         </div>
-      </motion.div>
+      </div>
     );
   };
 
@@ -159,57 +152,31 @@ const OSS = () => {
     <div id="oss" className="flex flex-col items-center w-full px-8 py-16 pt-36">
       <div className="title-container">
         <motion.h1
-          variants={variants}
-          initial="hidden"
-          whileInView="visible"
           whileHover={{ scale: 1.05 }}
-          transition={{
-            duration: 0.5,
-            scale: { duration: 0.2 }
-          }}
+          transition={{ duration: 0.2 }}
           onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
           OSS Contributions
         </motion.h1>
       </div>
 
-      <motion.p
-        variants={variants}
-        initial="hidden"
-        whileInView="visible"
-        transition={{ duration: 0.5 }}
-        className="text-lg text-gray-700 dark:text-gray-300 text-center mb-6">
+      <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-6">
         Browse the PRs and Issues I've created in various open-source projects.
-      </motion.p>
+      </p>
 
-      <motion.div
-        variants={variants}
-        initial="hidden"
-        whileInView="visible"
-        transition={{ duration: 0.5 }}
-        className="flex flex-wrap justify-center gap-4 mb-12"
-      >
-        <motion.div
-          transition={{ duration: 0.2 }}
-          className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28"
-        >
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28">
           <p className="text-2xl font-bold text-black dark:text-white group-hover:text-brand transition-colors">{sortedContributions.length}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Projects</p>
-        </motion.div>
-        <motion.div
-          transition={{ duration: 0.2 }}
-          className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28"
-        >
+        </div>
+        <div className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28">
           <p className="text-2xl font-bold text-black dark:text-white group-hover:text-brand transition-colors">{totalPRs}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">PRs</p>
-        </motion.div>
-        <motion.div
-          transition={{ duration: 0.2 }}
-          className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28"
-        >
+        </div>
+        <div className="group bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors text-center w-28">
           <p className="text-2xl font-bold text-black dark:text-white group-hover:text-brand transition-colors">{totalIssues}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Issues</p>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       <div className="flex flex-col sm:flex-row sm:gap-6 w-full">
         <div className="flex flex-col gap-6 w-full sm:w-1/2">

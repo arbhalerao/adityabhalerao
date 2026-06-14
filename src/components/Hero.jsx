@@ -21,23 +21,16 @@ const Hero = () => {
         <div id="hero" className="px-16 flex min-h-screen w-full items-center justify-center py-28 md:px-32 relative">
             <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 text-gray-900 dark:text-white bg-[#f3f3f3] border border-black hover:border-brand transition-colors rounded-2xl px-10 py-8 md:px-16 md:py-12 lg:px-28 lg:py-16">
                 {/* Profile Image */}
-                <motion.div
-                    initial={{ y: -50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                >
+                <div>
                     <img
                         src="/aditya.png"
                         alt="Aditya"
                         className="w-[300px] cursor-pointer rounded-2xl shadow-xl shadow-gray-400/50 dark:shadow-black/50 transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/50 dark:hover:shadow-black/70 md:w-[350px]"
                     />
-                </motion.div>
+                </div>
 
                 {/* Hero Text */}
-                <motion.div
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                <div
                     className="flex max-w-[600px] flex-col items-center lg:items-start justify-center gap-3 text-center lg:text-left"
                 >
                     <h1 className="bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent text-5xl font-medium md:text-7xl leading-tight py-2">
@@ -65,7 +58,7 @@ const Hero = () => {
                         <br /><br />
                         I specialize in crafting APIs, managing databases, and optimizing server-side performance to deliver seamless user experiences.
                     </p>
-                </motion.div>
+                </div>
             </div>
 
             {/* Scroll Indicator */}

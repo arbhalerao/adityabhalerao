@@ -8,11 +8,6 @@ const Tech = () => {
     const [selectedTech, setSelectedTech] = useState(null);
     const [isMobile, setIsMobile] = useState(false);
 
-    const variants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0 }
-    };
-
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
@@ -27,36 +22,21 @@ const Tech = () => {
         <div id="tech" className="flex flex-col items-center w-full px-8 py-16 pt-36">
             <div className="title-container">
                 <motion.h1
-                    variants={variants}
-                    initial="hidden"
-                    whileInView="visible"
                     whileHover={{ scale: 1.05 }}
-                    transition={{
-                        duration: 0.5,
-                        scale: { duration: 0.2 }
-                    }}
+                    transition={{ duration: 0.2 }}
                     onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
                     Tech Stack
                 </motion.h1>
             </div>
 
-            <motion.p
-                variants={variants}
-                initial="hidden"
-                whileInView="visible"
-                transition={{ duration: 0.5 }}
-                className="text-lg text-gray-700 dark:text-gray-300 text-center mb-12">
+            <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-12">
                 Technologies I work with daily – from programming languages and frameworks to containerization tools, databases and cloud services.
-            </motion.p>
+            </p>
 
             <div className="flex flex-wrap items-center justify-center gap-10 p-5">
                 {tech.map((item, index) => (
-                    <motion.div
+                    <div
                         key={index}
-                        variants={variants}
-                        initial="hidden"
-                        whileInView="visible"
-                        transition={{ duration: 0.5 }}
                         onMouseEnter={() => !isMobile && setSelectedTech(item)}
                         onMouseLeave={() => !isMobile && setSelectedTech(null)}
                         onClick={() => isMobile && setSelectedTech(item)}
@@ -67,7 +47,7 @@ const Tech = () => {
                             alt={item.name}
                             className="transition-all duration-300 hover:-translate-y-2 hover:scale-110 w-[60px] sm:w-[80px] md:w-[100px]"
                         />
-                    </motion.div>
+                    </div>
                 ))}
             </div>
 

@@ -4,11 +4,6 @@ import { TbBrandLinkedin, TbBrandGithub, TbBrandMedium } from "react-icons/tb";
 import { ChevronUp } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
-const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
-};
-
 export default function ContactSection() {
     const { theme } = useTheme();
     const form = useRef();
@@ -83,26 +78,16 @@ export default function ContactSection() {
             <div className="flex flex-col items-center justify-center space-y-8 p-4 sm:p-14 w-full max-w-5xl">
                 <div className="title-container">
                     <motion.h1
-                        variants={variants}
-                        initial="hidden"
-                        whileInView="visible"
                         whileHover={{ scale: 1.05 }}
-                        transition={{
-                            duration: 0.5,
-                            scale: { duration: 0.2 }
-                        }}
+                        transition={{ duration: 0.2 }}
                         onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
                         Let's Connect!
                     </motion.h1>
                 </div>
 
-                <motion.form
+                <form
                     ref={form}
                     onSubmit={sendEmail}
-                    variants={variants}
-                    initial="hidden"
-                    whileInView="visible"
-                    transition={{ duration: 0.5 }}
                     className="flex flex-col space-y-6 text-center w-full"
                     noValidate
                 >
@@ -154,7 +139,7 @@ export default function ContactSection() {
                     >
                         {loading ? "Sending..." : "Send Message"}
                     </button>
-                </motion.form>
+                </form>
 
                 <div className="flex items-center w-full space-x-4 text-gray-500">
                     <hr className="flex-grow border-t border-black dark:border-gray-600" />
@@ -162,13 +147,7 @@ export default function ContactSection() {
                     <hr className="flex-grow border-t border-black dark:border-gray-600" />
                 </div>
 
-                <motion.div
-                    variants={variants}
-                    initial="hidden"
-                    whileInView="visible"
-                    transition={{ duration: 0.5 }}
-                    className="flex flex-row items-center justify-center gap-8"
-                >
+                <div className="flex flex-row items-center justify-center gap-8">
                     <a
                         href="https://www.linkedin.com/in/arbhalerao/"
                         target="_blank"
@@ -198,7 +177,7 @@ export default function ContactSection() {
                     >
                         <TbBrandMedium size={36} strokeWidth={1.5} />
                     </a>
-                </motion.div>
+                </div>
                 <div className="h-32"></div>
             </div>
 

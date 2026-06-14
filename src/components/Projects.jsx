@@ -9,11 +9,6 @@ const Projects = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const sectionRef = useRef(null);
 
-  const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   const boldText = (text) => {
     return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
   };
@@ -60,11 +55,8 @@ const Projects = () => {
   };
 
   const renderProjectCard = (project, index) => (
-    <motion.div
+    <div
       key={index}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
       className="group flex flex-col bg-[#f3f3f3] p-6 rounded-lg border border-black hover:border-brand transition-colors w-full"
     >
       <div className="flex flex-col md:flex-row md:items-center">
@@ -177,21 +169,15 @@ const Projects = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 
   return (
     <div ref={sectionRef} id="projects" className="flex flex-col items-center w-full px-8 py-16 pt-36 relative">
       <div className="title-container">
         <motion.h1
-          variants={variants}
-          initial="hidden"
-          whileInView="visible"
           whileHover={{ scale: 1.05 }}
-          transition={{
-            duration: 0.5,
-            scale: { duration: 0.2 }
-          }}
+          transition={{ duration: 0.2 }}
           onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
           Projects
         </motion.h1>
@@ -206,30 +192,17 @@ const Projects = () => {
       {/* ── Side Projects ── */}
       {sideProjects.length > 0 && (
         <div className="w-full max-w-[1400px] mt-16 mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-xl font-medium text-gray-500 dark:text-gray-400 text-center mb-8 tracking-wide uppercase"
-          >
+          <h2 className="text-xl font-medium text-gray-500 dark:text-gray-400 text-center mb-8 tracking-wide uppercase">
             For the Curiosity
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-base text-gray-400 dark:text-gray-500 text-center -mt-4 mb-4"
-          >
+          </h2>
+          <p className="text-base text-gray-400 dark:text-gray-500 text-center -mt-4 mb-4">
             Smaller builds, weekend hacks, and rabbit holes explored along the way.
-          </motion.p>
+          </p>
 
           <div className="flex flex-wrap justify-center gap-4 w-full">
             {sideProjects.map((project, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
                 className="group flex flex-col justify-between bg-[#f3f3f3] border border-black hover:border-brand transition-colors rounded-lg p-6 gap-4 w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] min-w-[320px]"
               >
                 <div>
@@ -258,7 +231,7 @@ const Projects = () => {
                     <span>Code</span>
                   </a>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

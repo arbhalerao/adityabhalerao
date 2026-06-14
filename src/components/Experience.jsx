@@ -8,10 +8,6 @@ const Experience = () => {
     const { theme } = useTheme();
     const [expandedIndex, setExpandedIndex] = useState(null);
     const sectionRef = useRef(null);
-    const variants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0 }
-    };
 
     const toggleDetails = (index) => {
         setExpandedIndex((prev) => (prev === index ? null : index));
@@ -43,14 +39,8 @@ const Experience = () => {
         <div ref={sectionRef} id="experience" className="flex flex-col items-center w-full px-8 py-16 pt-36">
             <div className="title-container">
                 <motion.h1
-                    variants={variants}
-                    initial="hidden"
-                    whileInView="visible"
                     whileHover={{ scale: 1.05 }}
-                    transition={{
-                        duration: 0.5,
-                        scale: { duration: 0.2 }
-                    }}
+                    transition={{ duration: 0.2 }}
                     onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
                     Experience
                 </motion.h1>
@@ -58,11 +48,8 @@ const Experience = () => {
 
             <div className="flex flex-col gap-16 w-full max-w-5xl mx-auto">
                 {experiences.map((exp, index) => (
-                    <motion.div
+                    <div
                         key={exp.company}
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
                         className="group bg-[#f3f3f3] p-6 rounded-lg border border-black hover:border-brand transition-colors flex items-start gap-6"
                     >
                         <a
@@ -148,7 +135,7 @@ const Experience = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                    </motion.div>
+                    </div>
                 ))}
             </div>
         </div>
