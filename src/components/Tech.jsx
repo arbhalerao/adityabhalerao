@@ -1,22 +1,9 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import tech from "../data/techData.js";
 import { useTheme } from "../context/ThemeContext";
 
 const Tech = () => {
     const { theme } = useTheme();
-    const [selectedTech, setSelectedTech] = useState(null);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     return (
         <div id="tech" className="flex flex-col items-center w-full px-8 py-16 pt-36">
@@ -37,42 +24,19 @@ const Tech = () => {
                 {tech.map((item, index) => (
                     <div
                         key={index}
-                        onMouseEnter={() => !isMobile && setSelectedTech(item)}
-                        onMouseLeave={() => !isMobile && setSelectedTech(null)}
-                        onClick={() => isMobile && setSelectedTech(item)}
                         className="cursor-pointer relative group flex flex-col items-center gap-3"
                     >
                         <img
                             src={item.image}
                             alt={item.name}
+                            title={item.name}
                             className="transition-all duration-300 hover:-translate-y-2 hover:scale-110 w-[60px] sm:w-[80px] md:w-[100px]"
                         />
+                        <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-brand bg-[#f3f3f3] px-2 py-1 text-sm font-medium text-brand opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                            {item.name}
+                        </span>
                     </div>
                 ))}
-            </div>
-
-            <div className="mt-12 w-full max-w-3xl min-h-[150px]">
-                {selectedTech ? (
-                    <div className="p-6 bg-[#f3f3f3] rounded-2xl border border-brand text-center">
-                        <p className="font-semibold text-2xl text-brand mb-4 tracking-wide">
-                            {selectedTech.name}
-                        </p>
-                        <ul className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-700 dark:text-gray-300">
-                            {selectedTech.stack.map((item, i) => (
-                                <li
-                                    key={i}
-                                    className="px-4 py-2 text-gray-900 dark:text-white rounded-lg border border-black"
-                                >
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ) : (
-                    <div className="p-5 bg-[#f3f3f3] rounded-2xl border border-black text-center text-gray-600 dark:text-gray-400">
-                        {isMobile ? "* Tap on any tech to explore more *" : "* Hover over any tech to explore more *"}
-                    </div>
-                )}
             </div>
         </div>
     );
