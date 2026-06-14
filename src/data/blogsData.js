@@ -1,5 +1,9 @@
 const blogs = [
     {
+        title: "How Geospatial Queries Work at Scale",
+        link: "https://arbhalerao.medium.com/how-geospatial-queries-work-at-scale-eec04d88a01b",
+    },
+    {
         title: "How Kafka Achieves Millions of Messages per Second",
         link: "https://arbhalerao.medium.com/how-kafka-achieves-millions-of-messages-per-second-3343c747ad4a",
     },
