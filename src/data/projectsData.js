@@ -1,5 +1,23 @@
 export const projects = [
   {
+    title: "cadutrace",
+    description: "An offline **CCSDS protocol analyzer** for spacecraft telemetry, walking a recorded **CADU stream** up the stack - transfer frames → virtual channels → reassembled space packets → application decoders - into a health report or an interactive terminal UI.",
+    technologies: ["Go", "CCSDS", "Binary Protocol Parsing", "Bubble Tea", "mmap"],
+    images: { light: "/cadutrace.png", dark: "/cadutrace.png" },
+    github: "https://github.com/arbhalerao/cadutrace",
+    demo: "",
+    features: [
+      "**Cross-frame packet reassembly** driven by the First Header Pointer - stitches space packets that span transfer-frame boundaries, with loss and truncation detection",
+      "**Zero-copy over mmap** - parsers hold slices straight into the memory-mapped capture, so larger-than-RAM and multi-GB files stream at ~1.6 GB/s",
+      "**Wrap-aware continuity tracking** - classifies sequence gaps, duplicates, and reorders across modular frame/packet counters using signed modular arithmetic",
+      "**CFDP file-transfer tracking** via a merge-on-insert interval set - reports completeness and the **exact missing byte ranges**, robust to reordering and overlap",
+      "Decodes **TM (132.0)** and **AOS (732.0)** transfer frames, **Space (133.0)** and **Encapsulation (133.1)** packets, **CLCW (232.0)** uplink status, and optional **131.0 derandomization**",
+      "**Compile-time decoder SDK** - application protocols dispatched by APID behind a recover boundary; CFDP ships as one such decoder",
+      "**Two surfaces** - a text/JSON health report (deterministic, CI-diffable) and a virtualized **Bubble Tea TUI** (frames, packets, inspector + hex, CFDP, stats, events)",
+      "**Deterministic sample-stream generator** that synthesizes byte-exact CADU captures (TM/AOS, encap, CFDP, randomized, lossy) at gigabyte scale"
+    ],
+  },
+  {
     title: "Walrus",
     description: "A single-node **persistent key-value store** in Go (zero dependencies), fast in-memory reads backed by a **segmented write-ahead log** for durability and crash recovery, with optional per-key TTL.",
     technologies: ["Go", "Write-Ahead Log", "Key-Value Store", "HTTP API"],
