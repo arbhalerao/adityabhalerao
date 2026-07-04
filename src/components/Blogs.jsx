@@ -23,6 +23,11 @@ const Blogs = () => {
             key={index}
             className="group flex flex-col bg-[#f3f3f3] p-6 rounded-lg border border-black hover:border-brand transition-colors w-full max-w-md flex-shrink-0"
           >
+            {blog.date && (
+              <span className="mb-2 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                {blog.date}
+              </span>
+            )}
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors">
               <a href={blog.link} target="_blank" rel="noopener noreferrer">
                 {blog.title}
