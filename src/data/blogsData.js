@@ -31,12 +31,12 @@ const blogs = [
     },
     {
         title: "Working with STAC in Python: A Hands-On Tutorial",
-        link: "https://arbhalerao.medium.com/working-with-stac-in-python-a-hands-on-tutorial-47045f86a7ea",
+        link: "https://arbhalerao.medium.com/working-with-stac-in-python-a-hands-on-tutorial-3afb3b99f018",
         date: "Jul 28, 2025",
     },
     {
         title: "A Guide to STAC — Organizing Satellite Imagery",
-        link: "https://arbhalerao.medium.com/a-guide-to-stac-organizing-satellite-imagery-ab8d199d6dad",
+        link: "https://arbhalerao.medium.com/a-guide-to-stac-organizing-satellite-imagery-91c7d5022245",
         date: "Jul 21, 2025",
     },
     {
@@ -46,7 +46,7 @@ const blogs = [
     },
     {
         title: "Building a CoWIN Slot Finder: My First Real-World Project",
-        link: "https://arbhalerao.medium.com/building-a-cowin-slot-finder-my-first-real-world-project-e2e03f62de7a",
+        link: "https://arbhalerao.medium.com/building-a-cowin-slot-finder-my-first-real-world-project-89715c98b719",
         date: "Aug 16, 2021",
     },
 ];
