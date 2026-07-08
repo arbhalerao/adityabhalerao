@@ -5,9 +5,24 @@ const blogs = [
         date: "Jun 14, 2026",
     },
     {
+        title: "Zero-Copy: Moving Data Without Touching It",
+        link: "https://arbhalerao.medium.com/zero-copy-moving-data-without-touching-it-d81501a27511",
+        date: "Apr 12, 2026",
+    },
+    {
+        title: "How Merkle Trees Detect What Changed",
+        link: "https://arbhalerao.medium.com/how-merkle-trees-detect-what-changed-a9552b2aedba",
+        date: "Mar 30, 2026",
+    },
+    {
         title: "How Kafka Achieves Millions of Messages per Second",
         link: "https://arbhalerao.medium.com/how-kafka-achieves-millions-of-messages-per-second-cd0bc7edb5f0",
         date: "Feb 15, 2026",
+    },
+    {
+        title: "How Vector Clocks Track Causality",
+        link: "https://arbhalerao.medium.com/how-vector-clocks-track-causality-c017ac0dc999",
+        date: "Jan 11, 2026",
     },
     {
         title: "Beyond Caching: How Facebook Turned Memcached into a Global System",
