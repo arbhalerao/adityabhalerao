@@ -5,6 +5,11 @@ const blogs = [
         date: "Jun 14, 2026",
     },
     {
+        title: "Backpressure: What Happens When Producers Outrun Consumers",
+        link: "https://arbhalerao.medium.com/backpressure-what-happens-when-producers-outrun-consumers-7264d270a48d",
+        date: "May 5, 2026",
+    },
+    {
         title: "Zero-Copy: Moving Data Without Touching It",
         link: "https://arbhalerao.medium.com/zero-copy-moving-data-without-touching-it-d81501a27511",
         date: "Apr 12, 2026",
