@@ -43,11 +43,11 @@ const Hero = () => {
                     {/* Location & Time */}
                     <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-lg text-gray-700 dark:text-gray-300">
                         <span className="flex items-center gap-2">
-                            <MapPin className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                            <MapPin className="h-5 w-5 text-brand" />
                             Pune, MH, India
                         </span>
                         <span className="flex items-center gap-2">
-                            <Clock className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                            <Clock className="h-5 w-5 text-brand" />
                             {currentTime} IST
                         </span>
                     </div>
