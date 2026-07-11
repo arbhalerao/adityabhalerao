@@ -13,7 +13,7 @@ import Experience from "./components/Experience";
 import Papershelf from "./components/Papershelf";
 import Blogs from "./components/Blogs";
 import OSS from "./components/OSS";
-// import ParticlesBackground from "./components/ParticlesBackground";
+import EasterEgg from "./components/EasterEgg";
 import Projects from "./components/Projects";
 
 function MainContent() {
@@ -109,13 +109,13 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <div className="fixed -z-20 min-h-screen w-full bg-[#f3f3f3] dark:bg-[#2e3033]"></div>
-        {/* <ParticlesBackground /> */}
 
         <Navbar />
         <Analytics />
         <Routes>
           <Route path="/" element={<MainContent />} />
         </Routes>
+        <EasterEgg />
       </Router>
     </ThemeProvider>
   );
