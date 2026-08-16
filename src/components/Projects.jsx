@@ -63,14 +63,18 @@ const Projects = () => {
         <div className="w-full md:w-[220px] h-48 mb-4 md:mb-0 md:mr-6 overflow-hidden rounded-lg flex items-center justify-center shrink-0">
           <img
             src={getThemeImage(project)}
-            alt={project.title}
+            alt={`Screenshot of ${project.title}`}
+            width="800"
+            height="533"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-contain rounded-md"
           />
         </div>
 
         <div className="flex flex-col flex-grow">
           <div className="mb-3">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors mb-2">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors mb-2">
               {project.github ? (
                 <a href={project.github} target="_blank" rel="noopener noreferrer">
                   {project.title}
@@ -78,7 +82,7 @@ const Projects = () => {
               ) : (
                 project.title
               )}
-            </h2>
+            </h3>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech, i) => (
                 <span
@@ -148,7 +152,7 @@ const Projects = () => {
             <div className="mt-6 pt-6 border-t border-black space-y-5">
               {project.features?.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-gray-900 dark:text-white mb-2">Features</h3>
+                  <h4 className="font-medium text-gray-900 dark:text-white mb-2">Features</h4>
                   <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 ml-2">
                     {project.features.map((feature, i) => (
                       <li key={i} dangerouslySetInnerHTML={{ __html: boldText(feature) }} />
@@ -158,7 +162,7 @@ const Projects = () => {
               )}
               {project.challenges && (
                 <div>
-                  <h3 className="font-medium text-gray-900 dark:text-white mb-2">Challenges</h3>
+                  <h4 className="font-medium text-gray-900 dark:text-white mb-2">Challenges</h4>
                   <p
                     className="text-gray-600 dark:text-gray-400"
                     dangerouslySetInnerHTML={{ __html: boldText(project.challenges) }}
@@ -175,12 +179,12 @@ const Projects = () => {
   return (
     <div ref={sectionRef} id="projects" className="flex flex-col items-center w-full px-8 py-16 pt-36 relative">
       <div className="title-container">
-        <motion.h1
+        <motion.h2
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
           onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
           Projects
-        </motion.h1>
+        </motion.h2>
       </div>
 
 
@@ -192,9 +196,9 @@ const Projects = () => {
       {/* ── Side Projects ── */}
       {sideProjects.length > 0 && (
         <div className="w-full max-w-[1400px] mt-16 mx-auto px-4">
-          <h2 className="text-xl font-medium text-gray-500 dark:text-gray-400 text-center mb-8 tracking-wide uppercase">
+          <h3 className="text-xl font-medium text-gray-500 dark:text-gray-400 text-center mb-8 tracking-wide uppercase">
             For the Curiosity
-          </h2>
+          </h3>
           <p className="text-base text-gray-400 dark:text-gray-500 text-center -mt-4 mb-4">
             Smaller builds, weekend hacks, and rabbit holes explored along the way.
           </p>
@@ -206,7 +210,7 @@ const Projects = () => {
                 className="group flex flex-col justify-between bg-[#f3f3f3] border border-black hover:border-brand transition-colors rounded-lg p-6 gap-4 w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] min-w-[320px]"
               >
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors mb-2">
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors mb-2">
                     {project.github ? (
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         {project.title}
@@ -214,7 +218,7 @@ const Projects = () => {
                     ) : (
                       project.title
                     )}
-                  </h3>
+                  </h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                     {project.description}
                   </p>

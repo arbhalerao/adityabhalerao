@@ -38,12 +38,12 @@ const Experience = () => {
     return (
         <div ref={sectionRef} id="experience" className="flex flex-col items-center w-full px-8 py-16 pt-36">
             <div className="title-container">
-                <motion.h1
+                <motion.h2
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                     onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
                     Experience
-                </motion.h1>
+                </motion.h2>
             </div>
 
             <div className="flex flex-col gap-16 w-full max-w-5xl mx-auto">
@@ -61,7 +61,11 @@ const Experience = () => {
                             <div className="w-16 h-16 flex items-center justify-center rounded-lg">
                                 <img
                                     src={exp.logo}
-                                    alt={`${exp.company} Logo`}
+                                    alt={`${exp.company} logo`}
+                                    width="200"
+                                    height="200"
+                                    loading="lazy"
+                                    decoding="async"
                                     className="max-w-full max-h-full object-contain rounded-lg transition-all duration-300 hover:scale-110"
                                 />
                             </div>
@@ -69,24 +73,13 @@ const Experience = () => {
 
                         {/* Company Info */}
                         <div>
-                            {/* Company Name (Visible as a link on small screens) */}
-                            <a
-                                href={exp.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors md:text-2xl block sm:hidden"
-                            >
-                                {exp.company}
-                            </a>
-                            <a
-                                href={exp.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors md:text-2xl hidden sm:block"
-                            >
-                                {exp.company}
-                            </a>
-                            <h3 className="text-lg text-gray-600 dark:text-gray-400">{exp.role}</h3>
+                            {/* Company Name (also the only visible link to the company on small screens) */}
+                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors md:text-2xl">
+                                <a href={exp.link} target="_blank" rel="noopener noreferrer">
+                                    {exp.company}
+                                </a>
+                            </h3>
+                            <p className="text-lg text-gray-600 dark:text-gray-400">{exp.role}</p>
                             <p className="text-sm text-gray-500 dark:text-gray-500">{exp.duration}</p>
 
                             <button

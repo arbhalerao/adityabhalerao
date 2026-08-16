@@ -40,12 +40,12 @@ const Blogs = () => {
   return (
     <div ref={sectionRef} id="blogs" className="flex flex-col items-center w-full px-8 py-16 pt-36">
       <div className="title-container">
-        <motion.h1
+        <motion.h2
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
           onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
           Blogs
-        </motion.h1>
+        </motion.h2>
       </div>
 
       <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-12">
@@ -91,11 +91,11 @@ const Blogs = () => {
                             {blog.date}
                           </span>
                         )}
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors">
                           <a href={blog.link} target="_blank" rel="noopener noreferrer">
                             {blog.title}
                           </a>
-                        </h2>
+                        </h3>
                       </div>
                     ))}
                   </div>

@@ -23,8 +23,14 @@ const Hero = () => {
                 {/* Profile Image */}
                 <div>
                     <img
-                        src="/aditya.png"
-                        alt="Aditya"
+                        src="/aditya-bhalerao.webp"
+                        alt="Aditya Bhalerao, software engineer"
+                        width="800"
+                        height="800"
+                        // lowercase on purpose: React 18 passes it through as-is (camelCase is React 19+)
+                        // eslint-disable-next-line react/no-unknown-property
+                        fetchpriority="high"
+                        decoding="async"
                         className="w-[300px] cursor-pointer rounded-2xl shadow-xl shadow-gray-400/50 dark:shadow-black/50 transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/50 dark:hover:shadow-black/70 md:w-[350px]"
                     />
                 </div>
@@ -36,9 +42,9 @@ const Hero = () => {
                     <h1 className="bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent text-5xl font-medium md:text-7xl leading-tight py-2">
                         Aditya Bhalerao
                     </h1>
-                    <h3 className="text-brand text-2xl md:text-3xl leading-relaxed py-1">
+                    <h2 className="text-brand text-2xl md:text-3xl leading-relaxed py-1">
                         Software Engineer
-                    </h3>
+                    </h2>
 
                     {/* Location & Time */}
                     <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-lg text-gray-700 dark:text-gray-300">
@@ -57,6 +63,12 @@ const Hero = () => {
                         I'm a Software Engineer with a focus on backend development, passionate about building scalable, efficient, and reliable systems.
                         <br /><br />
                         I specialize in crafting APIs, managing databases, and optimizing server-side performance to deliver seamless user experiences.
+                        <br /><br />
+                        Currently at{" "}
+                        <a href="https://geminus.space/" target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">
+                            Geminus Space
+                        </a>
+                        , building backend services for satellite ground operations.
                     </p>
                 </div>
             </div>

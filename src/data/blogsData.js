@@ -65,6 +65,11 @@ const blogs = [
         date: "Nov 10, 2024",
     },
     {
+        title: "How TCP Delivers Reliably Over an Unreliable Network",
+        link: "https://arbhalerao.medium.com/how-tcp-delivers-reliably-over-an-unreliable-network-3ac2e9eea8d9",
+        date: "Nov 23, 2023",
+    },
+    {
         title: "Understanding Big-O by Breaking It",
         link: "https://arbhalerao.medium.com/understanding-big-o-by-breaking-it-cd71a440e2c4",
         date: "Jun 17, 2022",

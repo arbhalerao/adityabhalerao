@@ -77,12 +77,12 @@ export default function ContactSection() {
         <div id="contact" className="flex flex-col items-center w-full px-8 py-16 pt-24 relative">
             <div className="flex flex-col items-center justify-center space-y-8 p-4 sm:p-14 w-full max-w-5xl">
                 <div className="title-container">
-                    <motion.h1
+                    <motion.h2
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.2 }}
                         onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
                         Let's Connect!
-                    </motion.h1>
+                    </motion.h2>
                 </div>
 
                 <form

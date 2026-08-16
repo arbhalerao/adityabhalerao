@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from "./context/ThemeContext";
@@ -15,6 +15,7 @@ import Blogs from "./components/Blogs";
 import OSS from "./components/OSS";
 import EasterEgg from "./components/EasterEgg";
 import Projects from "./components/Projects";
+import { useSeo } from "./seo/useSeo";
 
 function MainContent() {
   useEffect(() => {
@@ -104,19 +105,33 @@ function MainContent() {
   );
 }
 
-export default function App() {
+/**
+ * Everything below the router. Kept separate from <App /> so that
+ * src/entry-server.jsx can mount the same tree under a StaticRouter when
+ * prerendering the static HTML at build time.
+ */
+export function AppShell() {
+  const { pathname } = useLocation();
+  useSeo(pathname);
+
   return (
     <ThemeProvider>
-      <Router>
-        <div className="fixed -z-20 min-h-screen w-full bg-[#f3f3f3] dark:bg-[#2e3033]"></div>
+      <div className="fixed -z-20 min-h-screen w-full bg-[#f3f3f3] dark:bg-[#2e3033]"></div>
 
-        <Navbar />
-        <Analytics />
-        <Routes>
-          <Route path="/" element={<MainContent />} />
-        </Routes>
-        <EasterEgg />
-      </Router>
+      <Navbar />
+      <Analytics />
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+      </Routes>
+      <EasterEgg />
     </ThemeProvider>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppShell />
+    </Router>
   );
 }

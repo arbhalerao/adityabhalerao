@@ -8,12 +8,12 @@ const Tech = () => {
     return (
         <div id="tech" className="flex flex-col items-center w-full px-8 py-16 pt-36">
             <div className="title-container">
-                <motion.h1
+                <motion.h2
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                     onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
                     Tech Stack
-                </motion.h1>
+                </motion.h2>
             </div>
 
             <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-12">
@@ -28,8 +28,12 @@ const Tech = () => {
                     >
                         <img
                             src={item.image}
-                            alt={item.name}
+                            alt={`${item.name} logo`}
                             title={item.name}
+                            width="100"
+                            height="100"
+                            loading="lazy"
+                            decoding="async"
                             className="transition-all duration-300 hover:-translate-y-2 hover:scale-110 w-[60px] sm:w-[80px] md:w-[100px]"
                         />
                         <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-brand bg-[#f3f3f3] px-2 py-1 text-sm font-medium text-brand opacity-0 transition-opacity duration-200 group-hover:opacity-100">

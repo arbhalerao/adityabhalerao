@@ -54,7 +54,7 @@ const OSS = () => {
         className="group flex flex-col bg-[#f3f3f3] p-4 rounded-lg border border-black hover:border-brand transition-colors w-full"
       >
         <div className="space-y-3">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand transition-colors">
             <a
               href={contribution.link}
               target="_blank"
@@ -62,7 +62,7 @@ const OSS = () => {
             >
               {contribution.title}
             </a>
-          </h2>
+          </h3>
 
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             {contribution.summary}
@@ -151,12 +151,12 @@ const OSS = () => {
   return (
     <div id="oss" className="flex flex-col items-center w-full px-8 py-16 pt-36">
       <div className="title-container">
-        <motion.h1
+        <motion.h2
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
           onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
           OSS Contributions
-        </motion.h1>
+        </motion.h2>
       </div>
 
       <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-6">
