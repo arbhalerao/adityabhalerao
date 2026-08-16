@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { BiMenu, BiX } from "react-icons/bi";
 import { TbBrandGithub, TbBrandLinkedin, TbBrandMedium } from "react-icons/tb";
 import { useNavigateAndScroll } from "../hooks/useNavigateAndScroll";
@@ -124,11 +124,18 @@ const Navbar = () => {
                   <span className="text-brand text-3xl select-none" aria-hidden="true">&lt;</span>
                 </div>
                 <div className="flex items-center gap-10">
-                <Link to="/" aria-label="Aditya Bhalerao — home" className="cursor-pointer">
+                {/* Real anchor to "/", but scrolls to the top when already there —
+                    a plain <Link to="/"> is a no-op on the homepage. */}
+                <a
+                    href="/"
+                    aria-label="Aditya Bhalerao — back to top"
+                    onClick={(e) => { e.preventDefault(); handleNavigation("/", "hero"); }}
+                    className="cursor-pointer"
+                >
                     {mounted && (
                         <img src={logoSrc} alt="Aditya Bhalerao logo" width="40" height="40" className="h-10 w-10" />
                     )}
-                </Link>
+                </a>
 
                 {/* Desktop Nav */}
                 <nav aria-label="Primary" className="hidden md:block">
