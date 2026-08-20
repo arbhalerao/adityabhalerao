@@ -2,133 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: 'Chakra Petch', sans-serif;
-  scroll-behavior: smooth;
+/*
+ * One quiet palette, defined once. The site is light-only.
+ */
+:root {
+  --bg: #fafaf9;
+  --fg: #1c1c1c;
+  --body: #3f3f3f;
+  --muted: #6f6f6f;
+  --rule: #dcdbd8;
+  --brand: #e08a3c;
+  --scroll-thumb: #cdcbc6;
+  --scroll-thumb-hover: #a9a7a1;
 }
 
-/* Dashed borders everywhere (dash length/gap is browser-controlled) */
-*, ::before, ::after {
-  border-style: dashed;
+html {
+  scroll-behavior: smooth;
+
+  /*
+   * Standard properties first: Chrome 121+, Firefox and Safari 18.2+ honour
+   * these and ignore the ::-webkit rules below, which are left in place for
+   * older WebKit. Both land on the same thin, quiet bar.
+   */
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  /* A transparent border with background-clip leaves the thumb inset from the
+     track, so it reads as a hairline rather than a full-width slab. */
+  background: var(--scroll-thumb);
+  background-clip: content-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 body {
-  @apply bg-[#f3f3f3] dark:bg-[#2e3033] transition-colors duration-300;
-  /* Hide scrollbar (Firefox / IE-Edge) while keeping scroll functionality */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Hide scrollbar (Chrome / Safari / Edge) */
-*::-webkit-scrollbar {
-  display: none;
+/* Anchor jumps land below the sticky header instead of under it. */
+[id] {
+  scroll-margin-top: 4.5rem;
 }
 
-/* Apply theme-specific backgrounds */
-.dark {
-  color-scheme: dark;
+/*
+ * A collapsed section is one line of text, so the mt-14/pt-8 rhythm the open
+ * sections use leaves a header-sized hole beneath it.
+ *
+ * Tighten the space that FOLLOWS a collapsed section, never its own top
+ * margin/padding: shrinking those would slide the summary you just clicked
+ * out from under the pointer, so re-opening it would mean chasing it.
+ */
+section:has(> details:not([open])) + section,
+section:has(> details:not([open])) + footer {
+  margin-top: 1.5rem;
 }
 
-/* Set different background gradients based on theme */
-.bg-gradient {
-  @apply bg-[#f3f3f3] dark:bg-[#2e3033];
-}
-
-/* Theme transition effects */
-.theme-transition {
-  @apply transition-colors duration-300;
-}
-
-/* Lighten section title gradients in dark mode so they read on the charcoal bg */
-.dark .section-title {
-  background: linear-gradient(to right, #e5e7eb, #9ca3af, #e5e7eb);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.dark .section-title::after {
-  background: linear-gradient(to right, #d1d5db, #9ca3af, #d1d5db) !important;
-}
-
-/* Turn section titles orange on hover (overrides light + dark gradients) */
-.section-title:hover,
-.dark .section-title:hover {
-  background: #e08a3c;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.section-title:hover::after,
-.dark .section-title:hover::after {
-  background: #e08a3c !important;
-}
-
-/* Enhanced Section Titles */
-.section-title {
-  @apply relative inline-block text-5xl md:text-7xl font-light mb-16;
-  background: linear-gradient(to right, #374151, #111827, #374151);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientFlow 4s ease infinite;
-  width: auto;
-  /* Ensure proper width on mobile */
-  text-align: center;
-  /* Center text within the element */
-}
-
-/* Only show underline on medium screens and up */
-@media (min-width: 768px) {
-  .section-title::after {
-    content: "";
-    @apply absolute bottom-0 left-0 right-0 h-1 rounded-full;
-    width: 100%;
-    /* Changed to 100% for full width */
-    background: linear-gradient(to right, #4b5563, #1f2937, #4b5563);
-    background-size: 200% auto;
-    animation: gradientFlow 4s ease infinite;
-    transform: scaleX(0.8);
-    /* Scale animation from center */
-    transform-origin: center;
-    transition: transform 0.5s ease;
-  }
-
-  .section-title:hover::after {
-    transform: scaleX(1);
-    /* Full width on hover */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
-/* Remove underline and add scale effect for specific titles */
-.section-title.no-underline {
-  cursor: pointer;
-}
-
-@media (min-width: 768px) {
-  .section-title.no-underline::after {
-    display: none;
-  }
-}
-
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% center;
+@layer components {
+  /* Links read as text first: a hairline underline that only picks up the
+     accent on hover. Used for every in-prose and list link on the site. */
+  .link {
+    @apply underline decoration-rule underline-offset-[3px] transition-colors hover:text-brand hover:decoration-brand;
   }
 
-  50% {
-    background-position: 100% center;
+  /*
+   * The type ladder. One rung per level of nesting, so the same depth is the
+   * same size in every section and each step inward is visibly smaller.
+   *
+   *   .section-heading 24  the section        Experience, Projects, Writing
+   *   .depth-1         18  the entry          company, repo, project, paper, year
+   *   .depth-2         16  what it is         role, summary, description, post title
+   *   .depth-3         15  a group inside it  project name, PR row, feature list
+   *   .depth-4         14  the detail         achievement bullets
+   *   .meta            13  facts about it     dates, tech, status  (mono)
+   *
+   * Weight is applied at the call site — a rung is a size, not a style.
+   */
+  /* The top of the ladder: a section owns everything below it, so it is the
+     largest thing in that section rather than a small marker above it. */
+  .section-heading {
+    @apply text-[24px] font-medium;
   }
 
-  100% {
-    background-position: 0% center;
+  .depth-1 {
+    @apply text-[18px];
   }
-}
 
-/* Ensure proper container alignment */
-.title-container {
-  @apply flex justify-center w-full;
+  .depth-2 {
+    @apply text-[16px];
+  }
+
+  .depth-3 {
+    @apply text-[15px];
+  }
+
+  .depth-4 {
+    @apply text-[14px] leading-6;
+  }
+
+  /* Dates, durations, tech lists, status words — anything that is metadata
+     rather than prose. Deepest rung, and the only mono one. */
+  .meta {
+    @apply font-mono text-[13px] text-muted;
+  }
+
+  /* Top-level prose that is not inside a section entry: the hero paragraphs. */
+  .prose-block {
+    @apply text-[16px] leading-7;
+  }
 }

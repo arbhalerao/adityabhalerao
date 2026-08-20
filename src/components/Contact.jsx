@@ -1,195 +1,164 @@
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { TbBrandLinkedin, TbBrandGithub, TbBrandMedium } from "react-icons/tb";
-import { ChevronUp } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
+import { useEffect, useRef, useState } from "react";
+import { PROFILES } from "../seo/siteMeta";
+import Section from "./Section";
 
-export default function ContactSection() {
-    const { theme } = useTheme();
-    const form = useRef();
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
+/*
+ * Underline-only controls. A boxed input is the only enclosed shape on a page
+ * built from hairline rules and text, which is what made the form read as
+ * bolted on. The rule under each field is the same hairline as everywhere else.
+ */
+/*
+ * A failure that vanishes is worse than a success that does: the visitor looks
+ * back at a blank line and assumes the message went through. Errors get twice
+ * as long on screen.
+ */
+const SUCCESS_MS = 4000;
+const ERROR_MS = 8000;
 
-    const navigateToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+const FIELD =
+  "depth-2 w-full border-0 border-b border-rule bg-transparent py-1.5 text-ink transition-colors focus:border-brand focus:outline-none";
+
+/**
+ * Grows a textarea to fit its content. Height is cleared first so the element
+ * can shrink again when text is deleted, not only grow.
+ */
+const autoGrow = (el) => {
+  el.style.height = "auto";
+  el.style.height = `${el.scrollHeight}px`;
+};
+
+/** Label above control — a real <label>, replacing placeholder-only fields. */
+const Field = ({ name, label, type = "text", textarea }) => (
+  <div>
+    <label htmlFor={name} className="meta mb-1 block">
+      {label}
+    </label>
+    {textarea ? (
+      // Starts one line tall, like every other field, and grows as you type.
+      <textarea
+        id={name}
+        name={name}
+        rows="1"
+        required
+        onInput={(event) => autoGrow(event.currentTarget)}
+        className={`${FIELD} resize-none overflow-hidden`}
+      />
+    ) : (
+      <input id={name} name={name} type={type} required className={FIELD} />
+    )}
+  </div>
+);
+
+export default function Contact() {
+  const form = useRef();
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  // Held in a ref so a second submit cancels the first timer instead of letting
+  // it fire late and wipe the newer message off the screen early.
+  const clearTimer = useRef();
+
+  const showMessage = (msg, ms = ERROR_MS) => {
+    clearTimeout(clearTimer.current);
+    setMessage(msg);
+    clearTimer.current = setTimeout(() => setMessage(""), ms);
+  };
+
+  useEffect(() => () => clearTimeout(clearTimer.current), []);
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    const formData = new FormData(form.current);
+    const data = {
+      sender_name: formData.get("sender_name").trim(),
+      sender_email: formData.get("sender_email").trim(),
+      subject: formData.get("subject").trim(),
+      message: formData.get("message").trim(),
     };
 
-    const showMessage = (msg) => {
-        setMessage(msg);
-        setTimeout(() => setMessage(""), 1500);
-    };
+    if (!data.sender_name || !data.sender_email || !data.subject || !data.message) {
+      showMessage("please fill in all the fields");
+      setLoading(false);
+      return;
+    }
 
-    const sendEmail = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setMessage("");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.sender_email)) {
+      showMessage("please enter a valid email address");
+      setLoading(false);
+      return;
+    }
 
-        const formData = new FormData(form.current);
-        const data = {
-            sender_name: formData.get("sender_name").trim(),
-            sender_email: formData.get("sender_email").trim(),
-            subject: formData.get("subject").trim(),
-            message: formData.get("message").trim()
-        };
+    if (data.message.length > 1000) {
+      showMessage("please keep it to 1000 characters");
+      setLoading(false);
+      return;
+    }
 
-        if (!data.sender_name || !data.sender_email || !data.subject || !data.message) {
-            showMessage("Please fill in all the fields");
-            setLoading(false);
-            return;
-        }
+    try {
+      const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.sender_email)) {
-            showMessage("Please enter a valid email address");
-            setLoading(false);
-            return;
-        }
+      if (response.ok) {
+        showMessage("thanks for writing, i'll get back to you soon", SUCCESS_MS);
+        form.current.reset();
+        // reset() clears values but not the inline height auto-grow set.
+        const box = form.current.querySelector("textarea");
+        if (box) box.style.height = "";
+      } else {
+        throw new Error();
+      }
+    } catch {
+      showMessage("something went wrong, please try again in a moment");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (data.message.length > 1000) {
-            showMessage("Message should not exceed 1000 characters");
-            setLoading(false);
-            return;
-        }
+  return (
+    <Section id="contact" title="Contact" intro="The form goes straight to my inbox">
+      <form ref={form} onSubmit={sendEmail} className="max-w-[48rem] space-y-6" noValidate>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <Field name="sender_name" label="name" />
+          <Field name="sender_email" label="email" type="email" />
+        </div>
 
-        try {
-            const response = await fetch("/api/sendEmail", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
+        <Field name="subject" label="subject" />
+        <Field name="message" label="message" textarea />
 
-            if (response.ok) {
-                showMessage("Email sent successfully!");
-                form.current.reset();
-            } else {
-                throw new Error();
-            }
-        } catch {
-            showMessage("Failed to send email");
-        } finally {
-            setLoading(false);
-        }
-    };
+        <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2 pt-1">
+          <button
+            type="submit"
+            disabled={loading}
+            className="depth-2 border-b border-ink pb-0.5 transition-colors hover:border-brand hover:text-brand disabled:opacity-40"
+          >
+            {loading ? "sending…" : "send"}
+          </button>
+          <p aria-live="polite" className="meta">
+            {message}
+          </p>
+        </div>
+      </form>
 
-    return (
-        <div id="contact" className="flex flex-col items-center w-full px-8 py-16 pt-24 relative">
-            <div className="flex flex-col items-center justify-center space-y-8 p-4 sm:p-14 w-full max-w-5xl">
-                <div className="title-container">
-                    <motion.h2
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.2 }}
-                        onClick={(e) => e.currentTarget.closest("[id]").scrollIntoView({ behavior: "smooth" })} className="section-title no-underline cursor-pointer">
-                        Let's Connect!
-                    </motion.h2>
-                </div>
-
-                <form
-                    ref={form}
-                    onSubmit={sendEmail}
-                    className="flex flex-col space-y-6 text-center w-full"
-                    noValidate
-                >
-                    <div className="flex flex-col md:flex-row w-full space-y-4 md:space-y-0 md:space-x-4">
-                        <input
-                            type="text"
-                            name="sender_name"
-                            placeholder="Name *"
-                            required
-                            className="w-full md:w-1/2 p-3 text-lg border border-black dark:border-gray-600 bg-gray-100 dark:bg-[#3a3d40] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:border-brand transition-colors"
-                        />
-                        <input
-                            type="email"
-                            name="sender_email"
-                            placeholder="Email *"
-                            required
-                            className="w-full md:w-1/2 p-3 text-lg border border-black dark:border-gray-600 bg-gray-100 dark:bg-[#3a3d40] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:border-brand transition-colors"
-                        />
-                    </div>
-
-                    <input
-                        type="text"
-                        name="subject"
-                        placeholder="Subject *"
-                        required
-                        className="w-full p-3 text-lg border border-black dark:border-gray-600 bg-gray-100 dark:bg-[#3a3d40] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:border-brand transition-colors"
-                    />
-
-                    <textarea
-                        name="message"
-                        placeholder="Message *"
-                        rows="4"
-                        required
-                        className="w-full p-3 text-lg border border-black dark:border-gray-600 bg-gray-100 dark:bg-[#3a3d40] text-gray-900 dark:text-white rounded-lg focus:outline-none focus:border-brand transition-colors resize-none"
-                    ></textarea>
-
-                    <div className="h-10 flex items-center justify-center">
-                        {message && (
-                            <p className="text-lg font-normal text-brand">
-                                {message}
-                            </p>
-                        )}
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="w-[200px] md:w-[300px] mx-auto rounded-lg border border-brand bg-gray-100 dark:bg-[#3a3d40] px-5 py-3 text-lg font-normal text-brand transition-all duration-300 hover:scale-105"
-                        disabled={loading}
-                    >
-                        {loading ? "Sending..." : "Send Message"}
-                    </button>
-                </form>
-
-                <div className="flex items-center w-full space-x-4 text-gray-500">
-                    <hr className="flex-grow border-t border-black dark:border-gray-600" />
-                    <span className="text-lg text-gray-600 dark:text-gray-400">or find me on</span>
-                    <hr className="flex-grow border-t border-black dark:border-gray-600" />
-                </div>
-
-                <div className="flex flex-row items-center justify-center gap-8">
-                    <a
-                        href="https://www.linkedin.com/in/arbhalerao/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="LinkedIn"
-                        className="text-brand transition-transform duration-300 hover:scale-110"
-                    >
-                        <TbBrandLinkedin size={36} strokeWidth={1.5} />
-                    </a>
-
-                    <a
-                        href="https://github.com/arbhalerao"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="GitHub"
-                        className="text-brand transition-transform duration-300 hover:scale-110"
-                    >
-                        <TbBrandGithub size={36} strokeWidth={1.5} />
-                    </a>
-
-                    <a
-                        href="https://arbhalerao.medium.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Medium"
-                        className="text-brand transition-transform duration-300 hover:scale-110"
-                    >
-                        <TbBrandMedium size={36} strokeWidth={1.5} />
-                    </a>
-                </div>
-                <div className="h-32"></div>
-            </div>
-
-            <motion.div
-                className="absolute bottom-10 flex flex-col items-center cursor-pointer"
-                onClick={navigateToTop}
-                initial={{ y: 10, opacity: 0.7 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ repeat: Infinity, repeatType: "reverse", duration: 1 }}
-            >
-                <ChevronUp className="h-10 w-10 text-brand animate-bounce stroke-[2.5]" />
-            </motion.div>
-        </div >
-    );
+      <div className="mt-12">
+        <p className="meta mb-1">elsewhere</p>
+        <p className="depth-2 flex flex-wrap gap-x-5 gap-y-1">
+          <a href={PROFILES.github} target="_blank" rel="noopener noreferrer" className="link">
+            github
+          </a>
+          <a href={PROFILES.linkedin} target="_blank" rel="noopener noreferrer" className="link">
+            linkedin
+          </a>
+          <a href={PROFILES.medium} target="_blank" rel="noopener noreferrer" className="link">
+            medium
+          </a>
+        </p>
+      </div>
+    </Section>
+  );
 }

@@ -1,24 +1,15 @@
-import React from 'react';
-
-const EasterEgg = () => {
-    const handleEasterEgg = () => {
-        window.open("https://youtu.be/rEq1Z0bjdwc?si=FmUBM5WYfjhE8PFX", "_blank");
-    };
-
-    return (
-        <div className="fixed bottom-8 right-8 z-50 hidden lg:block">
-            <span
-                onClick={handleEasterEgg}
-                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors select-none italic cursor-pointer p-4"
-                style={{
-                    fontSize: '10px',
-                    cursor: `url('/egg/light-saber.cur'), pointer`
-                }}
-            >
-                Hello there
-            </span>
-        </div>
-    );
-};
+const EasterEgg = () => (
+  <div className="fixed bottom-6 right-6 z-50 hidden lg:block">
+    <a
+      href="https://youtu.be/rEq1Z0bjdwc?si=FmUBM5WYfjhE8PFX"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="select-none text-[10px] italic text-muted hover:text-brand"
+      style={{ cursor: `url('/egg/light-saber.cur'), pointer` }}
+    >
+      hello there
+    </a>
+  </div>
+);
 
 export default EasterEgg;

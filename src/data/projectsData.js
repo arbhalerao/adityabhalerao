@@ -3,7 +3,6 @@ export const projects = [
     title: "cadutrace",
     description: "An offline **CCSDS protocol analyzer** for spacecraft telemetry, walking a recorded **CADU stream** up the stack - transfer frames → virtual channels → reassembled space packets → application decoders - into a health report or an interactive terminal UI.",
     technologies: ["Go", "CCSDS", "Binary Protocol Parsing", "Bubble Tea", "mmap"],
-    images: { light: "/cadutrace.webp", dark: "/cadutrace.webp" },
     github: "https://github.com/arbhalerao/cadutrace",
     demo: "",
     features: [
@@ -18,10 +17,9 @@ export const projects = [
     ],
   },
   {
-    title: "Walrus",
+    title: "walrus",
     description: "A single-node **persistent key-value store** in Go (zero dependencies), fast in-memory reads backed by a **segmented write-ahead log** for durability and crash recovery, with optional per-key TTL.",
     technologies: ["Go", "Write-Ahead Log", "Key-Value Store", "HTTP API"],
-    images: { light: "/walrus.webp", dark: "/walrus.webp" },
     github: "https://github.com/arbhalerao/walrus",
     demo: "",
     features: [
@@ -35,10 +33,9 @@ export const projects = [
     ],
   },
   {
-    title: "Meerkat",
+    title: "meerkat",
     description: "A **distributed key-value database** with **CRC32 consistent hashing**, **replication (factor 2)**, and **automatic key migration** as nodes join or leave the cluster.",
     technologies: ["Go", "gRPC", "BadgerDB", "Protocol Buffers", "Consistent Hashing", "Prometheus"],
-    images: { light: "/meerkat.webp", dark: "/meerkat.webp" },
     github: "https://github.com/arbhalerao/meerkat",
     demo: "",
     features: [
@@ -52,10 +49,9 @@ export const projects = [
     ],
   },
   {
-    title: "Otter",
+    title: "otter",
     description: "A from-scratch implementation of the **Raft consensus protocol** in Go over gRPC - leader election, log replication, and crash-safe persistence across a multi-node cluster.",
     technologies: ["Go", "gRPC", "Raft", "Protocol Buffers", "Distributed Consensus"],
-    images: { light: "/otter.webp", dark: "/otter.webp" },
     github: "https://github.com/arbhalerao/otter",
     demo: "",
     features: [
@@ -68,10 +64,9 @@ export const projects = [
     ],
   },
   {
-    title: "Autorollout",
+    title: "autorollout",
     description: "A **CRD-free Kubernetes operator** that triggers **rolling restarts** of Deployments when the **ConfigMaps or Secrets** they consume actually change.",
     technologies: ["Go", "Kubebuilder", "Kubernetes Controller", "Client-Go", "Docker"],
-    images: { light: "/autorollout.webp", dark: "/autorollout.webp" },
     github: "https://github.com/arbhalerao/autorollout",
     demo: "",
     features: [
@@ -85,10 +80,9 @@ export const projects = [
     ]
   },
   {
-    title: "GraphAuth",
+    title: "graphauth",
     description: "A **Zanzibar-inspired ReBAC authorization engine** modeling permissions as a **graph of relationships**, resolving inherited access through bounded recursive traversal.",
     technologies: ["Go", "Neo4j", "REST API", "Docker", "Graph Theory"],
-    images: { light: "/graphauth.webp", dark: "/graphauth.webp" },
     github: "https://github.com/arbhalerao/graphauth",
     demo: "",
     features: [
@@ -105,12 +99,12 @@ export const projects = [
 
 export const sideProjects = [
   {
-    title: "Go Software RAID",
+    title: "go-software-raid",
     description: "User-space RAID 0/1/5/6 in Go, file-backed disks with block I/O through a RAID abstraction layer. RAID 5 (XOR) survives 1 disk failure and RAID 6 (Galois-field dual parity) survives 2; usable capacity 100/50/75/50%. Covered by 14 unit tests.",
     github: "https://github.com/arbhalerao/go-software-raid",
   },
   {
-    title: "CoWIN Slot Finder",
+    title: "CoWIN-Slot-Finder",
     description: "A vaccination-slot discovery web app from India's 2021 COVID drive, a React (Vite) SPA over a stateless FastAPI proxy to the public CoWIN API, with State → District → Center navigation and pincode search. No database, no auth; migrated from an original Django build.",
     github: "https://github.com/arbhalerao/CoWIN-Slot-Finder",
   },

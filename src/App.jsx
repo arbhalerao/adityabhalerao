@@ -1,106 +1,75 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Analytics } from '@vercel/analytics/react';
-import { ThemeProvider } from "./context/ThemeContext";
+import { Analytics } from "@vercel/analytics/react";
 
-import { WaveSeparator } from "./components/SectionSeparator";
-
-import Contact from "./components/Contact";
+import SiteHeader from "./components/SiteHeader";
+import SectionControls from "./components/SectionControls";
 import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
 import Tech from "./components/Tech";
 import Experience from "./components/Experience";
-import Papershelf from "./components/Papershelf";
-import Blogs from "./components/Blogs";
+import Education from "./components/Education";
 import OSS from "./components/OSS";
-import EasterEgg from "./components/EasterEgg";
 import Projects from "./components/Projects";
+import Blogs from "./components/Blogs";
+import Papershelf from "./components/Papershelf";
+import Contact from "./components/Contact";
+import EasterEgg from "./components/EasterEgg";
+import { SOURCE_URL } from "./seo/siteMeta";
 import { useSeo } from "./seo/useSeo";
 
 function MainContent() {
+  // The browser handles /#section natively once the markup is on the page, but
+  // on a cold load with a hash it can fire before React has hydrated — and the
+  // target section may be collapsed, in which case the jump lands on a heading.
   useEffect(() => {
-    const handleHashNavigation = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        setTimeout(() => {
-          const element = document.getElementById(hash);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 100);
-      }
+    const revealHashSection = () => {
+      const id = window.location.hash.replace("#", "");
+      if (!id) return;
+
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      const details = section.querySelector("details[data-section]");
+      if (details) details.open = true;
+      section.scrollIntoView();
     };
 
-    handleHashNavigation();
-
-    window.addEventListener('hashchange', handleHashNavigation);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashNavigation);
-    };
+    revealHashSection();
+    window.addEventListener("hashchange", revealHashSection);
+    return () => window.removeEventListener("hashchange", revealHashSection);
   }, []);
 
   return (
-    <main className="flex flex-col items-center">
+    <main className="mx-auto w-full max-w-column px-5 pb-20 sm:px-8">
+      <Hero />
+      <SectionControls />
+      <Tech />
+      <Experience />
+      <Education />
+      <OSS />
+      <Projects />
+      <Blogs />
+      <Papershelf />
+      <Contact />
 
-      {/* Hero Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16">
-        <Hero />
-      </div>
+      {/* Left/right pair, matching the header and the section headings. */}
+      <footer className="meta mt-14 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-rule pt-6">
+        <p>© {__BUILD_DATE__.slice(0, 4)} Aditya Bhalerao</p>
 
-      <WaveSeparator />
-
-      {/* Tech Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16 bg-brand/[0.035]">
-        <Tech />
-      </div>
-
-      <WaveSeparator />
-
-      {/* Experience Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16">
-        <Experience />
-      </div>
-
-      <WaveSeparator />
-
-      {/* OSS Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16 bg-brand/[0.035]">
-        <OSS />
-      </div>
-
-      <WaveSeparator />
-      {/* Projects Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16">
-        <Projects />
-      </div>
-
-      <WaveSeparator />
-
-      {/* Blogs Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16 bg-brand/[0.035]">
-        <Blogs />
-      </div>
-
-      <WaveSeparator />
-
-      {/* Papershelf Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16">
-        <Papershelf />
-      </div>
-
-      <WaveSeparator />
-
-      {/* Contact Section */}
-      <div className="w-full px-4 md:px-8 lg:px-16 bg-brand/[0.035]">
-        <Contact />
-      </div>
-
-      {/* Footer */}
-      <footer className="w-full py-6 text-center text-sm text-gray-900 dark:text-white bg-brand/[0.035]">
-        © {new Date().getFullYear()} Aditya Bhalerao
+        {/* Each chunk carries its own separator and cannot break internally, so
+            a narrow window never strands a lone "·" on its own line. */}
+        <p>
+          <span className="whitespace-nowrap">
+            <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="link">
+              source
+            </a>{" "}
+            ·
+          </span>{" "}
+          <span className="whitespace-nowrap">
+            updated <time dateTime={__BUILD_DATE__}>{__BUILD_DATE__}</time>
+          </span>
+        </p>
       </footer>
-
     </main>
   );
 }
@@ -115,16 +84,14 @@ export function AppShell() {
   useSeo(pathname);
 
   return (
-    <ThemeProvider>
-      <div className="fixed -z-20 min-h-screen w-full bg-[#f3f3f3] dark:bg-[#2e3033]"></div>
-
-      <Navbar />
-      <Analytics />
+    <>
+      <SiteHeader />
       <Routes>
         <Route path="/" element={<MainContent />} />
       </Routes>
       <EasterEgg />
-    </ThemeProvider>
+      <Analytics />
+    </>
   );
 }
 

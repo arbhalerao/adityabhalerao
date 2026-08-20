@@ -4,23 +4,29 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class', // Enable class-based dark mode
   theme: {
     extend: {
+      // Mirrors the custom properties in src/index.css — change colours there.
       colors: {
-        brand: '#e08a3c',
-        dark: {
-          primary: '#0f172a',
-          secondary: '#1e293b',
-          accent: '#6b7280',
-          text: '#f8fafc',
-          muted: '#94a3b8',
-          border: '#334155',
-          card: '#1e293b',
-        },
+        brand: 'var(--brand)',
+        page: 'var(--bg)',
+        ink: 'var(--fg)',
+        body: 'var(--body)',
+        muted: 'var(--muted)',
+        rule: 'var(--rule)',
+      },
+      borderColor: {
+        DEFAULT: 'var(--rule)',
+      },
+      fontFamily: {
+        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'monospace'],
+      },
+      maxWidth: {
+        // The single reading column the whole page sits in.
+        column: '64rem',
       },
     },
   },
   plugins: [],
 }
-

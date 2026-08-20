@@ -13,11 +13,17 @@
 // the canonical host. Everything below derives from this — change it in one place.
 export const SITE_URL = "https://www.adityabhalerao.com";
 
+export const RESUME_URL =
+  "https://drive.google.com/file/d/12k8htg9CS3fOwn5GKpeUynS15ZxbMGE2/view";
+
 export const PROFILES = {
   linkedin: "https://www.linkedin.com/in/arbhalerao/",
   github: "https://github.com/arbhalerao",
   medium: "https://arbhalerao.medium.com/",
 };
+
+/** This site's own repository, linked from the footer. */
+export const SOURCE_URL = "https://github.com/arbhalerao/adityabhalerao";
 
 export const PERSON = {
   name: "Aditya Bhalerao",
@@ -47,14 +53,14 @@ export const OG_IMAGE = {
   url: `${SITE_URL}/aditya-bhalerao-og.png`,
   width: 1200,
   height: 630,
-  alt: "Aditya Bhalerao — Software Engineer",
+  alt: "Aditya Bhalerao, Software Engineer",
 };
 
 export const THEME_COLOR = "#e08a3c";
 
 export const PAGES = {
   "/": {
-    title: "Aditya Bhalerao — Software Engineer",
+    title: "Aditya Bhalerao",
     description:
       "Aditya Bhalerao is a software engineer in Pune, India, building scalable distributed systems in Go. Projects, open-source work, and writing.",
     changefreq: "weekly",
@@ -116,7 +122,7 @@ export function jsonLdFor() {
         "@type": "WebSite",
         "@id": `${SITE_URL}/#website`,
         url: `${SITE_URL}/`,
-        name: `${PERSON.name} — ${PERSON.jobTitle}`,
+        name: PERSON.name,
         description: PAGES["/"].description,
         inLanguage: "en",
         about: { "@id": PERSON_ID },
