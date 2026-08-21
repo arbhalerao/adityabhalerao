@@ -34,14 +34,15 @@ const Hero = () => {
     <section id="hero" className="pt-12">
       <div className="flex flex-col-reverse gap-6 sm:flex-row sm:items-start sm:gap-10">
         <div className="min-w-0 flex-1">
-          <h1 className="text-[2rem] font-semibold tracking-tight sm:text-[2.5rem]">
+          <h1>
             <a
               href="/"
               onClick={backToTop}
               aria-label="Aditya Bhalerao, back to top"
-              className="transition-colors hover:text-brand"
+              className="group inline-block"
             >
-              {PERSON.name}
+              <span className="signature h-12 group-hover:bg-brand sm:h-[3.75rem]" />
+              <span className="sr-only">{PERSON.name}</span>
             </a>
           </h1>
 

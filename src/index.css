@@ -138,4 +138,13 @@ section:has(> details:not([open])) + footer {
   .prose-block {
     @apply text-[16px] leading-7;
   }
+
+  /* The signature scan is painted through a mask, so its colour stays an
+     ordinary CSS property: ink at rest, brand on hover. */
+  .signature {
+    @apply block bg-ink transition-colors;
+    aspect-ratio: 1200 / 218;
+    -webkit-mask: url("/name.svg") no-repeat center / contain;
+    mask: url("/name.svg") no-repeat center / contain;
+  }
 }
