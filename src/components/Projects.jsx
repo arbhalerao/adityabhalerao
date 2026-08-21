@@ -23,13 +23,9 @@ const Projects = () => (
 
           <p className="depth-2 mt-1.5 text-body">{plain(project.description)}</p>
 
-          {/* Native <details>: the old version animated an AnimatePresence height
-              transition and reset itself on scroll and on Escape.
-
-              The group MUST stay named. This <details> is nested inside the
-              section's own <details>, and an unnamed `group-open:` resolves
-              against the nearest *any* ancestor `.group[open]` — so the marker
-              here tracked the section's state instead of this project's. */}
+          {/* The group MUST stay named: this <details> is nested inside the section's
+              own, and an unnamed `group-open:` resolves against the nearest ancestor
+              `.group[open]` — the marker then tracks the section, not the project. */}
           {project.features?.length > 0 || project.challenges ? (
             <details className="group/project mt-3">
               <summary

@@ -1,16 +1,9 @@
 /**
- * Single source of truth for every piece of SEO metadata on the site.
- *
- * It is consumed twice:
- *   - at build time by `scripts/prerender.mjs`, which bakes the tags into the
- *     static HTML that Vercel serves (and generates sitemap.xml from PAGES)
- *   - at runtime by `useSeo()`, so client-side route changes keep the head in sync
- *
- * Only facts that already exist elsewhere in this repo belong here.
+ * Single source of truth for the site's SEO metadata, consumed twice: at build
+ * time by scripts/prerender.mjs, and at runtime by useSeo() on route changes.
  */
 
-// The apex 308-redirects to www in production (Vercel domain config), so www is
-// the canonical host. Everything below derives from this — change it in one place.
+// The apex 308-redirects to www in production, so www is canonical. Change it here only.
 export const SITE_URL = "https://www.adityabhalerao.com";
 
 export const RESUME_URL =

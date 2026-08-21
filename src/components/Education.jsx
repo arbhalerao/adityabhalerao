@@ -10,11 +10,6 @@ const Detail = ({ label, items }) =>
     </div>
   ) : null;
 
-/**
- * Institution and location on the first line, qualification and dates on the
- * second, CGPA or percentage below. Both right-hand items are metadata, so they
- * share the same column edge as the dates in Experience.
- */
 const Education = () => (
   <Section id="education" title="Education" intro="Degrees and grades">
     <div className="space-y-8">

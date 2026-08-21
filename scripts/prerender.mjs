@@ -1,13 +1,7 @@
 /**
- * Post-build step: turn the client-rendered SPA into static HTML.
- *
- * `vite build` produces dist/index.html with an empty #root, which means a
- * crawler's first fetch sees no content at all. This renders every route in
- * src/seo/siteMeta.js#PAGES to HTML, injects the route's head tags, and writes
- * one static file per route — plus sitemap.xml.
- *
- * The client still boots normally on top of it (main.jsx calls createRoot,
- * which replaces the prerendered markup with the identical live tree).
+ * Post-build step: `vite build` leaves #root empty, so a crawler's first fetch
+ * sees nothing. Renders every route in siteMeta.js#PAGES to static HTML with its
+ * head tags, plus sitemap.xml and robots.txt. The client still boots on top.
  */
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";

@@ -2,39 +2,26 @@ import { useEffect, useRef, useState } from "react";
 import { PROFILES } from "../seo/siteMeta";
 import Section from "./Section";
 
-/*
- * Underline-only controls. A boxed input is the only enclosed shape on a page
- * built from hairline rules and text, which is what made the form read as
- * bolted on. The rule under each field is the same hairline as everywhere else.
- */
-/*
- * A failure that vanishes is worse than a success that does: the visitor looks
- * back at a blank line and assumes the message went through. Errors get twice
- * as long on screen.
- */
+/* A failure that vanishes reads as a success, so errors get twice as long on screen. */
 const SUCCESS_MS = 4000;
 const ERROR_MS = 8000;
 
+/* Underline-only: a boxed input would be the only enclosed shape on a page of hairlines and text. */
 const FIELD =
   "depth-2 w-full border-0 border-b border-rule bg-transparent py-1.5 text-ink transition-colors focus:border-brand focus:outline-none";
 
-/**
- * Grows a textarea to fit its content. Height is cleared first so the element
- * can shrink again when text is deleted, not only grow.
- */
+/** Height is cleared first so the box can shrink again, not only grow. */
 const autoGrow = (el) => {
   el.style.height = "auto";
   el.style.height = `${el.scrollHeight}px`;
 };
 
-/** Label above control — a real <label>, replacing placeholder-only fields. */
 const Field = ({ name, label, type = "text", textarea }) => (
   <div>
     <label htmlFor={name} className="meta mb-1 block">
       {label}
     </label>
     {textarea ? (
-      // Starts one line tall, like every other field, and grows as you type.
       <textarea
         id={name}
         name={name}

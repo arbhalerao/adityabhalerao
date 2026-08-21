@@ -1,11 +1,7 @@
 import tech from "../data/techData.js";
 import Section from "./Section";
 
-/*
- * The name is a depth-1 entry, same rung as a company or a project. Its stack
- * skips depth-2 and sits at depth-3: it is a list of keywords rather than prose,
- * so at 16px eleven of them crowd the names they belong to.
- */
+/* The stack skips depth-2 for depth-3: keywords, not prose — at 16px they crowd the names. */
 const Tech = () => (
   <Section id="tech" title="Tech" intro="Languages, tools, and infrastructure I work with">
     <dl className="space-y-2.5">

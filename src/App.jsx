@@ -18,9 +18,8 @@ import { SOURCE_URL } from "./seo/siteMeta";
 import { useSeo } from "./seo/useSeo";
 
 function MainContent() {
-  // The browser handles /#section natively once the markup is on the page, but
-  // on a cold load with a hash it can fire before React has hydrated — and the
-  // target section may be collapsed, in which case the jump lands on a heading.
+  // On a cold load the native /#section jump can fire before hydration, and the
+  // target may be collapsed — in which case it lands on a bare heading.
   useEffect(() => {
     const revealHashSection = () => {
       const id = window.location.hash.replace("#", "");
@@ -52,12 +51,10 @@ function MainContent() {
       <Papershelf />
       <Contact />
 
-      {/* Left/right pair, matching the header and the section headings. */}
       <footer className="meta mt-14 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-rule pt-6">
         <p>© {__BUILD_DATE__.slice(0, 4)} Aditya Bhalerao</p>
 
-        {/* Each chunk carries its own separator and cannot break internally, so
-            a narrow window never strands a lone "·" on its own line. */}
+        {/* Each chunk carries its own separator, so a narrow window never strands a lone "·". */}
         <p>
           <span className="whitespace-nowrap">
             <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="link">
@@ -74,11 +71,7 @@ function MainContent() {
   );
 }
 
-/**
- * Everything below the router. Kept separate from <App /> so that
- * src/entry-server.jsx can mount the same tree under a StaticRouter when
- * prerendering the static HTML at build time.
- */
+/** Split from <App /> so entry-server.jsx can mount the same tree under a StaticRouter. */
 export function AppShell() {
   const { pathname } = useLocation();
   useSeo(pathname);

@@ -21,11 +21,8 @@ const metaByProperty = (property, content) =>
   });
 
 /**
- * Keeps the document head correct after client-side navigation.
- *
- * The initial head is baked in at build time by scripts/prerender.mjs. With a
- * single route this is a no-op on load, but it keeps the head correct if a
- * second route is ever added to PAGES.
+ * Keeps the head correct after client-side navigation. The initial head is baked
+ * in by scripts/prerender.mjs, so with a single route this is a no-op on load.
  */
 export function useSeo(path) {
   useEffect(() => {

@@ -13,11 +13,7 @@ const SECTIONS = [
   { id: "contact", label: "contact" },
 ];
 
-/**
- * A single static row. The old navbar tracked the active section on every
- * scroll event and watched <html> for theme changes; plain anchors plus
- * scroll-margin-top in index.css do the same job with no JS.
- */
+/* Plain anchors plus scroll-margin-top in index.css — no scroll listeners. */
 export default function SiteHeader() {
   const backToTop = useBackToTop();
 
