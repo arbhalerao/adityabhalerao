@@ -3,9 +3,12 @@
 @tailwind utilities;
 
 /*
- * One quiet palette, defined once. The site is light-only.
+ * One quiet palette, defined once, in two tones. Light is the default, and the
+ * system preference is deliberately not consulted.
  */
 :root {
+  color-scheme: light;
+
   --bg: #fafaf9;
   --fg: #1c1c1c;
   --body: #3f3f3f;
@@ -14,6 +17,19 @@
   --brand: #e08a3c;
   --scroll-thumb: #cdcbc6;
   --scroll-thumb-hover: #a9a7a1;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --bg: #121211;
+  --fg: #ececea;
+  --body: #c3c2be;
+  --muted: #8c8a85;
+  --rule: #2d2c29;
+  --brand: #e08a3c;
+  --scroll-thumb: #3a3936;
+  --scroll-thumb-hover: #56544f;
 }
 
 html {

@@ -1,3 +1,4 @@
+import ThemeToggle from "./ThemeToggle";
 import { useBackToTop } from "../hooks/useBackToTop";
 import { revealSection } from "../lib/dom";
 import { RESUME_URL } from "../seo/siteMeta";
@@ -30,7 +31,7 @@ export default function SiteHeader() {
           ~
         </a>
 
-        <nav aria-label="Primary" className="ml-auto flex flex-wrap gap-x-4 gap-y-1 font-mono text-[13px] text-muted">
+        <nav aria-label="Primary" className="ml-auto flex flex-wrap gap-x-4 gap-y-1 font-mono text-[14px] text-muted">
           {SECTIONS.map(({ id, label }) => (
             <a key={id} href={`/#${id}`} onClick={() => revealSection(id)} className="hover:text-brand">
               {label}
@@ -40,6 +41,8 @@ export default function SiteHeader() {
             resume
           </a>
         </nav>
+
+        <ThemeToggle />
       </div>
     </header>
   );

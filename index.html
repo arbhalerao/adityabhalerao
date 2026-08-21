@@ -10,6 +10,13 @@
 
   <link rel="preload" as="image" href="/aditya-bhalerao.webp" fetchpriority="high" />
 
+  <!-- Runs before first paint so a dark visitor never sees a white flash. -->
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark");
+    } catch { /* storage blocked — stay light */ }
+  </script>
+
   <!--
     Everything between the seo markers is regenerated per route at build time by
     scripts/prerender.mjs from src/seo/siteMeta.js. The block below is the
