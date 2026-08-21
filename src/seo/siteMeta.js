@@ -9,6 +9,8 @@ export const SITE_URL = "https://www.adityabhalerao.com";
 export const RESUME_URL =
   "https://drive.google.com/file/d/12k8htg9CS3fOwn5GKpeUynS15ZxbMGE2/view";
 
+export const EMAIL_PARTS = { user: "adityabhalerao.work", domain: "gmail.com" };
+
 export const PROFILES = {
   linkedin: "https://www.linkedin.com/in/arbhalerao/",
   github: "https://github.com/arbhalerao",
@@ -157,9 +159,9 @@ export function headTags(path) {
     tag(`<meta property="og:image:alt" content="${escapeAttr(OG_IMAGE.alt)}" />`),
     ...(path === "/"
       ? [
-          tag(`<meta property="profile:first_name" content="Aditya" />`),
-          tag(`<meta property="profile:last_name" content="Bhalerao" />`),
-        ]
+        tag(`<meta property="profile:first_name" content="Aditya" />`),
+        tag(`<meta property="profile:last_name" content="Bhalerao" />`),
+      ]
       : []),
     "",
     tag(`<meta name="twitter:card" content="summary_large_image" />`),

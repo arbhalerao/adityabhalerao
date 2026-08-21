@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { PROFILES } from "../seo/siteMeta";
+import { EMAIL_PARTS, PROFILES } from "../seo/siteMeta";
 import Section from "./Section";
+
+const EMAIL_TEXT = `${EMAIL_PARTS.user} at ${EMAIL_PARTS.domain.replace(".", " dot ")}`;
+
+const openMailClient = () => {
+  const { user, domain } = EMAIL_PARTS;
+  window.location.href = `mailto:${user}\u0040${domain}`;
+};
 
 /* A failure that vanishes reads as a success, so errors get twice as long on screen. */
 const SUCCESS_MS = 4000;
@@ -131,6 +138,13 @@ export default function Contact() {
           </p>
         </div>
       </form>
+
+      <p className="depth-2 mt-6">
+        or, directly:{" "}
+        <button type="button" onClick={openMailClient} className="link">
+          {EMAIL_TEXT}
+        </button>
+      </p>
 
       <div className="mt-12">
         <p className="meta mb-1">elsewhere</p>
