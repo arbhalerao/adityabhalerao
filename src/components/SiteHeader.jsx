@@ -1,18 +1,7 @@
 import ThemeToggle from "./ThemeToggle";
 import { useBackToTop } from "../hooks/useBackToTop";
 import { revealSection } from "../lib/dom";
-import { RESUME_URL } from "../seo/siteMeta";
-
-const SECTIONS = [
-  { id: "tech", label: "tech" },
-  { id: "experience", label: "experience" },
-  { id: "education", label: "education" },
-  { id: "oss", label: "oss" },
-  { id: "projects", label: "projects" },
-  { id: "blogs", label: "writing" },
-  { id: "papershelf", label: "papers" },
-  { id: "contact", label: "contact" },
-];
+import { RESUME_URL, SECTIONS } from "../seo/siteMeta";
 
 /* Plain anchors plus scroll-margin-top in index.css — no scroll listeners. */
 export default function SiteHeader() {

@@ -68,7 +68,7 @@ const Hero = () => {
             onClick={() => revealSection("contact")}
             className="meta link mt-3 inline-block"
           >
-            get in touch →
+            get in touch -&gt;
           </a>
         </div>
 

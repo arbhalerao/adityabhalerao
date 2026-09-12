@@ -53,6 +53,72 @@ export const OG_IMAGE = {
 
 export const THEME_COLOR = "#e08a3c";
 
+/**
+ * The page-level sections, in page order. Each one is both a block on the
+ * homepage and a route of its own at /<id>.
+ *
+ * `label` is what the header nav shows; `title` is the heading the section
+ * renders with, reused as the standalone page's <title>. Plain data on purpose:
+ * scripts/prerender.mjs loads this file in node, so nothing here may import JSX.
+ * The components themselves are wired to these ids in src/sections.jsx.
+ */
+export const SECTIONS = [
+  {
+    id: "tech",
+    label: "tech",
+    title: "Tech",
+    description:
+      "Languages, frameworks, and infrastructure Aditya Bhalerao works with, including Go, Python, Kubernetes, gRPC, and PostgreSQL.",
+  },
+  {
+    id: "experience",
+    label: "experience",
+    title: "Experience",
+    description:
+      "The backend engineering roles Aditya Bhalerao has held, and the systems built in each.",
+  },
+  {
+    id: "education",
+    label: "education",
+    title: "Education",
+    description: "Degrees and grades behind Aditya Bhalerao's backend engineering work.",
+  },
+  {
+    id: "oss",
+    label: "oss",
+    title: "Open source",
+    description:
+      "Pull requests and issues Aditya Bhalerao has contributed to open-source projects.",
+  },
+  {
+    id: "projects",
+    label: "projects",
+    title: "Projects",
+    description:
+      "Side projects Aditya Bhalerao has built outside work, with source code and demos.",
+  },
+  {
+    id: "blogs",
+    label: "writing",
+    title: "Writing",
+    description:
+      "Writing by Aditya Bhalerao on backend engineering and distributed systems, published on Medium.",
+  },
+  {
+    id: "papershelf",
+    label: "papers",
+    title: "Papers",
+    description: "Computer science papers on Aditya Bhalerao's shelf, and the takeaway from each.",
+  },
+  {
+    id: "contact",
+    label: "contact",
+    title: "Contact",
+    description:
+      "Get in touch with Aditya Bhalerao: a contact form, a direct email address, and profile links.",
+  },
+];
+
 export const PAGES = {
   "/": {
     title: "Aditya Bhalerao",
@@ -61,6 +127,20 @@ export const PAGES = {
     changefreq: "weekly",
     priority: "1.0",
   },
+
+  // One route per section. They rank below the homepage, which carries all of
+  // the same content in one place.
+  ...Object.fromEntries(
+    SECTIONS.map(({ id, title, description }) => [
+      `/${id}`,
+      {
+        title: `${title} · ${PERSON.name}`,
+        description,
+        changefreq: "monthly",
+        priority: "0.6",
+      },
+    ])
+  ),
 };
 
 /** robots.txt body. Generated at build time so the sitemap host can never drift from SITE_URL. */
