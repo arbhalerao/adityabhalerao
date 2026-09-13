@@ -1,70 +1,68 @@
 export const projects = [
   {
     title: "geotriage",
-    description: "A **satellite imagery triage platform** - draw an area on a map, choose a date range and the detectors to run (water, vegetation, surface heat), and it searches public satellite archives, scores every matching image, and ranks them **green / yellow / red** so analysts only open the ones that matter.",
+    description: "A **satellite imagery triage platform** - draw an area, pick dates and detectors (water, vegetation, surface heat), and it scores every matching archive image and ranks them **green / yellow / red** so analysts open only what matters.",
     technologies: ["Python", "FastAPI", "PostgreSQL", "PostGIS", "Docker", "rasterio", "MinIO", "React", "MapLibre"],
     github: "https://github.com/arbhalerao/geotriage",
     demo: "",
     features: [
-      "**Pluggable detectors and data sources as Docker images** - each is built on a shared base image and talks to the platform through a small command protocol, so new analyses or archives are added by registering an image, never by changing platform code",
-      "**Sandboxed execution** - every run is a short-lived container with a read-only filesystem, dropped privileges, memory/CPU/time limits, and **no network access** for detectors, so untrusted code can't reach anything beyond its inputs",
-      "**Automated admission checks** - before an image is accepted, the platform validates what it declares and does a **test run on synthetic data** to confirm it actually returns the scores it promised",
-      "**Cost-aware processing pipeline** - cloud cover and location are filtered at search time, an optional quick check on a **low-resolution preview** discards uninteresting scenes early, and bands are read at the coarsest resolution the detectors accept instead of full size",
-      "**Archive-agnostic data model** - bands from sources like **Sentinel-2** and **Landsat** are mapped to common names and converted to physical units, so one detector runs unchanged against any archive",
-      "**Custom job queue on PostgreSQL** - parallel workers with retries and backoff, automatic recovery of work from crashed workers, chained steps per scene, and scheduled re-runs that keep an area under **continuous monitoring**",
-      "**Analyst web app** - React + MapLibre for drawing areas, charts of scores over time, severity-filtered results, review status and bookmarks, and map overlays of derived rasters",
-      "**Standalone Python SDK** - base classes for writing detectors and data sources, plus a CLI to validate them, verify them against a live archive, and test them on a real satellite scene before deployment",
-      "**125 tests** across the SDK and the platform's pipeline, admission checks, and job flow"
+      "**Pluggable detectors and data sources** as Docker images on a shared base - new analyses are registered, never coded into the platform",
+      "**Sandboxed runs** - short-lived containers with read-only filesystems, dropped privileges, resource limits, and **no network** for detectors",
+      "**Admission checks** validate what each plugin declares and do a **test run on synthetic data** before accepting it",
+      "**Cost-aware pipeline** - filters cloud cover at search time, drops dull scenes from a **low-res preview**, and reads bands at the coarsest usable resolution",
+      "**Archive-agnostic bands** - **Sentinel-2** and **Landsat** mapped to common names and physical units, so one detector runs on any source",
+      "**PostgreSQL job queue** - parallel workers, retries with backoff, crash recovery, and scheduled re-runs for **continuous monitoring**",
+      "**React + MapLibre analyst app** and a **Python SDK** with a CLI to validate plugins and test them on real scenes",
+      "**125 tests** across the SDK and platform"
     ],
   },
   {
     title: "causality-bench",
-    description: "An experiment comparing two ways distributed systems track the order of events - **Lamport clocks vs vector clocks**. A deterministic simulator records the true order of every execution independently of both clocks, then scores each against it to measure how much ordering information the cheaper clock loses and what the exact one costs.",
+    description: "An experiment measuring **Lamport vs vector clocks** - a deterministic simulator records the true event order independently of both, then scores how much ordering the cheaper clock loses and what the exact one costs.",
     technologies: ["Python", "NumPy", "pandas", "NetworkX", "SciPy", "Matplotlib", "Discrete-Event Simulation"],
     github: "https://github.com/arbhalerao/causality-bench",
     demo: "",
     features: [
-      "**Independent ground truth** - the true \"happened-before\" relationships are built purely from program order and message send/receive, never from either clock's timestamps, so the clocks being tested can't also be the answer key",
-      "**Fair side-by-side comparison** - both clocks run over the exact same execution, so every difference comes from the clock design rather than from a different run",
-      "**Every pair checked, not a sample** - a precomputed ancestor index answers \"did A happen before B?\" in a single lookup, making it practical to check all **~50M event pairs** in each run",
-      "**Index verified two independent ways** - against a brute-force graph search on every pair of a small execution, and against NetworkX's transitive closure",
-      "**1,320 simulated runs** across 2-128 nodes, 5 network topologies, 3 delay models, 6 message rates, and 16 message-loss/crash settings, each repeated over 30 seeds - Lamport clocks misorder **95.4%-99.3%** of concurrent event pairs, while vector clocks cost **16.3x** more per receive and carry **N×** more metadata per message",
-      "**Crash-recovery modeling** - nodes keep their clock state through an outage, since a node that forgot its logical time would break the clock's ordering guarantee",
-      "**163 tests** covering the clocks, causality engine, simulator, metrics, statistics, visualizations, and analysis notebooks"
+      "**Independent ground truth** built from program order and message send/receive, never from either clock's timestamps",
+      "**Same execution for both clocks**, so every difference comes from clock design alone",
+      "**Every pair checked** - a precomputed ancestor index makes all **~50M event pairs** per run a single lookup, verified against brute-force search and NetworkX transitive closure",
+      "**1,320 runs** over 2-128 nodes, 5 topologies, 3 delay models, 6 message rates, and 16 loss/crash settings (30 seeds each) - Lamport misorders **95.4%-99.3%** of concurrent pairs; vector clocks cost **16.3x** more per receive and **N×** more metadata",
+      "**Crash-recovery modeling** - nodes keep clock state through outages to preserve ordering guarantees",
+      "**163 tests** across the clocks, causality engine, simulator, metrics, and notebooks"
     ],
   },
   {
     title: "overpass",
-    description: "A live **\"what's above this point?\"** view of the sky - pick a location on a map and a radius, and Overpass shows the **aircraft** flying within that circle and the **satellites** passing overhead, including which ones you could actually see with the naked eye right now.",
+    description: "A live **\"what's above this point?\"** view - pick a location and radius to see the **aircraft** in that circle and the **satellites** overhead, including which are visible to the naked eye right now.",
     technologies: ["Python", "FastAPI", "Skyfield", "SGP4", "Geodesy", "WebSockets", "React", "Docker"],
     github: "https://github.com/arbhalerao/overpass",
     demo: "",
     features: [
-      "**Real naked-eye visibility, not just \"overhead\"** - a satellite counts as visible only when it's above the horizon, lit by the sun, and the sky at your location is dark enough, computed with **Skyfield** and NASA JPL's **DE421** ephemeris",
-      "**Accurate Earth geometry** - search areas use the **WGS-84** Earth model rather than a perfect sphere, and correctly handle areas that cross the international date line, sit near the poles, or need trimming to a true circle",
-      "**Satellite positions from live orbital data** - elements from **CelesTrak** feed the **SGP4** propagator directly, and each satellite reports how old its data is, since predictions drift roughly a kilometre per day",
-      "**Caching that protects upstream APIs** - aircraft refresh every 5 seconds and orbits every 2 hours, and many simultaneous requests for the same data trigger just one upstream call",
-      "**Robust OpenSky integration** - OAuth2 login with cached tokens, one automatic retry when a token expires mid-request, and rate-limit wait times passed back to the caller instead of hidden",
-      "**Graceful partial failure** - aircraft and satellite data are fetched in parallel, so if one source is down you still get the other; results are served over both REST and a live **WebSocket** stream",
-      "**Flight numbers from callsigns** - aircraft broadcasts don't include the airline, so callsigns are decoded against a catalogue of 136 airlines to recover commercial flight numbers and separate airline traffic from private flights",
-      "**Clean layered architecture** - API, services, data clients, and core domain each depend only on the layer below, with the whole stack started by one `docker compose up`"
+      "**True naked-eye visibility** - above the horizon, sunlit, and against a dark enough sky, computed with **Skyfield** and JPL's **DE421** ephemeris",
+      "**WGS-84 geometry** that handles date-line crossings, polar areas, and true-circle trimming",
+      "**Live orbits** from **CelesTrak** propagated with **SGP4**, with data age reported since predictions drift ~1 km/day",
+      "**Upstream-friendly caching** - aircraft every 5s, orbits every 2h, concurrent identical requests collapsed into one call",
+      "**Robust OpenSky client** - cached OAuth2 tokens, retry on expiry, and rate-limit waits passed back to callers",
+      "**Graceful partial failure** - sources fetched in parallel and served over REST and a live **WebSocket** stream",
+      "**Flight numbers from callsigns**, decoded against 136 airlines to separate commercial from private traffic",
+      "**Layered architecture** (API → services → clients → domain), started with one `docker compose up`"
     ],
   },
   {
     title: "cadutrace",
-    description: "An offline analyzer for **spacecraft telemetry** in the **CCSDS** standards used by space agencies - it takes a raw recording of what a ground station received and unpacks it layer by layer, from transfer frames to reassembled data packets to decoded application data, producing a health report or an interactive terminal UI.",
+    description: "An offline analyzer for **CCSDS spacecraft telemetry** - unpacks raw ground-station recordings from transfer frames to reassembled packets to decoded data, producing a health report or an interactive terminal UI.",
     technologies: ["Go", "CCSDS", "Binary Protocol Parsing", "Bubble Tea", "mmap"],
     github: "https://github.com/arbhalerao/cadutrace",
     demo: "",
     features: [
-      "**Packet reassembly across frame boundaries** - stitches back together data packets that were split across multiple transfer frames, detecting packets that were lost or truncated along the way",
-      "**Zero-copy parsing over mmap** - reads the recording through memory-mapping instead of copying bytes, so multi-GB, larger-than-RAM captures stream at **~1.6 GB/s**",
-      "**Wrap-aware gap detection** - frame and packet sequence counters roll over at a fixed size, so missing, duplicated, and out-of-order data is classified correctly even across the wraparound",
-      "**CFDP file-transfer tracking** - reconstructs files sent down from the spacecraft and reports how complete each one is, down to the **exact missing byte ranges**, even when pieces arrive out of order or overlap",
-      "**Broad standards coverage** - **TM** and **AOS** transfer frames, **Space** and **Encapsulation** packets, **CLCW** uplink status reports, and optional derandomization",
-      "**Pluggable decoders** - application-specific decoders are selected by packet ID and isolated so a crashing decoder can't take down the analysis; CFDP is built as one of them",
-      "**Two interfaces** - a text/JSON health report that's deterministic and easy to diff in CI, and an interactive **Bubble Tea** terminal UI for browsing frames, packets, hex dumps, file transfers, and stats",
-      "**Synthetic data generator** - produces byte-exact test recordings, including randomized and lossy streams, at gigabyte scale"
+      "**Packet reassembly across frames**, detecting lost or truncated packets",
+      "**Zero-copy mmap parsing** - multi-GB, larger-than-RAM captures stream at **~1.6 GB/s**",
+      "**Wrap-aware gap detection** classifies missing, duplicate, and out-of-order data across counter rollover",
+      "**CFDP file-transfer tracking** down to the **exact missing byte ranges**, even with out-of-order or overlapping pieces",
+      "**Standards coverage** - **TM**/**AOS** frames, **Space**/**Encapsulation** packets, **CLCW** reports, optional derandomization",
+      "**Isolated, pluggable decoders** selected by packet ID, so one crashing decoder can't stop the analysis",
+      "**Two interfaces** - a deterministic text/JSON report for CI diffs and a **Bubble Tea** TUI for browsing frames, packets, hex dumps, and transfers",
+      "**Synthetic generator** for byte-exact, lossy, gigabyte-scale test recordings"
     ],
   },
   {
@@ -151,7 +149,7 @@ export const projects = [
 export const sideProjects = [
   {
     title: "geotriage-sdk",
-    description: "The Python SDK for building geotriage plugins - base classes for writing satellite-image detectors and data sources, a CLI to validate them, check them against a live archive, and test them on a real scene, plus the Docker base image every plugin is built on.",
+    description: "The Python SDK for geotriage plugins - base classes for detectors and data sources, a CLI to validate them and test them against a live archive and a real scene, and the Docker base image every plugin builds on.",
     github: "https://github.com/arbhalerao/geotriage-sdk",
   },
   {
