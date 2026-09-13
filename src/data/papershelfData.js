@@ -1,5 +1,15 @@
 const papers = [
     {
+        title: "Time, Clocks, and the Ordering of Events in a Distributed System",
+        summary: "Lamport's 1978 paper defining the happens-before relation and the logical clock built on it, showing that a distributed system can order events by causality without any shared notion of time.",
+        link: "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+    },
+    {
+        title: "Virtual Time and Global States of Distributed Systems",
+        summary: "Mattern argues that a linearly ordered notion of time is inadequate for distributed systems, and replaces it with vectors of clocks that are only partially ordered, capturing causality exactly where a single counter cannot.",
+        link: "https://www.vs.inf.ethz.ch/publ/papers/VirtTimeGlobStates.pdf",
+    },
+    {
         title: "In Search of an Understandable Consensus Algorithm",
         summary: "This paper presents the RAFT consensus algorithm, emphasizing its simplicity and ease of understanding compared to other distributed consensus algorithms like Paxos.",
         link: "https://raft.github.io/raft.pdf",

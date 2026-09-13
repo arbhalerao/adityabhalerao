@@ -35,9 +35,19 @@ const blogs = [
         date: "Dec 5, 2025",
     },
     {
+        title: "How LSM Trees Trade Reads for Writes",
+        link: "https://arbhalerao.medium.com/how-lsm-trees-trade-reads-for-writes-f6c0f67d9230",
+        date: "Oct 11, 2025",
+    },
+    {
         title: "Redis Is Fast Because It's Single Threaded",
         link: "https://arbhalerao.medium.com/redis-is-fast-because-its-single-threaded-849e815ac853",
         date: "Sep 23, 2025",
+    },
+    {
+        title: "How Bloom Filters Say \"Probably\"",
+        link: "https://arbhalerao.medium.com/how-bloom-filters-say-probably-8cb322797747",
+        date: "Aug 14, 2025",
     },
     {
         title: "Working with STAC in Python: A Hands-On Tutorial",
@@ -45,7 +55,7 @@ const blogs = [
         date: "Jul 28, 2025",
     },
     {
-        title: "A Guide to STAC — Organizing Satellite Imagery",
+        title: "A Guide to STAC: Organizing Satellite Imagery",
         link: "https://arbhalerao.medium.com/a-guide-to-stac-organizing-satellite-imagery-91c7d5022245",
         date: "Jul 21, 2025",
     },
@@ -60,6 +70,16 @@ const blogs = [
         date: "Apr 20, 2025",
     },
     {
+        title: "Why Databases Use Write-Ahead Logs",
+        link: "https://arbhalerao.medium.com/why-databases-use-write-ahead-logs-9404da958b7c",
+        date: "Feb 14, 2025",
+    },
+    {
+        title: "What “Eventually Consistent” Actually Means",
+        link: "https://arbhalerao.medium.com/what-eventually-consistent-actually-means-6e1a19277cf6",
+        date: "Dec 14, 2024",
+    },
+    {
         title: "Indirection in Computing",
         link: "https://arbhalerao.medium.com/indirection-in-computing-c245aa6569c3",
         date: "Nov 10, 2024",
@@ -68,6 +88,16 @@ const blogs = [
         title: "How TCP Delivers Reliably Over an Unreliable Network",
         link: "https://arbhalerao.medium.com/how-tcp-delivers-reliably-over-an-unreliable-network-3ac2e9eea8d9",
         date: "Nov 23, 2023",
+    },
+    {
+        title: "The Magic Behind JSON Web Tokens",
+        link: "https://arbhalerao.medium.com/the-magic-behind-json-web-tokens-15aa935a21ba",
+        date: "Nov 23, 2022",
+    },
+    {
+        title: "How DNS Turns a Name Into an Address",
+        link: "https://medium.com/@arbhalerao/how-dns-turns-a-name-into-an-address-b724270f622c",
+        date: "Sep 25, 2022",
     },
     {
         title: "Understanding Big-O by Breaking It",
