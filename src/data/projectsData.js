@@ -1,19 +1,23 @@
 export const projects = [
   {
     title: "geotriage",
-    description: "A **satellite imagery triage platform** - draw an area, pick dates and detectors (water, vegetation, surface heat), and it scores every matching archive image and ranks them **green / yellow / red** so analysts open only what matters.",
-    technologies: ["Python", "FastAPI", "PostgreSQL", "PostGIS", "Docker", "rasterio", "MinIO", "React", "MapLibre"],
+    description: "A **satellite imagery triage platform** - describe a job in a sentence or draw it on a map, and it scores every matching archive image and ranks them **green / yellow / red** so analysts open only what matters.",
+    technologies: ["Python", "FastAPI", "PostgreSQL", "PostGIS", "Docker", "rasterio", "MinIO", "Ollama", "React", "MapLibre"],
     github: "https://github.com/arbhalerao/geotriage",
     demo: "",
     features: [
+      "**Workflow builder agent** - a sentence becomes a draft workflow, with a **local 4B model** calling tools for the catalogue and place lookup, answering through a tool call the server validates",
+      "**The model proposes, the server decides** - drafts are checked against the catalogue, dates and guardrails, sent back for up to 2 repairs, then turned into an honest refusal; geometry never passes through the model, only opaque place ids",
+      "**Eval harness over 63 cases** and 10 metrics - **0.95** on answer kind and **1.00** on schema validity, against a **0.23** always-asks baseline, with pinned dates, recorded geocoder answers and hash-versioned prompts so runs stay comparable",
       "**Pluggable detectors and data sources** as Docker images on a shared base - new analyses are registered, never coded into the platform",
       "**Sandboxed runs** - short-lived containers with read-only filesystems, dropped privileges, resource limits, and **no network** for detectors",
-      "**Admission checks** validate what each plugin declares and do a **test run on synthetic data** before accepting it",
+      "**Storage policies per workflow** - keep imagery only for the scenes that scored Alert, or maps only, or scores only; the rest is deleted after scoring",
+      "**Disk guardrails at three points** - the draft, the form and the start of every run, sizing scenes by their overlap with the area and refusing before anything is downloaded",
       "**Cost-aware pipeline** - filters cloud cover at search time, drops dull scenes from a **low-res preview**, and reads bands at the coarsest usable resolution",
       "**Archive-agnostic bands** - **Sentinel-2** and **Landsat** mapped to common names and physical units, so one detector runs on any source",
       "**PostgreSQL job queue** - parallel workers, retries with backoff, crash recovery, and scheduled re-runs for **continuous monitoring**",
       "**React + MapLibre analyst app** and a **Python SDK** with a CLI to validate plugins and test them on real scenes",
-      "**125 tests** across the SDK and platform"
+      "**249 tests** across the SDK and platform"
     ],
   },
   {
