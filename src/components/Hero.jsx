@@ -31,7 +31,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="pt-12">
+    <section id="hero" className="pt-8 sm:pt-12">
       <div className="flex flex-col-reverse gap-6 sm:flex-row sm:items-start sm:gap-10">
         <div className="min-w-0 flex-1">
           <h1>
@@ -87,7 +87,7 @@ const Hero = () => {
 
       {/* Full width, below the row. Beside the photo this copy left roughly
           126px of dead column under it at 70 words. */}
-      <div className="prose-block mt-8 space-y-4 text-ink">
+      <div className="prose-block mt-7 space-y-4 sm:mt-8 text-ink">
         <p>
           I’m a backend software engineer focused on building reliable, scalable systems with Go,
           Python, Kubernetes, and distributed systems. I enjoy working close to infrastructure,

@@ -2,7 +2,7 @@ import { SOURCE_URL } from "../seo/siteMeta";
 
 export default function SiteFooter() {
   return (
-    <footer className="meta mt-14 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-rule pt-6">
+    <footer className="meta mt-14 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 max-sm:flex-col max-sm:gap-y-1 border-t border-rule pt-6">
       <p>© {__BUILD_DATE__.slice(0, 4)} Aditya Bhalerao</p>
 
       {/* Each chunk carries its own separator, so a narrow window never strands a lone "·". */}

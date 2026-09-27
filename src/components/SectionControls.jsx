@@ -9,7 +9,7 @@ const setAll = (open) => {
 
 export default function SectionControls() {
   return (
-    <div className="meta -mb-8 mt-16 flex justify-end gap-4">
+    <div className="meta -mb-8 mt-10 flex sm:mt-16 justify-end gap-4">
       <button
         type="button"
         onClick={() => setAll(true)}

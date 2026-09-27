@@ -62,7 +62,7 @@ export default function Section({ id, title, intro, defaultOpen = false, childre
 
   if (standalone) {
     return (
-      <section id={id} className="pt-12">
+      <section id={id} className="pt-8 sm:pt-12">
         <h1 className="section-heading text-brand">{title}</h1>
 
         {intro ? (
@@ -75,13 +75,13 @@ export default function Section({ id, title, intro, defaultOpen = false, childre
   }
 
   return (
-    <section id={id} className="mt-14 border-t border-rule pt-8">
+    <section id={id} className="mt-10 border-t border-rule pt-6 sm:mt-14 sm:pt-8">
       <details data-section open={defaultOpen} className="group/section">
         <summary
           onMouseDown={suppressMultiClickSelect}
           className="section-heading flex cursor-pointer select-none list-none items-baseline justify-between gap-4 transition-colors hover:text-brand group-open/section:text-brand"
         >
-          <span className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <span className="flex flex-wrap items-baseline gap-x-4 gap-y-1 max-sm:flex-col">
             {title}
             {intro ? (
               <span className="depth-2 lowercase font-normal text-muted group-open/section:hidden">
@@ -95,7 +95,7 @@ export default function Section({ id, title, intro, defaultOpen = false, childre
             * tab without also toggling the <summary> it sits in — no handler
             * needed. /<id> is a prerendered route of its own, not a jump link.
             */}
-          <span className="flex shrink-0 items-center gap-5 text-muted">
+          <span className="flex shrink-0 items-center gap-5 text-muted max-sm:hidden">
             <span className="flex">
               <span className="group-open/section:hidden">
                 <Plus />

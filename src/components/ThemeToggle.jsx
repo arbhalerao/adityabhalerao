@@ -14,7 +14,7 @@ const Sun = () => (
     strokeWidth="1.75"
     strokeLinecap="round"
     aria-hidden="true"
-    className="hidden h-4 w-4 -translate-y-[2px] dark:block"
+    className="hidden h-4 w-4 -translate-y-[2px] dark:block max-sm:translate-y-0"
   >
     <circle cx="12" cy="12" r="4.25" />
     <path d="M12 2v2.25M12 19.75V22M4.22 4.22l1.6 1.6M18.18 18.18l1.6 1.6M2 12h2.25M19.75 12H22M4.22 19.78l1.6-1.6M18.18 5.82l1.6-1.6" />
@@ -30,7 +30,7 @@ const Moon = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
     aria-hidden="true"
-    className="h-4 w-4 -translate-y-[3px] dark:hidden"
+    className="h-4 w-4 -translate-y-[3px] dark:hidden max-sm:translate-y-0"
   >
     <path d="M20.5 14.6A8.75 8.75 0 0 1 9.4 3.5a8.75 8.75 0 1 0 11.1 11.1Z" />
   </svg>

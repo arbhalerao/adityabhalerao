@@ -4,7 +4,7 @@ import Section from "./Section";
 /* The stack skips depth-2 for depth-3: keywords, not prose — at 16px they crowd the names. */
 const Tech = () => (
   <Section id="tech" title="Tech" intro="Languages, tools, and infrastructure I work with">
-    <dl className="space-y-2.5">
+    <dl className="space-y-4 sm:space-y-2.5">
       {tech.map((item) => (
         <div key={item.name} className="sm:flex sm:gap-6">
           <dt className="depth-1 shrink-0 font-medium sm:w-56">

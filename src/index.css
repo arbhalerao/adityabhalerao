@@ -125,7 +125,7 @@ section:has(> details:not([open])) + footer {
   /* The top of the ladder: a section owns everything below it, so it is the
      largest thing in that section rather than a small marker above it. */
   .section-heading {
-    @apply text-[26px] font-medium;
+    @apply text-[22px] font-medium sm:text-[26px];
   }
 
   .depth-1 {

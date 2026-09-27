@@ -8,7 +8,7 @@ const Projects = () => (
     <div className="space-y-12">
       {projects.map((project) => (
         <article key={project.title}>
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 max-sm:flex-col max-sm:gap-y-0.5">
             <h3 className="depth-1 font-medium">
               {project.github ? (
                 <a href={project.github} target="_blank" rel="noopener noreferrer" className="link">
@@ -37,7 +37,7 @@ const Projects = () => (
               </summary>
 
               {project.features?.length > 0 ? (
-                <ul className="depth-3 mt-3 list-disc space-y-1.5 pl-5 text-body marker:text-rule">
+                <ul className="depth-3 mt-3 list-disc space-y-1.5 pl-4 sm:pl-5 text-body marker:text-rule">
                   {project.features.map((feature) => (
                     <li key={feature}>{plain(feature)}</li>
                   ))}

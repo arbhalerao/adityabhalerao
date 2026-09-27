@@ -5,7 +5,7 @@ import Section from "./Section";
 const Detail = ({ label, items }) =>
   items?.length ? (
     <div className="mt-2 sm:flex sm:gap-4">
-      <span className="meta w-24 shrink-0 sm:pt-0.5">{label}</span>
+      <span className="meta block w-24 shrink-0 sm:pt-0.5">{label}</span>
       <p className="depth-4 text-body">{items.join(", ")}</p>
     </div>
   ) : null;
@@ -15,12 +15,12 @@ const Education = () => (
     <div className="space-y-8">
       {education.map((entry) => (
         <article key={entry.institution}>
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 max-sm:flex-col max-sm:gap-y-0.5">
             <h3 className="depth-1 font-medium">{entry.institution}</h3>
             <span className="meta whitespace-nowrap">{entry.location}</span>
           </div>
 
-          <div className="mt-1 flex flex-wrap items-baseline justify-between gap-x-4">
+          <div className="mt-1 flex flex-wrap items-baseline justify-between gap-x-4 max-sm:flex-col max-sm:gap-y-0.5">
             <p className="depth-2 text-muted">{entry.degree}</p>
             <span className="meta whitespace-nowrap">{entry.duration}</span>
           </div>
