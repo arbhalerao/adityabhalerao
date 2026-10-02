@@ -9,7 +9,7 @@ const Projects = () => (
       {projects.map((project) => (
         <article key={project.title}>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 max-sm:flex-col max-sm:gap-y-0.5">
-            <h3 className="depth-1 font-medium">
+            <h3 className="depth-1">
               {project.github ? (
                 <a href={project.github} target="_blank" rel="noopener noreferrer" className="link">
                   {project.title}
@@ -63,13 +63,13 @@ const Projects = () => (
 
     {sideProjects.length > 0 ? (
       <div className="mt-12">
-        <h3 className="depth-1 font-medium text-muted">
+        <h3 className="depth-1 text-muted">
           Smaller builds
         </h3>
         <div className="mt-5 space-y-6">
           {sideProjects.map((project) => (
             <article key={project.title}>
-              <h4 className="depth-2 font-medium">
+              <h4 className="depth-2">
                 {project.github ? (
                   <a href={project.github} target="_blank" rel="noopener noreferrer" className="link">
                     {project.title}

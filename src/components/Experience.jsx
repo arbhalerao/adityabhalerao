@@ -11,7 +11,7 @@ const Experience = () => (
       {experiences.map((exp) => (
         <article key={exp.company}>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 max-sm:flex-col max-sm:gap-y-0.5">
-            <h3 className="depth-1 font-medium">
+            <h3 className="depth-1">
               <a href={exp.link} target="_blank" rel="noopener noreferrer" className="link">
                 {exp.company}
               </a>
@@ -22,7 +22,7 @@ const Experience = () => (
 
           {exp.projects.map((project, i) => (
             <div key={project.name ?? i} className="mt-4">
-              {project.name ? <h4 className="depth-3 font-medium">{project.name}</h4> : null}
+              {project.name ? <h4 className="depth-3">{project.name}</h4> : null}
               <ul className="depth-4 mt-2 list-disc space-y-1.5 pl-4 sm:pl-5 text-body marker:text-rule">
                 {project.achievements.map((achievement) => (
                   <li key={achievement}>{plain(achievement)}</li>

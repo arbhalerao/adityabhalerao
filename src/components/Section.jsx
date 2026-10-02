@@ -7,7 +7,7 @@ import { suppressMultiClickSelect } from "../lib/dom";
  * page reads as one set.
  *
  * The +/- marker is drawn rather than typed for the same reason: as text it
- * inherited the heading's font-medium and sat next to the link icon looking
+ * inherited the heading's weight and sat next to the link icon looking
  * bolder and a different size, and no type size fixes that mismatch.
  */
 const Glyph = ({ children }) => (

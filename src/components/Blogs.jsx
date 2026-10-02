@@ -21,7 +21,7 @@ const Blogs = () => (
     <div className="space-y-8">
       {years.map((year) => (
         <div key={year}>
-          <h3 className="depth-1 font-medium">{year}</h3>
+          <h3 className="depth-1">{year}</h3>
           <ul className="mt-3 space-y-3 sm:space-y-2">
             {groupedByYear[year].map((blog) => (
               <li key={blog.link} className="depth-2 sm:flex sm:gap-4">

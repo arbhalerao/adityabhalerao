@@ -29,7 +29,7 @@ const OSS = () => (
     <div className="space-y-8">
       {byPriority.map((contribution) => (
         <article key={contribution.title}>
-          <h3 className="depth-1 font-medium">
+          <h3 className="depth-1">
             <a href={contribution.link} target="_blank" rel="noopener noreferrer" className="link">
               {contribution.title}
             </a>

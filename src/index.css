@@ -120,12 +120,13 @@ section:has(> details:not([open])) + footer {
    *   .depth-4         14  the detail         achievement bullets
    *   .meta            13  facts about it     dates, tech, status  (mono)
    *
-   * Weight is applied at the call site — a rung is a size, not a style.
+   * Everything is regular weight: hierarchy comes from size and colour, so no
+   * entry ever reads heavier than the section heading above it.
    */
   /* The top of the ladder: a section owns everything below it, so it is the
      largest thing in that section rather than a small marker above it. */
   .section-heading {
-    @apply text-[22px] font-medium sm:text-[26px];
+    @apply text-[22px] font-normal sm:text-[26px];
   }
 
   .depth-1 {

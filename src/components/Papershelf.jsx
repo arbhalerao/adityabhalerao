@@ -10,7 +10,7 @@ const Papershelf = () => (
     <ul className="space-y-6">
       {papers.map((paper) => (
         <li key={paper.link}>
-          <h3 className="depth-1 font-medium">
+          <h3 className="depth-1">
             <a href={paper.link} target="_blank" rel="noopener noreferrer" className="link">
               {paper.title}
             </a>

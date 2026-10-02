@@ -16,7 +16,7 @@ const Education = () => (
       {education.map((entry) => (
         <article key={entry.institution}>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 max-sm:flex-col max-sm:gap-y-0.5">
-            <h3 className="depth-1 font-medium">{entry.institution}</h3>
+            <h3 className="depth-1">{entry.institution}</h3>
             <span className="meta whitespace-nowrap">{entry.location}</span>
           </div>
 
