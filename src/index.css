@@ -103,10 +103,11 @@ section:has(> details:not([open])) + footer {
 }
 
 @layer components {
-  /* Links read as text first: a hairline underline that only picks up the
-     accent on hover. Used for every in-prose and list link on the site. */
+  /* Links read as text first, with a brand-coloured hairline underline; the
+     text itself picks up the accent on hover. Used for every in-prose and list
+     link on the site. */
   .link {
-    @apply underline decoration-rule underline-offset-[3px] transition-colors hover:text-brand hover:decoration-brand;
+    @apply underline decoration-brand underline-offset-[3px] transition-colors hover:text-brand;
   }
 
   /*
