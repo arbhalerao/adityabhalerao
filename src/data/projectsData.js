@@ -6,9 +6,10 @@ export const projects = [
     github: "https://github.com/arbhalerao/geotriage",
     demo: "",
     features: [
-      "**Workflow builder agent** - a sentence becomes a draft workflow, with a **local 4B model** calling tools for the catalogue and place lookup, answering through a tool call the server validates",
-      "**The model proposes, the server decides** - drafts are checked against the catalogue, dates and guardrails, sent back for up to 2 repairs, then turned into an honest refusal; geometry never passes through the model, only opaque place ids",
-      "**Eval harness over 63 cases** and 10 metrics - **0.95** on answer kind and **1.00** on schema validity, against a **0.23** always-asks baseline, with pinned dates, recorded geocoder answers and hash-versioned prompts so runs stay comparable",
+      "**Natural-language workflow agent** - built a tool-using agent that turns plain English into valid satellite monitoring workflows, reusing the platform's own validation so a draft can never break its rules",
+      "**Eval-driven prompt development** - wrote a 100-prompt eval set before the agent and scored every change field by field, including whether the agent asks instead of guessing",
+      "**Local-first LLM engineering** - ran the whole agent on a small open-weight model on CPU, with zero API spend and no data leaving the machine, and picked the model size by eval results",
+      "**LLM tracing and eval caching** - logged every model call with prompt version, tokens and latency, and cached responses so eval runs only re-ran what changed",
       "**Pluggable detectors and data sources** as Docker images on a shared base - new analyses are registered, never coded into the platform",
       "**Sandboxed runs** - short-lived containers with read-only filesystems, dropped privileges, resource limits, and **no network** for detectors",
       "**Storage policies per workflow** - keep imagery only for the scenes that scored Alert, or maps only, or scores only; the rest is deleted after scoring",
