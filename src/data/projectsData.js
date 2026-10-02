@@ -7,8 +7,8 @@ export const projects = [
     demo: "",
     features: [
       "**Natural-language workflow agent** - built a tool-using agent that turns plain English into valid satellite monitoring workflows, reusing the platform's own validation so a draft can never break its rules",
-      "**Eval-driven prompt development** - wrote a 100-prompt eval set before the agent and scored every change field by field, including whether the agent asks instead of guessing",
-      "**Local-first LLM engineering** - ran the whole agent on a small open-weight model on CPU, with zero API spend and no data leaving the machine, and picked the model size by eval results",
+      "**Eval-driven prompt development** - set targets before the first run, then scored every change on a 63-case eval set across 10 metrics, including whether the agent asks instead of guessing - **0.95** on answer kind and **1.00** on schema validity, against a **0.23** always-asks baseline",
+      "**Local-first LLM engineering** - ran the whole agent on a small open-weight model on CPU, with zero API spend and no data leaving the machine, choosing the instruct build over the reasoning default to keep CPU latency down",
       "**LLM tracing and eval caching** - logged every model call with prompt version, tokens and latency, and cached responses so eval runs only re-ran what changed",
       "**Pluggable detectors and data sources** as Docker images on a shared base - new analyses are registered, never coded into the platform",
       "**Sandboxed runs** - short-lived containers with read-only filesystems, dropped privileges, resource limits, and **no network** for detectors",
@@ -18,7 +18,7 @@ export const projects = [
       "**Archive-agnostic bands** - **Sentinel-2** and **Landsat** mapped to common names and physical units, so one detector runs on any source",
       "**PostgreSQL job queue** - parallel workers, retries with backoff, crash recovery, and scheduled re-runs for **continuous monitoring**",
       "**React + MapLibre analyst app** and a **Python SDK** with a CLI to validate plugins and test them on real scenes",
-      "**249 tests** across the SDK and platform"
+      "**340 tests** across the platform (269) and SDK (71)"
     ],
   },
   {
@@ -31,7 +31,7 @@ export const projects = [
       "**Independent ground truth** built from program order and message send/receive, never from either clock's timestamps",
       "**Same execution for both clocks**, so every difference comes from clock design alone",
       "**Every pair checked** - a precomputed ancestor index makes all **~50M event pairs** per run a single lookup, verified against brute-force search and NetworkX transitive closure",
-      "**1,320 runs** over 2-128 nodes, 5 topologies, 3 delay models, 6 message rates, and 16 loss/crash settings (30 seeds each) - Lamport misorders **95.4%-99.3%** of concurrent pairs; vector clocks cost **16.3x** more per receive and **N×** more metadata",
+      "**1,320 runs** over 2-128 nodes, 5 topologies, 3 delay models, 6 message rates, and 16 loss/crash settings (30 seeds each) - Lamport misorders **95%-99.9%** of concurrent pairs; vector clocks cost **16.3x** more per receive and **N×** more metadata",
       "**Crash-recovery modeling** - nodes keep clock state through outages to preserve ordering guarantees",
       "**163 tests** across the clocks, causality engine, simulator, metrics, and notebooks"
     ],
@@ -61,7 +61,7 @@ export const projects = [
     demo: "",
     features: [
       "**Packet reassembly across frames**, detecting lost or truncated packets",
-      "**Zero-copy mmap parsing** - multi-GB, larger-than-RAM captures stream at **~1.6 GB/s**",
+      "**Zero-copy mmap parsing** - multi-GB captures are parsed in place, with only frame-spanning packets copied",
       "**Wrap-aware gap detection** classifies missing, duplicate, and out-of-order data across counter rollover",
       "**CFDP file-transfer tracking** down to the **exact missing byte ranges**, even with out-of-order or overlapping pieces",
       "**Standards coverage** - **TM**/**AOS** frames, **Space**/**Encapsulation** packets, **CLCW** reports, optional derandomization",
