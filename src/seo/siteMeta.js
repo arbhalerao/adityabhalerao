@@ -6,8 +6,7 @@
 // The apex 308-redirects to www in production, so www is canonical. Change it here only.
 export const SITE_URL = "https://www.adityabhalerao.com";
 
-export const RESUME_URL =
-  "https://drive.google.com/file/d/12k8htg9CS3fOwn5GKpeUynS15ZxbMGE2/view";
+export const RESUME_URL = import.meta.env?.VITE_RESUME_URL;
 
 export const EMAIL_PARTS = { user: "adityabhalerao.work", domain: "gmail.com" };
 
