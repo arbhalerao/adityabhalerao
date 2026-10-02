@@ -2,7 +2,7 @@ const experiences = [
     {
         company: "Geminus Space",
         logo: "/geminus_space.jpeg",
-        role: "Software Engineer (Backend)",
+        role: "Founding Software Engineer (Backend)",
         duration: "October 2024 - Present",
         projects: [
             {

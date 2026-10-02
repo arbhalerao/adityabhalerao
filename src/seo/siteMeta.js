@@ -21,7 +21,7 @@ export const SOURCE_URL = "https://github.com/arbhalerao/adityabhalerao";
 
 export const PERSON = {
   name: "Aditya Bhalerao",
-  jobTitle: "Software Engineer",
+  jobTitle: "Founding Software Engineer",
   employer: { name: "Geminus Space", url: "https://geminus.space/" },
   locality: "Pune",
   region: "Maharashtra",
@@ -47,7 +47,7 @@ export const OG_IMAGE = {
   url: `${SITE_URL}/aditya-bhalerao-og.png`,
   width: 1200,
   height: 630,
-  alt: "Aditya Bhalerao, Software Engineer",
+  alt: "Aditya Bhalerao, Founding Software Engineer",
 };
 
 export const THEME_COLOR = "#e08a3c";
