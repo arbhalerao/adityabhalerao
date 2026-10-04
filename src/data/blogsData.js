@@ -85,6 +85,21 @@ const blogs = [
         date: "Nov 10, 2024",
     },
     {
+        title: "How Leader Election Prevents Split Brain",
+        link: "https://arbhalerao.medium.com/how-leader-election-prevents-split-brain-838b882ddd35",
+        date: "Sep 1, 2024",
+    },
+    {
+        title: "Consistent Hashing, Explained by Its Failure Modes",
+        link: "https://arbhalerao.medium.com/consistent-hashing-explained-by-its-failure-modes-7cf08756c021",
+        date: "Aug 17, 2024",
+    },
+    {
+        title: "How Containers Isolate Without a Virtual Machine",
+        link: "https://arbhalerao.medium.com/how-containers-isolate-without-a-virtual-machine-bf701e3f666e",
+        date: "Jan 27, 2024",
+    },
+    {
         title: "How TCP Delivers Reliably Over an Unreliable Network",
         link: "https://arbhalerao.medium.com/how-tcp-delivers-reliably-over-an-unreliable-network-3ac2e9eea8d9",
         date: "Nov 23, 2023",
