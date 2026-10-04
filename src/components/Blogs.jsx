@@ -15,7 +15,7 @@ const dayAndMonth = (date) => date.replace(/,?\s*\d{4}\s*$/, "");
 const Blogs = () => (
   <Section
     id="blogs"
-    title="Writing"
+    title="Blogs"
     intro={`${blogs.length} posts, all on Medium`}
   >
     <div className="space-y-8">

@@ -98,10 +98,10 @@ export const SECTIONS = [
   },
   {
     id: "blogs",
-    label: "writing",
-    title: "Writing",
+    label: "blogs",
+    title: "Blogs",
     description:
-      "Writing by Aditya Bhalerao on backend engineering and distributed systems, published on Medium.",
+      "Blog posts by Aditya Bhalerao on backend engineering and distributed systems, published on Medium.",
   },
   {
     id: "papershelf",
@@ -122,7 +122,7 @@ export const PAGES = {
   "/": {
     title: "Aditya Bhalerao",
     description:
-      "Aditya Bhalerao is a software engineer in Pune, India, building scalable distributed systems in Go. Projects, open-source work, and writing.",
+      "Aditya Bhalerao is a software engineer in Pune, India, building scalable distributed systems in Go. Projects, open-source work, and blogs.",
     changefreq: "weekly",
     priority: "1.0",
   },
