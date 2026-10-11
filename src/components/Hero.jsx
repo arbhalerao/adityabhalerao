@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useBackToTop } from "../hooks/useBackToTop";
+import { ASK_CHATGPT_URL } from "../lib/askChatGPT";
 import { revealSection } from "../lib/dom";
 import { PROFILES, PERSON, RESUME_URL } from "../seo/siteMeta";
 
@@ -63,13 +64,14 @@ const Hero = () => {
             ))}
           </nav>
 
-          <a
-            href="/#contact"
-            onClick={() => revealSection("contact")}
-            className="meta link mt-3 inline-block"
-          >
-            get in touch -&gt;
-          </a>
+          <div className="meta mt-3 flex flex-wrap gap-x-4 gap-y-1">
+            <a href="/#contact" onClick={() => revealSection("contact")} className="link">
+              get in touch -&gt;
+            </a>
+            <a href={ASK_CHATGPT_URL} target="_blank" rel="noopener noreferrer" className="link">
+              ask chatgpt about me -&gt;
+            </a>
+          </div>
         </div>
 
         <img
