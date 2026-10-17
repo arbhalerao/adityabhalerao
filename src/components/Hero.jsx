@@ -101,6 +101,11 @@ const Hero = () => {
           and space-data platforms. Outside work, I build systems from scratch, contribute to open
           source, and write about the engineering concepts I’m learning.
         </p>
+        <p>
+          Lately, I’ve been slowly diving into applied AI, exploring how LLMs and agents can be built
+          into real products, and bringing the same focus on reliability and scale to the systems
+          around them.
+        </p>
       </div>
     </section>
   );
