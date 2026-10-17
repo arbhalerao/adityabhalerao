@@ -4,10 +4,9 @@ import Section from "./Section";
 
 const EMAIL_TEXT = `${EMAIL_PARTS.user} at ${EMAIL_PARTS.domain.replace(".", " dot ")}`;
 
-const openMailClient = () => {
-  const { user, domain } = EMAIL_PARTS;
-  window.location.href = `mailto:${user}\u0040${domain}`;
-};
+const emailAddress = () => `${EMAIL_PARTS.user}\u0040${EMAIL_PARTS.domain}`;
+
+const COPIED_MS = 2000;
 
 /* A failure that vanishes reads as a success, so errors get twice as long on screen. */
 const SUCCESS_MS = 4000;
@@ -59,6 +58,25 @@ export default function Contact() {
   };
 
   useEffect(() => () => clearTimeout(clearTimer.current), []);
+
+  // Copying beats mailto: plenty of visitors have no mail client set up. Where
+  // the clipboard is unavailable (insecure context, denied), fall back to it.
+  const [copied, setCopied] = useState(false);
+  const copiedTimer = useRef();
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(emailAddress());
+    } catch {
+      window.location.href = `mailto:${emailAddress()}`;
+      return;
+    }
+    clearTimeout(copiedTimer.current);
+    setCopied(true);
+    copiedTimer.current = setTimeout(() => setCopied(false), COPIED_MS);
+  };
+
+  useEffect(() => () => clearTimeout(copiedTimer.current), []);
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -141,9 +159,12 @@ export default function Contact() {
 
       <p className="depth-2 mt-6">
         or, directly:{" "}
-        <button type="button" onClick={openMailClient} className="link">
+        <button type="button" onClick={copyEmail} title="copy email" className="link">
           {EMAIL_TEXT}
-        </button>
+        </button>{" "}
+        <span aria-live="polite" className="meta ml-2">
+          {copied ? "copied to clipboard" : ""}
+        </span>
       </p>
 
       <div className="mt-12">
