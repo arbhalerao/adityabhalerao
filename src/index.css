@@ -78,6 +78,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* A brand tint rather than solid orange, so the text keeps its own colour. */
+::selection {
+  background: color-mix(in srgb, var(--brand) 30%, transparent);
+}
+
 /* Anchor jumps land below the sticky header instead of under it. */
 [id] {
   scroll-margin-top: 4.5rem;
