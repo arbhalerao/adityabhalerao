@@ -1,5 +1,23 @@
 export const projects = [
   {
+    title: "picseek",
+    description: "A **local screenshot search engine** - find any screenshot by the words in it, even when the OCR misread them, by what it means, or by what it looks like, all offline on a laptop.",
+    technologies: ["Go", "Python", "gRPC", "Protocol Buffers", "SQLite FTS5", "ONNX Runtime", "PaddleOCR", "CLIP", "Sentence Embeddings", "Docker", "systemd"],
+    github: "https://github.com/arbhalerao/picseek",
+    demo: "",
+    features: [
+      "**Four-layer hybrid search** - exact text (**SQLite FTS5** trigrams, so partial words match), OCR-aware near matches, meaning (**MiniLM** text vectors) and visual (**CLIP**), ranked in tiers with **reciprocal rank fusion** and a `--why` flag that explains every hit",
+      "**OCR-error-aware matching** - folds the confusions OCR actually makes (0/O, 1/l, rn/m), collapses inserted characters and rejoins split words with a stopword guard; near hits always rank below exact ones and the stored text is never rewritten",
+      "**Zero-shot classification** into 7 types (money, travel, message, dev, security, document, chart) from vectors already stored for search, with an explicit \"none of these\" class - accuracy **0.70 → 0.95**, no training and no extra model calls",
+      "**Measured search quality** - a deterministic synthetic benchmark (43 rendered screenshots, 35 labelled and 4 off-topic queries) scoring recall@k and MRR per layer: **1.00** on keyword, partial and misread queries, **0.90** recall@10 overall, and **no results** for off-topic queries",
+      "**Go + Python services** - a Go daemon owns state and scheduling, Python services run OCR (**PP-OCRv6** on ONNX Runtime) and embeddings, over typed **gRPC** contracts on Unix sockets, with CI checks for breaking changes and generated-code drift",
+      "**Crash-safe indexing pipeline** - a persistent SQLite job queue with leases, live and backfill lanes, retries with backoff, parking of bad files, per-worker **circuit breakers**, and content-hash dedup so moved or copied files are never reprocessed",
+      "**Saved to searchable in under a second** - a filesystem watcher, a live lane ahead of the backfill and opportunistic batched commits, while meaning and visual enrichment yield to OCR",
+      "**Versioned derived data** - OCR, normalisation, embedding and classifier versions are stored, so a model or rule change reprocesses only what it affects, automatically",
+      "**Ships like a real tool** - a CLI with tree output and clickable results, **systemd** user services at idle priority, distroless and slim **Docker** images, and **govulncheck** and **pip-audit** in CI"
+    ],
+  },
+  {
     title: "geotriage",
     description: "A **satellite imagery triage platform** - describe a job in a sentence or draw it on a map, and it scores every matching archive image and ranks them **green / yellow / red** so analysts open only what matters.",
     technologies: ["Python", "FastAPI", "PostgreSQL", "PostGIS", "Docker", "rasterio", "MinIO", "Ollama", "React", "MapLibre"],
