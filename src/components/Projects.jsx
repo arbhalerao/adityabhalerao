@@ -1,6 +1,6 @@
 import { implementations, projects, sideProjects } from "../data/projectsData.js";
 import { suppressMultiClickSelect } from "../lib/dom";
-import { plain } from "../lib/markup";
+import { rich } from "../lib/markup";
 import Section from "./Section";
 
 const Projects = () => (
@@ -21,7 +21,7 @@ const Projects = () => (
             <span className="meta">{project.technologies.join(" · ")}</span>
           </div>
 
-          <p className="depth-2 mt-1.5 text-body">{plain(project.description)}</p>
+          <p className="depth-2 mt-1.5 text-body">{rich(project.description)}</p>
 
           {/* The group MUST stay named: this <details> is nested inside the section's
               own, and an unnamed `group-open:` resolves against the nearest ancestor
@@ -39,13 +39,13 @@ const Projects = () => (
               {project.features?.length > 0 ? (
                 <ul className="depth-3 mt-3 list-disc space-y-1.5 pl-4 sm:pl-5 text-body marker:text-rule">
                   {project.features.map((feature) => (
-                    <li key={feature}>{plain(feature)}</li>
+                    <li key={feature}>{rich(feature)}</li>
                   ))}
                 </ul>
               ) : null}
 
               {project.challenges ? (
-                <p className="depth-3 mt-3 text-body">{plain(project.challenges)}</p>
+                <p className="depth-3 mt-3 text-body">{rich(project.challenges)}</p>
               ) : null}
             </details>
           ) : null}
@@ -75,7 +75,7 @@ const Projects = () => (
                   {project.title}
                 </a>
               </h4>
-              <p className="depth-3 mt-1 text-body">{project.description}</p>
+              <p className="depth-3 mt-1 text-body">{rich(project.description)}</p>
             </article>
           ))}
         </div>
@@ -100,7 +100,7 @@ const Projects = () => (
                   project.title
                 )}
               </h4>
-              <p className="depth-3 mt-1 text-body">{project.description}</p>
+              <p className="depth-3 mt-1 text-body">{rich(project.description)}</p>
             </article>
           ))}
         </div>

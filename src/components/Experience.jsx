@@ -1,5 +1,5 @@
 import experiences from "../data/experienceData";
-import { plain } from "../lib/markup";
+import { rich } from "../lib/markup";
 import Section from "./Section";
 
 const firstYear = experiences[experiences.length - 1].duration.match(/\d{4}/)[0];
@@ -25,7 +25,7 @@ const Experience = () => (
               {project.name ? <h4 className="depth-3">{project.name}</h4> : null}
               <ul className="depth-4 mt-2 list-disc space-y-1.5 pl-4 sm:pl-5 text-body marker:text-rule">
                 {project.achievements.map((achievement) => (
-                  <li key={achievement}>{plain(achievement)}</li>
+                  <li key={achievement}>{rich(achievement)}</li>
                 ))}
               </ul>
             </div>
