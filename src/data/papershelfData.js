@@ -1,10 +1,5 @@
 const papers = [
     {
-        title: "SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol",
-        summary: "Das, Gupta and Motivala's 2002 membership protocol that separates detecting failures from spreading the news: each node probes one member per period, asks others to probe indirectly before suspecting anyone, and gossips changes on the back of its pings, so the load on every node stays constant as the cluster grows.",
-        link: "https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf",
-    },
-    {
         title: "Time, Clocks, and the Ordering of Events in a Distributed System",
         summary: "Lamport's 1978 paper defining the happens-before relation and the logical clock built on it, showing that a distributed system can order events by causality without any shared notion of time.",
         link: "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
@@ -19,6 +14,11 @@ const papers = [
         summary: "This paper presents the RAFT consensus algorithm, emphasizing its simplicity and ease of understanding compared to other distributed consensus algorithms like Paxos.",
         link: "https://raft.github.io/raft.pdf",
         notes: "/notes/raft-notes.md"
+    },
+    {
+        title: "SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol",
+        summary: "A membership protocol that separates detecting failures from spreading the news: each node probes one member per period, asks others to probe indirectly before suspecting anyone, and gossips changes on the back of its pings, so the load on every node stays constant as the cluster grows.",
+        link: "https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf",
     },
     {
         title: "Zanzibar: Google's Consistent, Global Authorization System",

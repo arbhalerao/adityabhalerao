@@ -1,10 +1,10 @@
-import { projects, sideProjects } from "../data/projectsData.js";
+import { implementations, projects, sideProjects } from "../data/projectsData.js";
 import { suppressMultiClickSelect } from "../lib/dom";
 import { plain } from "../lib/markup";
 import Section from "./Section";
 
 const Projects = () => (
-  <Section id="projects" title="Projects" intro="Things built outside work">
+  <Section id="projects" title="Projects" intro="Things built outside work, from my own ideas to paper implementations">
     <div className="space-y-12">
       {projects.map((project) => (
         <article key={project.title}>
@@ -61,11 +61,33 @@ const Projects = () => (
       ))}
     </div>
 
+    {implementations.length > 0 ? (
+      <div className="mt-12">
+        <h3 className="depth-1 text-muted">
+          Implementations
+        </h3>
+        <p className="mt-1 text-muted">Papers and protocols built from scratch, with my own twists</p>
+        <div className="mt-5 space-y-6">
+          {implementations.map((project) => (
+            <article key={project.title}>
+              <h4 className="depth-2">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="link">
+                  {project.title}
+                </a>
+              </h4>
+              <p className="depth-3 mt-1 text-body">{project.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    ) : null}
+
     {sideProjects.length > 0 ? (
       <div className="mt-12">
         <h3 className="depth-1 text-muted">
           Smaller builds
         </h3>
+        <p className="mt-1 text-muted">Shorter projects and pieces that support the bigger ones</p>
         <div className="mt-5 space-y-6">
           {sideProjects.map((project) => (
             <article key={project.title}>

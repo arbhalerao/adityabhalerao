@@ -1,23 +1,5 @@
 export const projects = [
   {
-    title: "magpie",
-    description: "An implementation of the **SWIM gossip membership protocol** in Go - every node keeps its own list of who's in the cluster and detects failures with pings and gossip, no leader or central registry.",
-    technologies: ["Go", "SWIM", "Gossip Protocols", "UDP", "Docker", "React", "TypeScript", "Python", "Matplotlib"],
-    github: "https://github.com/arbhalerao/magpie",
-    demo: "",
-    features: [
-      "**Failure detection from the paper** - direct pings, **indirect ping-req** through k other members, a **suspect state** with incarnation-number refutation, and shuffled round-robin probing for a worst-case detection bound",
-      "**Infection-style dissemination** - membership updates piggybacked on probe traffic, least-sent first, each sent about **λ·log N** times, packed to fit a single UDP packet",
-      "**98% fewer false failure detections** at 10% packet loss than SWIM without suspicion, and **92% fewer** than all-to-all heartbeats, measured on 50-node clusters over 5 runs per point",
-      "**Constant probe cost** - **2 packets per node per period** from 10 to 1000 nodes, against N−1 for heartbeats, with a crash known cluster-wide within **18.3 protocol periods** at 1000 nodes",
-      "**Partition healing** - two-way full-state sync, reconnect attempts to members believed dead, and treating remote death reports as suspicion, so both sides of a split converge again in seconds",
-      "**Profiling-driven fixes** - a gossip queue that was fully sorted on every message made cost grow faster than the cluster; replaced with send-count buckets and checked against the naive version over 5000 random operations",
-      "**Simulation harness** - seeded in-memory network with packet loss, latency and partitions, a heartbeat baseline, and repeatable experiments that write CSVs and charts",
-      "**Live cluster** - a Docker Compose cluster of any size (`NODES=25`), real packet loss with `tc netem`, and a **React + TypeScript** dashboard to crash, isolate and restart nodes and watch every node's view converge",
-      "**77 tests** including a 200-node cluster, partition and rejoin scenarios, a fuzzed binary codec, and the race detector in CI"
-    ],
-  },
-  {
     title: "picseek",
     description: "A **local screenshot search engine** - find any screenshot by the words in it, even when the OCR misread them, by what it means, or by what it looks like, all offline on a laptop.",
     technologies: ["Go", "Python", "gRPC", "Protocol Buffers", "SQLite FTS5", "ONNX Runtime", "PaddleOCR", "CLIP", "Sentence Embeddings", "Docker", "systemd"],
@@ -123,37 +105,6 @@ export const projects = [
     ],
   },
   {
-    title: "meerkat",
-    description: "A **distributed key-value database** with **CRC32 consistent hashing**, **replication (factor 2)**, and **automatic key migration** as nodes join or leave the cluster.",
-    technologies: ["Go", "gRPC", "BadgerDB", "Protocol Buffers", "Consistent Hashing", "Prometheus"],
-    github: "https://github.com/arbhalerao/meerkat",
-    demo: "",
-    features: [
-      "**Consistent hash ring (CRC32)** with O(log n) lookup, adding a node remaps only ~1/N of keys, vs ~100% under modulo hashing",
-      "**Synchronous replication (factor 2)** with read fallback from primary to replica, tolerating a single-node failure",
-      "**Automatic key migration** on node join/leave, drain-before-remove and live ring reconciliation",
-      "**Health monitoring** over gRPC with automatic failure detection and node removal",
-      "**5-method gRPC service** per storage node, backed by **BadgerDB** (pure-Go LSM engine)",
-      "**Prometheus metrics** and a /cluster topology endpoint; Docker Compose (1 manager + 3 nodes)",
-      "**Tested and benchmarked** - 28 unit tests and 7 benchmarks across the hashing and storage layers"
-    ],
-  },
-  {
-    title: "otter",
-    description: "A from-scratch implementation of the **Raft consensus protocol** in Go over gRPC - leader election, log replication, and crash-safe persistence across a multi-node cluster.",
-    technologies: ["Go", "gRPC", "Raft", "Protocol Buffers", "Distributed Consensus"],
-    github: "https://github.com/arbhalerao/otter",
-    demo: "",
-    features: [
-      "**Randomized leader election** (150–300ms timeouts) with term-based voting and 50ms heartbeats",
-      "**Log replication** with per-follower nextIndex/matchIndex tracking, backtracking, and conflict truncation",
-      "**Commit-safety rule** - advances the commit index only on majority match of a current-term entry",
-      "**Crash-safe persistence** - currentTerm, votedFor, and the log written via atomic temp-file + rename, restored on restart",
-      "**Replicated key-value state machine** (SET/DEL) kept consistent across all nodes",
-      "Tolerates the loss of a minority of nodes (e.g. 1 of 3, 2 of 5); works for any odd cluster size"
-    ],
-  },
-  {
     title: "autorollout",
     description: "A **CRD-free Kubernetes operator** that triggers **rolling restarts** of Deployments when the **ConfigMaps or Secrets** they consume actually change.",
     technologies: ["Go", "Kubebuilder", "Kubernetes Controller", "Client-Go", "Docker"],
@@ -169,21 +120,28 @@ export const projects = [
       "**End-to-end tested** on a real Kubernetes (Kind) cluster - controller startup, pod health, metrics exposure, and restart-on-change"
     ]
   },
+];
+
+export const implementations = [
+  {
+    title: "magpie",
+    description: "The SWIM membership protocol, in Go. On top of the paper it adds a left state, joins through seed nodes, a two-way state sync that heals network partitions, and a simulation harness to measure it all: the suspect state cut false failure detections by 98% at 10% packet loss, and probing stays at 2 messages per node per period from 10 to 1000 nodes. A React dashboard crashes, isolates and restarts nodes in a Docker cluster of any size.",
+    github: "https://github.com/arbhalerao/magpie",
+  },
+  {
+    title: "otter",
+    description: "The Raft consensus algorithm, in Go over gRPC. Leader election, log replication with backtracking and conflict truncation, and the current-term commit rule, with each node's state persisted through an atomic temp-file and rename so a restarted node rejoins safely. It drives a replicated key-value store that keeps working with a minority of nodes down.",
+    github: "https://github.com/arbhalerao/otter",
+  },
+  {
+    title: "meerkat",
+    description: "Consistent hashing put to work in a distributed key-value store, in Go. A coordinator owns a CRC32 hash ring and writes every key to its owner and the next node on the ring, reads fail over to that replica, and when a node joins, leaves or stops answering health checks, its keys migrate automatically. Storage is BadgerDB behind gRPC, with Prometheus metrics.",
+    github: "https://github.com/arbhalerao/meerkat",
+  },
   {
     title: "graphauth",
-    description: "A **Zanzibar-inspired ReBAC authorization engine** modeling permissions as a **graph of relationships**, resolving inherited access through bounded recursive traversal.",
-    technologies: ["Go", "Neo4j", "REST API", "Docker", "Graph Theory"],
+    description: "Zanzibar's relationship-based authorization, modelled as a graph in Go. Permissions are edges between users, groups and documents, and a check resolves nested group membership in a single bounded Neo4j traversal, up to 15 levels deep, returning allow or deny with the reason. Neo4j and an in-memory store sit behind one interface.",
     github: "https://github.com/arbhalerao/graphauth",
-    demo: "",
-    features: [
-      "**Relationships-as-edges** model - Users, Groups, and Documents as typed nodes",
-      "**Bounded recursive traversal** (Cypher MEMBER_OF*0..15 + relation edge) resolving transitive, group-inherited access in a single query - O(path length)",
-      "**Pluggable storage** behind a GraphStore interface, Neo4j (bolt) and in-memory implementations",
-      "**Stateless REST API** for nodes, relationships, and permission checks, returning allow/deny + reason",
-      "**Relation types** - VIEWER, EDITOR, OWNER, MEMBER_OF with strict validation; Neo4j uniqueness constraints per label",
-      "**Docker and docker-compose** support for containerized deployment",
-      "**9 unit tests** covering relationship and permission-traversal scenarios"
-    ],
   },
 ];
 

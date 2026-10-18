@@ -11,7 +11,7 @@ import education from "../data/educationData";
 import experiences from "../data/experienceData";
 import contributions from "../data/ossData";
 import papers from "../data/papershelfData";
-import { projects } from "../data/projectsData";
+import { implementations, projects } from "../data/projectsData";
 import tech from "../data/techData";
 import { PERSON, PROFILES, SITE_URL } from "../seo/siteMeta";
 
@@ -51,7 +51,7 @@ At work:
 ${experiences.map(experienceBlock).join("\n")}
 
 Beyond work:
-- Projects: ${projects.map((p) => `${p.title} (${gist(p.description)})`).join("; ")}
+- Projects: ${[...projects, ...implementations].map((p) => `${p.title} (${gist(p.description)})`).join("; ")}
 - Open source: ${contributions.filter((c) => c.prs.length).map(ossLine).join("; ")}
 - Tech: ${tech.flatMap((group) => group.items.map((item) => item.name)).join(", ")}
 - Education: ${degree.degree}, ${degree.institution}, ${degree.grade} (${degree.duration})
