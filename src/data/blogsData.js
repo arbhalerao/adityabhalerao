@@ -95,6 +95,21 @@ const blogs = [
         date: "Aug 17, 2024",
     },
     {
+        title: "The CAP Theorem, Minus the Hype",
+        link: "https://arbhalerao.medium.com/the-cap-theorem-minus-the-hype-19f5753a7e82",
+        date: "Jun 6, 2024",
+    },
+    {
+        title: "How B-Trees Keep Databases Fast",
+        link: "https://arbhalerao.medium.com/how-b-trees-keep-databases-fast-2b1a1edf126f",
+        date: "Apr 7, 2024",
+    },
+    {
+        title: "What a System Call Actually Costs",
+        link: "https://arbhalerao.medium.com/what-a-system-call-actually-costs-ba03502c4cf3",
+        date: "Mar 1, 2024",
+    },
+    {
         title: "How Containers Isolate Without a Virtual Machine",
         link: "https://arbhalerao.medium.com/how-containers-isolate-without-a-virtual-machine-bf701e3f666e",
         date: "Jan 27, 2024",
