@@ -26,9 +26,18 @@ const Blogs = () => (
             {groupedByYear[year].map((blog) => (
               <li key={blog.link} className="depth-2 sm:flex sm:gap-4">
                 <span className="meta block w-20 shrink-0 sm:pt-1.5">{dayAndMonth(blog.date)}</span>
-                <a href={blog.link} target="_blank" rel="noopener noreferrer" className="link">
-                  {blog.title}
-                </a>
+                <div>
+                  <a href={blog.link} target="_blank" rel="noopener noreferrer" className="link">
+                    {blog.title}
+                  </a>
+                  {blog.tags?.length > 0 && (
+                    <ul className="meta mt-1 flex flex-wrap gap-x-3 gap-y-1">
+                      {blog.tags.map((tag) => (
+                        <li key={tag}>#{tag}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
