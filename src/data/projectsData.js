@@ -1,5 +1,23 @@
 export const projects = [
   {
+    title: "magpie",
+    description: "An implementation of the **SWIM gossip membership protocol** in Go - every node keeps its own list of who's in the cluster and detects failures with pings and gossip, no leader or central registry.",
+    technologies: ["Go", "SWIM", "Gossip Protocols", "UDP", "Docker", "React", "TypeScript", "Python", "Matplotlib"],
+    github: "https://github.com/arbhalerao/magpie",
+    demo: "",
+    features: [
+      "**Failure detection from the paper** - direct pings, **indirect ping-req** through k other members, a **suspect state** with incarnation-number refutation, and shuffled round-robin probing for a worst-case detection bound",
+      "**Infection-style dissemination** - membership updates piggybacked on probe traffic, least-sent first, each sent about **λ·log N** times, packed to fit a single UDP packet",
+      "**98% fewer false failure detections** at 10% packet loss than SWIM without suspicion, and **92% fewer** than all-to-all heartbeats, measured on 50-node clusters over 5 runs per point",
+      "**Constant probe cost** - **2 packets per node per period** from 10 to 1000 nodes, against N−1 for heartbeats, with a crash known cluster-wide within **18.3 protocol periods** at 1000 nodes",
+      "**Partition healing** - two-way full-state sync, reconnect attempts to members believed dead, and treating remote death reports as suspicion, so both sides of a split converge again in seconds",
+      "**Profiling-driven fixes** - a gossip queue that was fully sorted on every message made cost grow faster than the cluster; replaced with send-count buckets and checked against the naive version over 5000 random operations",
+      "**Simulation harness** - seeded in-memory network with packet loss, latency and partitions, a heartbeat baseline, and repeatable experiments that write CSVs and charts",
+      "**Live cluster** - a Docker Compose cluster of any size (`NODES=25`), real packet loss with `tc netem`, and a **React + TypeScript** dashboard to crash, isolate and restart nodes and watch every node's view converge",
+      "**77 tests** including a 200-node cluster, partition and rejoin scenarios, a fuzzed binary codec, and the race detector in CI"
+    ],
+  },
+  {
     title: "picseek",
     description: "A **local screenshot search engine** - find any screenshot by the words in it, even when the OCR misread them, by what it means, or by what it looks like, all offline on a laptop.",
     technologies: ["Go", "Python", "gRPC", "Protocol Buffers", "SQLite FTS5", "ONNX Runtime", "PaddleOCR", "CLIP", "Sentence Embeddings", "Docker", "systemd"],
